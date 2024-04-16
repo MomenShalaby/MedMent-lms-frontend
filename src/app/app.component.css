@@ -1,0 +1,5 @@
+
+  /* Add padding to the top of the content equal to the height of the fixed navbar */
+  body {
+    padding-top: 56px; /* Adjust this value according to your navbar height */
+  }
