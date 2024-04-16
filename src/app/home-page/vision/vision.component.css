@@ -1,0 +1,30 @@
+.vision-section{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 80px;
+    grid-row-gap: 0px;
+    flex-shrink: 0;
+    width: 100%;
+    padding: 10rem;
+}
+
+.vision-leftside{
+    grid-area: 1 / 1 / 2 / 2;
+    border-radius: 0 32px;
+    box-shadow: 2px 2px 30px 5px #ced4da;
+    background-color: #f5a7a0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 1.5rem 3rem;
+}
+
+.vision-rightside{
+    grid-area: 1 / 2 / 2 / 3;
+    /* margin-left: 2rem; */
+    p {
+        font-size: 20px;
+        line-height: 34px;
+    }
+}
