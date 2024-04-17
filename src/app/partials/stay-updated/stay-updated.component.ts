@@ -10,12 +10,14 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class StayUpdatedComponent {
   isLoginPage: boolean = false;
+  isRegisterPage: boolean = false;
 
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         // Check if the current route is '/login'
         this.isLoginPage = event.url === '/login';
+        this.isRegisterPage = event.url === '/register';
       }
     });
   }

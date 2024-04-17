@@ -1,4 +1,4 @@
-@if(!isLoginPage) {
+@if(!isLoginPage && !isRegisterPage) {
 <div class="container-fluid my-5 bg-body-secondary py-5">
   <h3 class="text-center">Stay updated</h3>
   <form class="form-floating row g-4 w-75 m-auto">
@@ -19,8 +19,8 @@
         <label for="zip_code" class="form-label">Zip code</label>
       </div>
     </div>
-    <div class="col-md-2">
-      <button class="btn bg-primary-subtle p-3">Subscribe</button>
+    <div class="col-md-2 ">
+      <button class="btn bg-primary-subtle p-3  w-100 ">Subscribe</button>
     </div>
   </form>
 </div>
