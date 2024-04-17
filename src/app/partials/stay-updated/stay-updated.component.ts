@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-stay-updated',
   standalone: true,
-  imports: [RouterLink],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  imports: [],
+  templateUrl: './stay-updated.component.html',
+  styleUrl: './stay-updated.component.css'
 })
-export class NavbarComponent {
+export class StayUpdatedComponent {
   isLoginPage: boolean = false;
 
   constructor(private router: Router) {
