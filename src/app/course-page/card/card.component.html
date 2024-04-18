@@ -1,0 +1,41 @@
+<div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-3 mt-3 mx-4 justify-content-center flex-wrap">
+    @for (course of filteredCourses; track $index){
+        <div class="col">
+            <div class="card">
+                <div class="card-product position-relative justify-content-end d-flex flex-column align-items-center">
+                    <span class="badge">{{course.level}}</span>
+                    <a [routerLink]="['product-details', course.id]">
+                        <img [src]="course.image" class="card-img-top" alt="...">
+                    </a>
+                    <div class="overlay">
+                    </div>
+                    <button
+                     [routerLink]="['product-details', course.id]"
+                     class="btn addToCart cursor-pointer d-inline-block">
+                     View Details
+                    </button>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <b>{{course.coursename}}</b>
+                    </h6>
+                    <p class="card-date">{{course.date}}</p>
+                    <div class="d-flex justify-content-between">
+                        <span>
+                            {{course.rate}}
+                            <ng-template #t let-fill="fill">
+                                <i class="fa-solid fa-star">
+                                    @if (fill > 0) {
+                                        <i class="fa-solid fa-star filled" [style.width.%]="fill"></i>
+                                    }
+                                </i>
+                            </ng-template>
+                            <ngb-rating [(rate)]="course.rate" [starTemplate]="t" [readonly]="true" [max]="5" [ariaValueText]="ariaValueText" />
+                        </span>
+                        <span class="favourite"><i class="fa-regular fa-heart" (click)="addOrRemoveToFav($event, course.rate)"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

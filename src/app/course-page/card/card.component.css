@@ -1,0 +1,111 @@
+.container-fluid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    width: 270px;
+}
+
+.card{
+    width: 280px;
+}
+
+.col{
+    display: flex;
+    justify-content: space-around;
+}
+
+i {
+    position: relative;
+    display: inline-block;
+    font-size: 0.9rem;
+    padding-right: 0.1rem;
+    color: #d3d3d3;
+}
+
+.filled {
+    color: var(--primary-color);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.card-date{
+    color: #8d8c8c;
+    font-weight: 600;
+}
+
+.favourite i{
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.card {
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+    box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.05);
+}
+  
+.card-product {
+    overflow: hidden;
+}
+  
+.card-product img {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    object-fit: cover;
+}
+  
+.badge{
+    border-radius: 8px;
+    padding: 6px 8px;
+    background-color: #ff8c00;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+.card:hover .overlay {
+    display: block;
+}
+
+.card:hover .addToCart{
+    opacity: 1;
+    transform: translateY(0);
+    transition: 0.4s transform;
+}
+  
+.overlay{
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: #0000004f;
+    z-index: 3;
+}
+
+.btn {
+    text-align: center;
+    background-color: white;
+    border: 1px solid var(--color-border-dark);
+    border-radius: 50rem;
+}
+  
+.addToCart {
+    font-size: var(--fsize-300);
+    margin-bottom: 0.8rem;
+    padding-block: 0.3rem;
+    width: 85%;
+    transform: translateY(2rem);
+    opacity: 0;
+    z-index: 4;
+}
+  
+.addToCart:hover {
+    background-color: rgba(226, 222, 222, 0.91);
+}

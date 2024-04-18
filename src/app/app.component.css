@@ -10,6 +10,8 @@
   scroll-behavior: smooth;
 
   /* Colors */
+  --primary-color: #2ea4c1;
+
   --background-color: #fff;
   --background-color-grey: rgba(245, 247, 252, 0.8);
   --background-color-dark: #b6b6b6;
@@ -36,7 +38,8 @@
   --text-color-dark: #333;
   --text-color-light: #777;
   --text-color-white: white;
-  }
+
+}
 
   /* Add padding to the top of the content equal to the height of the fixed navbar */
   body {
