@@ -104,6 +104,7 @@ i {
     transform: translateY(2rem);
     opacity: 0;
     z-index: 4;
+    position: absolute;
 }
   
 .addToCart:hover {
