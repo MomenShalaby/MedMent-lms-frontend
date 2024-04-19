@@ -7,7 +7,7 @@ interface Course {
   id: number;
   coursename: string;
   level: string;
-  date: string;
+  category: string;
   image: string;
   rate: number;
 }
@@ -25,7 +25,7 @@ export class CardComponent {
       "id": 1,
       "coursename": "Build a computer vision app with Azure Cognitive Services",
       "level": "Begginer",
-      "date": "2023-12-25",
+      "category": "Anatomy",
       "image": "assets/img/courses/blood research-amico.png",
       "rate": 4
     },
@@ -33,7 +33,7 @@ export class CardComponent {
       "id": 2,
       "coursename": "BI Foundations with SQL, ETL and Data Warehousing Specialization",
       "level": "Middle",
-      "date": "2023-08-02",
+      "category": "Pathology",
       "image": "assets/img/courses/rice field-pana.png",
       "rate": 5
     },
@@ -41,7 +41,7 @@ export class CardComponent {
       "id": 3,
       "coursename": "Data Science with Databricks for Data Analysts Specialization",
       "level": "Advance",
-      "date": "2023-12-30",
+      "category": "Physiology",
       "image": "assets/img/courses/blood research-cuate.png",
       "rate": 4.3
     }

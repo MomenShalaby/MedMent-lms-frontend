@@ -1,0 +1,15 @@
+.my-nav{
+    padding: 15px 165px;;
+    box-shadow: 4px 3px 15px 0 #7c7c7c;
+    background-color: white;
+}
+
+.nav-fontawesome{
+    font-size: 20px;
+    color: #504f4f;
+}
+
+.link-space{
+    padding: 8px 12px;
+    font-weight: 500;
+}

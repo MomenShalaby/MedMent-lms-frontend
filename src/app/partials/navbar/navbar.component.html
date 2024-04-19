@@ -1,15 +1,15 @@
-<nav class="navbar navbar-expand-lg bg-dark px-5  fixed-top">
+<nav class="my-nav navbar navbar-expand-lg fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">
       <img
-        src="assets/img/logo-png.png"
+        src="assets/img/logo-png-black.png"
         alt="ABCDE Logo"
-        style="width: 80px"
+        style="width: 100px"
         class="rounded-pill"
       />
     </a>
     <button
-      class="navbar-toggler navbar-dark"
+      class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
@@ -24,21 +24,18 @@
       class="collapse navbar-collapse justify-content-center"
       id="navbarSupportedContent"
     >
-      <ul class="navbar-nav navbar-dark mb-2 mb-lg-0 align-items-center">
-        <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/']">Home</a>
-        </li>
-        <li class="nav-item">
+      <ul class="navbar-nav mb-lg-0 align-items-center">
+        <li class="link-space nav-item">
           <a href="" class="nav-link">Education</a>
         </li>
-        <li class="nav-item"><a href="" class="nav-link">Training</a></li>
-        <li class="nav-item"><a href="" class="nav-link">Support</a></li>
-        <li class="nav-item">
-          <a href="" class="nav-link">Social activities</a>
+        <!-- <li class="nav-item"><a href="" class="nav-link">Training</a></li> -->
+        <!-- <li class="nav-item"><a href="" class="nav-link">Support</a></li> -->
+        <li class="link-space nav-item">
+          <a href="" class="nav-link">Social Activities</a>
         </li>
-        <li class="nav-item"><a href="" class="nav-link">Support us</a></li>
-        <li class="nav-item"><a href="" class="nav-link">Contact us</a></li>
-        <li class="nav-item dropdown">
+        <li class="link-space nav-item"><a href="" class="nav-link">Support Us</a></li>
+        <li class="link-space nav-item"><a href="" class="nav-link">Contact Us</a></li>
+        <li class="link-space nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
             href="#"
@@ -55,6 +52,20 @@
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="collapse navbar-collapse justify-content-center flex-grow-0"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav mb-lg-0 align-items-center">
+        <li class="nav-item">
+          <a href="" class="nav-fontawesome nav-link" title="Profile"><i class="far fa-user"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-fontawesome nav-link" title="Favourite"><i class="fa-regular fa-heart"></i></a>
         </li>
       </ul>
     </div>
