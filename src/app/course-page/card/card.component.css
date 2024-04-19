@@ -4,12 +4,16 @@
     align-items: center;
 }
 
+.courses-container{
+    gap: 20px;
+}
+
 img{
-    width: 270px;
+    width: 290px;
 }
 
 .card{
-    width: 280px;
+    width: 300px;
 }
 
 .col{
@@ -109,4 +113,8 @@ i {
   
 .addToCart:hover {
     background-color: rgba(226, 222, 222, 0.91);
+}
+
+.rate-number{
+    font-weight: 500;
 }

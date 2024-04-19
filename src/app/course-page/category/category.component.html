@@ -1,0 +1,16 @@
+<section class="Categories">
+    <h2 class="text-center my-5">Our Leading Categories</h2>
+    <div class="row category-container">
+        @for (category of categories; track $index){
+            <div class="col-12 col-md-3 category-card">
+                <div class="icon">
+                    <img [src]="category.icon" [alt]="category.name">
+                </div>
+                <div>
+                    <h6 class="fw-bold">{{category.name}}</h6>
+                    <span class="course-number">{{category.coursesCount}} Courses</span>
+                </div>
+            </div>
+        }
+    </div>
+</section>

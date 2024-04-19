@@ -1,9 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Add padding to the top of the content equal to the height of the fixed navbar */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/**ANCHOR -  Variables */
+
+:root {
+scroll-behavior: smooth;
+
+/* Colors */
+--primary-color: #2ea4c1;
+
+--background-color: #fff;
+--background-color-grey: rgba(245, 247, 252, 0.8);
+--background-color-dark: #b6b6b6;
+
+--color-primary-dark: #1a1b21;
+--color-primary-light: rgba(211, 211, 211, 0.8);
+
+--color-accent: #fa6152;
+--color-accent-washed: rgba(32, 30, 134, 0.65);
+
+--color-red: rgb(206, 24, 24);
+
+--colorsss: #ddd;
+
+--color-danger: #c0392b;
+--color-success: #27ae60;
+
+--color-border-light: rgba(211, 211, 211, 0.75);
+--color-border-dark: rgba(0, 0, 0, 0.3);
+
+--button-color: #1967d2;
+--button-color-hover: #344ca9;
+
+--text-color-dark: #333;
+--text-color-light: #777;
+--text-color-white: white;
+
+}
+
+/* Add padding to the top of the content equal to the height of the fixed navbar */
 body {
   padding-top: 56px; /* Adjust this value according to your navbar height */
+  font-family: "Jost", sans-serif;
+  color: var(--text-color-dark);
 }
+
 button {
   background-color: #8cc7d8;
 }
