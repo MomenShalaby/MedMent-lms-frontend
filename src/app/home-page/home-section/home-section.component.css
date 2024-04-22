@@ -1,0 +1,150 @@
+.home-section{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 50px;
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+}
+
+.home-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%; /* Adjust the width as needed */
+    height: 100%;
+    background-image: url('../../../assets/img/events/WhatsApp\ Image\ 2024-04-22\ at\ 8.16.50\ PM.jpeg');
+    opacity: 0.3; /* Adjust the opacity as needed */
+    border-radius: 0 50% 50% 0;
+    z-index: -1;
+}
+
+.row{
+    padding: 0;
+}
+
+.home-section-leftside{
+    grid-area: 1 / 1 / 2 / 2;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+
+
+.feature{
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    gap: 35px;
+    border: 1px solid var(--color-border-light);
+    border-radius: 5px;
+    span {
+        padding: 5px 15px;
+        border-radius: 5px;
+        color: white;
+        font-size: 12px;
+    }
+}
+
+.first-feature{
+    padding: 15px 5px 15px 15px;
+    span {
+        background-color: #ffd760;
+    }
+}
+
+.second-feature{
+    padding: 15px 5px 15px 15px;
+    width: 80%;
+    span {
+        background-color: var(--primary-color);
+    }
+}
+
+.third-feature{
+    padding: 15px 5px 15px 15px;
+    width: 60%;
+    span {
+        background-color: #8d90d9;
+    }
+}
+
+.home-section-rightside{
+    grid-area: 1 / 2 / 2 / 3;
+    /* margin-left: 2rem; */
+    p {
+        font-size: 16px;
+        line-height: 30px;
+        color: #777;
+        font-weight: 400;
+    }
+}
+
+.stuff{
+    color: #777;
+    font-weight: 500;
+    font-size: 13px;
+    >i{
+        color: #ffd760 ;
+        width: 40px;
+	    height: 40px;
+        font-size: 16px;
+	    border-radius: 50%;
+        background-color: #faecd8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: inline;
+        padding: 12px;
+    }
+}
+
+.title{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    span{
+        color: #ffd760 ; 
+    }
+}
+
+.icons-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    >div{
+        display: flex;
+        gap: 0.9rem;
+    }
+}
+
+
+.more{
+    color: #ffd760;
+}
+
+.training{
+    color:#8d90d9
+}
+
+.support{
+    color: var(--primary-color);
+}
+
+.second{
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.third{
+    font-size: 11px;
+    font-weight: 500;
+    color: #777;
+}
