@@ -5,6 +5,20 @@
     grid-column-gap: 50px;
     flex-shrink: 0;
     width: 100%;
+    position: relative;
+}
+
+.home-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%; /* Adjust the width as needed */
+    height: 100%;
+    background-image: url('../../../assets/img/events/WhatsApp\ Image\ 2024-04-22\ at\ 8.16.50\ PM.jpeg');
+    opacity: 0.3; /* Adjust the opacity as needed */
+    border-radius: 0 50% 50% 0;
+    z-index: -1;
 }
 
 .row{
@@ -20,8 +34,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: end;
-    /* background-image: url("../../../assets/img/events/84b77fd48ac7bec870974ca1e06e20bf.jpg"); */
 }
+
+
 
 .feature{
     display: flex;
