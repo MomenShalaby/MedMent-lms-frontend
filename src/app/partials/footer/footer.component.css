@@ -42,14 +42,14 @@ footer ul.social-icons li:last-child {
 .btn-social{
 	width: 34px;
 	height: 34px;
+	border-radius: 50%;
 	display: inline-block;
 	color: #fff;
-	border-radius: 50%;
     border: 1px solid #c0c0c0;
 	transition: all 0.3s;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .btn-social:hover {
