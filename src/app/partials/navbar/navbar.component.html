@@ -1,6 +1,5 @@
 <nav class="my-nav navbar navbar-expand-lg fixed-top">
-  <!-- <div class="container-fluid"> -->
-  <div class="container px-md-5 py-1">
+  <div class="container">
     <a class="navbar-brand" routerLink="/">
       <img
         src="assets/img/logo-png-black.png"
@@ -27,6 +26,9 @@
     >
       <ul class="navbar-nav mb-lg-0 align-items-center">
         <li class="link-space nav-item">
+          <a href="" class="nav-link">Home</a>
+        </li>
+        <li class="link-space nav-item">
           <a href="" class="nav-link">Education</a>
         </li>
         <!-- <li class="nav-item"><a href="" class="nav-link">Training</a></li> -->
@@ -34,8 +36,12 @@
         <li class="link-space nav-item">
           <a href="" class="nav-link">Social Activities</a>
         </li>
-        <li class="link-space nav-item"><a href="" class="nav-link">Support Us</a></li>
-        <li class="link-space nav-item"><a href="" class="nav-link">Contact Us</a></li>
+        <li class="link-space nav-item">
+          <a href="" class="nav-link">Support Us</a>
+        </li>
+        <li class="link-space nav-item">
+          <a href="" class="nav-link">Contact Us</a>
+        </li>
         <li class="link-space nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -48,10 +54,14 @@
             Membership
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" [routerLink]="'/register'">Become a member</a></li>
-            <li><a class="dropdown-item" [routerLink]="'/login'">Login/renew</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li>
+              <a class="dropdown-item" [routerLink]="'/register'"
+                >Become a member</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="'/login'">Login/renew</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -63,10 +73,14 @@
     >
       <ul class="navbar-nav mb-lg-0 align-items-center">
         <li class="nav-item">
-          <a href="" class="nav-fontawesome nav-link" title="Profile"><i class="far fa-user"></i></a>
+          <a href="" class="nav-fontawesome nav-link" title="Profile"
+            ><i class="far fa-user"></i
+          ></a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-fontawesome nav-link" title="Favourite"><i class="fa-regular fa-heart"></i></a>
+          <a href="" class="nav-fontawesome nav-link" title="Favourite"
+            ><i class="fa-regular fa-heart"></i
+          ></a>
         </li>
       </ul>
     </div>
