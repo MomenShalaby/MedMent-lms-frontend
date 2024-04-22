@@ -1,5 +1,6 @@
 .Categories{
-    margin: 70px 65px 85px;
+    margin: 70px 0;
+    padding: 25px 45px 90px 65px;
 }
 
 .category-container{
@@ -12,9 +13,9 @@
     border-radius: 10px;
     padding: 10px;
     display: flex;
-    justify-content: space-center;
     gap: 15px;
     align-items: center;
+    width: 19.4rem !important;
 }
 
 .category-card .icon{
