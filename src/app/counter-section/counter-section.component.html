@@ -1,0 +1,24 @@
+<section>
+    <h2 class="section-heading text-center">Our Achievements</h2>
+    <img class="move-bounce" src="../../assets/img/events/dot.png" alt="">
+    <div class="counter-description counter-description1 text-center">Learn the secrets of life success, all the successes we have </div>
+    <div class="counter-description text-center"> achieved in achieving goals.</div>
+    <div class="counters-container row row-cols-1 row-cols-md-5 row-cols-sm-3 mt-5 mx-4 justify-content-center flex-wrap">
+        @for (counter of filteredCounters; track $index){
+                <div class="single-counter">
+                    <img [src]="counter.counter_icon" class="counter-icon" alt="...">
+                    @if (counter.id == 1){
+                        <p class="counter-number counter-number1" id="counter1"></p>
+                    } @else if(counter.id == 2) {
+                        <p class="counter-number counter-number2" id="counter2"></p>
+                      } @else if(counter.id == 3) {
+                        <p class="counter-number counter-number3" id="counter3">%</p>
+                      } @else {
+                        <p class="counter-number counter-number4" id="counter4"></p>
+                      }
+                    <!-- <p class="counter-number">{{counter.number}} @if (counter.id == 3) {%}</p> -->
+                    <p class="counter-title">{{counter.title}}</p>
+                </div>
+        }
+    </div>
+</section>

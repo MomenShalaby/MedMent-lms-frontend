@@ -2,3 +2,48 @@
     margin-top: 1.3rem;
     
 }
+
+.caption{
+    /* background-color: #afafaf; */
+    /* border-radius: 10px; */
+    position: absolute;
+    right: 0;
+    /* left: ; */
+    bottom: 150px;
+    padding: 1rem 0 1rem 1rem;
+    color: #fff;
+    width: 30%;
+    p {
+        font-size: 38px;
+        font-weight: 700;
+    }
+
+    >div {
+        display: flex;
+        justify-content: space-between;
+        /* align-items: center; */
+    }
+
+    span {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    button {
+        display: block;
+        border: 1px solid #fff;
+        background-color: #fff; 
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: #000;
+        margin-top: 10px;
+        font-weight: 500;
+    }
+
+    button:hover{
+        border: 1.5px solid #000;
+    }
+
+    /* font-size: 38px; */
+    /* text-align: center; */
+}

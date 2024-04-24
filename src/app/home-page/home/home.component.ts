@@ -5,12 +5,13 @@ import { HistoryComponent } from '../history/history.component';
 import { StayUpdatedComponent } from '../../partials/stay-updated/stay-updated.component';
 import { VisionComponent } from '../vision/vision.component';
 import { HomeSectionComponent } from '../home-section/home-section.component';
+import { CounterSectionComponent } from '../../counter-section/counter-section.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselComponent ,EventsComponent, HistoryComponent,StayUpdatedComponent, VisionComponent, HomeSectionComponent],
+  imports: [CarouselComponent ,EventsComponent, HistoryComponent,StayUpdatedComponent, VisionComponent, HomeSectionComponent, CounterSectionComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

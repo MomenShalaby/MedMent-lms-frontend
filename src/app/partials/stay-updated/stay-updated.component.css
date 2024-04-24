@@ -1,6 +1,12 @@
+.stay-updated-start{
+    margin-top: 80px !important;
+}
+
 button {
     background-color:var(--primary-color);
+    border: none;
+    font-weight: 500;
 }
 button:hover {
-    background-color:var(--primary-color);
+    background-color:var(--button-hover);
 }

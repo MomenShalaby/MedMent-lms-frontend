@@ -1,10 +1,6 @@
 .home-section{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 50px;
-    flex-shrink: 0;
-    width: 100%;
+    margin: 100px 0;
+    width: 100% !important;
     position: relative;
 }
 
@@ -13,12 +9,31 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 30%; /* Adjust the width as needed */
+    width: 30%; 
     height: 100%;
     background-image: url('../../../assets/img/events/WhatsApp\ Image\ 2024-04-22\ at\ 8.16.50\ PM.jpeg');
-    opacity: 0.3; /* Adjust the opacity as needed */
+    opacity: 0.3;
     border-radius: 0 50% 50% 0;
-    z-index: -1;
+    z-index: -2;
+    animation-name: lighting;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+    /* transition: transform 1000ms; */
+    /* animation: lighting 6s linear 1; */
+}
+
+@keyframes lighting {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+.section-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.2rem 0 0.9rem;
+    flex-shrink: 0;
 }
 
 .row{
@@ -34,9 +49,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: end;
+    width: 47%;
 }
-
-
 
 .feature{
     display: flex;
@@ -45,6 +59,7 @@
     gap: 35px;
     border: 1px solid var(--color-border-light);
     border-radius: 5px;
+    background-color: white;
     span {
         padding: 5px 15px;
         border-radius: 5px;
@@ -56,7 +71,7 @@
 .first-feature{
     padding: 15px 5px 15px 15px;
     span {
-        background-color: #ffd760;
+        background-color: var(--primary-color);
     }
 }
 
@@ -64,7 +79,7 @@
     padding: 15px 5px 15px 15px;
     width: 80%;
     span {
-        background-color: var(--primary-color);
+        background-color: #ffd760; 
     }
 }
 
@@ -78,7 +93,7 @@
 
 .home-section-rightside{
     grid-area: 1 / 2 / 2 / 3;
-    /* margin-left: 2rem; */
+    width: 47%;
     p {
         font-size: 16px;
         line-height: 30px;
@@ -92,7 +107,7 @@
     font-weight: 500;
     font-size: 13px;
     >i{
-        color: #ffd760 ;
+        color: var(--primary-color);
         width: 40px;
 	    height: 40px;
         font-size: 16px;
@@ -109,8 +124,10 @@
 .title{
     margin-top: 30px;
     margin-bottom: 20px;
+    line-height: 40px;
     span{
-        color: #ffd760 ; 
+        color: var(--primary-color) ; 
+        /* color: rgb(253, 208, 23) ;  */
     }
 }
 
@@ -124,9 +141,8 @@
     }
 }
 
-
 .more{
-    color: #ffd760;
+    color: var(--primary-color);
 }
 
 .training{
@@ -134,7 +150,7 @@
 }
 
 .support{
-    color: var(--primary-color);
+    color: #ffd760;
 }
 
 .second{

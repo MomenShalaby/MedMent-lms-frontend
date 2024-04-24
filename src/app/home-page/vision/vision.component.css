@@ -1,16 +1,15 @@
 .vision-section{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 80px;
-    grid-row-gap: 40px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
     flex-shrink: 0;
-    width: 100%;
-    /* padding: 10rem; */
+    padding-left: 0.9rem;
+    margin-top: 20px;
 }
 
 .vision-leftside{
-    grid-area: 1 / 1 / 2 / 2;
+    /* grid-area: 1 / 1 / 2 / 2; */
     border-radius: 0 32px;
     box-shadow: 1px 1px 20px 4px #d2d7db;
     background-color: #9dd3e0;
@@ -18,13 +17,19 @@
     font-size: 20px;
     font-weight: 700;
     padding: 1.5rem 3rem;
+    width: 47%;
 }
 
 .vision-rightside{
-    grid-area: 1 / 2 / 2 / 3;
+    /* grid-area: 1 / 2 / 2 / 3; */
     /* margin-left: 2rem; */
+    width: 47%;
     p {
         font-size: 20px;
         line-height: 34px;
+    }
+
+    h2 {
+        padding: 10px 0;
     }
 }
