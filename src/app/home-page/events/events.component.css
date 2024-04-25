@@ -1,3 +1,126 @@
+.event-start{
+    padding-bottom: 40px;
+}
+
 button {
     background-color:var(--primary-color);
+    border: none;
+    font-weight: 500;
 }
+
+button:hover {
+    background-color:var(--button-hover);
+}
+
+.event-date{
+    color: #777;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.event-description{
+    font-size: 15px;
+    font-weight: 500;    
+    color: #3a3a3a;
+}
+
+.image-container {
+    overflow: hidden;
+    /* height: 250px;  */
+  }
+
+.event-img{
+    height: 270px;
+    width: 270px;
+    transition: transform .5s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.2); 
+  }
+
+.event-card{
+    max-width: 290px;
+}
+
+.card-body{
+    >p >i{
+        color: var(--primary-color);
+    }
+}
+
+.section-heading{
+    padding: 5px 15px 10px 15px;
+    transition: var(--transition-short);
+    position: relative;
+    /* margin-block: 3rem 4rem; */
+    margin-inline: auto;
+    margin-bottom: 2rem;
+    width: fit-content;
+    z-index: 1;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  /* border-radius: 50%; */
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.section-heading::before {
+  left: -1.8rem;
+}
+
+.section-heading::after {
+  right: -1.8rem;
+}
+
+.section-heading:hover::before {
+  z-index: -1;
+  animation: left-dot 0.5s linear forwards;
+}
+
+.section-heading:hover::after {
+  z-index: -1;
+  animation: right-dot 0.5s linear forwards;
+}
+
+.section-heading:hover {
+  border: 1px solid var(--primary-color);
+  color: white;
+  background-color: var(--primary-color);
+  transition-delay: 0.5s;
+}
+
+@keyframes left-dot {
+    50% {
+      left: 0%;
+      width: 12px;
+      height: 12px;
+    }
+    100% {
+      left: 0;
+      width: 51%;
+      height: 100%;
+      border-radius: 0%;
+    }
+  }
+  
+  @keyframes right-dot {
+    50% {
+      right: 0%;
+      width: 12px;
+      height: 12px;
+    }
+    100% {
+      right: 0;
+      width: 51%;
+      height: 100%;
+      border-radius: 0%;
+    }
+  }

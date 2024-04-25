@@ -1,0 +1,198 @@
+section{
+    margin: 80px 0;
+    position: relative;
+}
+
+.couters-container{
+    gap: 20px;
+}
+
+.move-bounce{
+    animation: movebounce 5s linear infinite;
+    position: absolute;
+    right: 100px;
+    top: -80px;
+    z-index: -1;
+}
+
+@keyframes movebounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+.single-counter{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.section-heading{
+    padding: 5px 15px 10px 15px;
+    transition: var(--transition-short);
+    position: relative;
+    /* margin-block: 3rem 4rem; */
+    margin-inline: auto;
+    width: fit-content;
+    z-index: 1;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  /* border-radius: 50%; */
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.section-heading::before {
+  left: -1.8rem;
+}
+
+.section-heading::after {
+  right: -1.8rem;
+}
+
+.section-heading:hover::before {
+  z-index: -1;
+  animation: left-dot 0.5s linear forwards;
+}
+
+.section-heading:hover::after {
+  z-index: -1;
+  animation: right-dot 0.5s linear forwards;
+}
+
+.section-heading:hover {
+  border: 1px solid var(--primary-color);
+  color: white;
+  background-color: var(--primary-color);
+  transition-delay: 0.5s;
+}
+
+@keyframes left-dot {
+    50% {
+      left: 0%;
+      width: 12px;
+      height: 12px;
+    }
+    100% {
+      left: 0;
+      width: 51%;
+      height: 100%;
+      border-radius: 0%;
+    }
+  }
+  
+  @keyframes right-dot {
+    50% {
+      right: 0%;
+      width: 12px;
+      height: 12px;
+    }
+    100% {
+      right: 0;
+      width: 51%;
+      height: 100%;
+      border-radius: 0%;
+    }
+  }
+
+.counter-icon{
+    width: 4.5rem;
+    height: 4.5rem;
+    padding-top: 5px;
+}
+
+.counter-description{
+   padding-top: 4px;
+}
+
+.counter-description1{
+   padding-top: 15px;
+}
+
+.counter-description,
+.counter-title{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #777;
+}
+
+.counter-number{
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    padding-top: 20px;
+}
+
+.counter-number1{
+    animation: counter1 3s forwards;
+    counter-reset: num var(--num);
+}
+.counter-number2{
+    animation: counter2 3s forwards;
+    counter-reset: num var(--num);
+}
+.counter-number3{
+    animation: counter3 2s forwards;
+    counter-reset: num var(--num);
+}
+.counter-number4{
+    animation: counter4 1s forwards;
+    counter-reset: num var(--num);
+}
+
+@property --num {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+  }
+  
+  .counter-number::before {
+    content: counter(num);
+  }
+  
+  @keyframes counter1 {
+    from {
+      --num: 0;
+    }
+    to {
+      --num: 5000;
+    }
+  }
+  @keyframes counter2 {
+    from {
+      --num: 0;
+    }
+    to {
+      --num: 25000;
+    }
+  }
+  @keyframes counter3 {
+    from {
+      --num: 0;
+    }
+    to {
+      --num: 100;
+    }
+  }
+  @keyframes counter4 {
+    from {
+      --num: 0;
+    }
+    to {
+      --num: 10;
+    }
+  }

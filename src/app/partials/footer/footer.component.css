@@ -1,19 +1,13 @@
 footer {
 	background-color: var(--primary-color);
-	padding: 60px 80px 15px ;
+	padding: 60px 0px 15px 0;
 	color: #fff;
-    /* margin-top: 100px; */
 }
 
 .footer-container{
     display: flex;
-    justify-content: center;
-    gap: 50px;
-}
-
-.footer-logo{
-    width: 100px;
-    margin-bottom: 25px;
+    justify-content: space-between;
+	margin: auto;
 }
 
 footer h4 {
@@ -42,14 +36,14 @@ footer ul.social-icons li:last-child {
 .btn-social{
 	width: 34px;
 	height: 34px;
+	border-radius: 50%;
 	display: inline-block;
 	color: #fff;
-	border-radius: 50%;
     border: 1px solid #c0c0c0;
 	transition: all 0.3s;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .btn-social:hover {
@@ -71,7 +65,7 @@ footer ul.menu-list li a {
 }
 
 footer ul.menu-list li a:hover {
-	color: #b8b8b8;
+	color: #d8d8d8;
 }
 
 .copyright {

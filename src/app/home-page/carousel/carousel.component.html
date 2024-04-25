@@ -7,9 +7,13 @@
 >
   @for (img of images; track img; let i = $index) {
   <ng-template ngbSlide>
-    <div class="carousel-caption ">
-      <h3>My slide {{ i + 1 }} title</h3>
-    </div>
+    @if (i == 0) {
+      <div class="caption">
+        <p>Enhance Your Skills</p>
+        <span>with best online courses</span>
+        <button class="carousel-btn">Get Started <i class="fa-solid fa-arrow-right ms-1"></i></button>
+      </div>
+    }
     <a
       href="https://www.google.fr/?q=Number+{{ i + 1 }}"
       target="_blank"

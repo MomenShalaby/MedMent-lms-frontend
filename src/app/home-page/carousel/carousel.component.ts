@@ -9,7 +9,7 @@ import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } fr
   styleUrl: './carousel.component.css'
 })
 export class CarouselComponent {
-  images = ['3.jpg', '7.jpg', '4.jpg', '9.jpeg'].map((n) => `../assets/img/${n}`);
+  images = ['carousel1.jpg', 'carousel2.png', 'carousel4.jpg', 'carousel3.jpeg'].map((n) => `../assets/img/${n}`);
 
 	paused = false;
 	unpauseOnArrow = false;
