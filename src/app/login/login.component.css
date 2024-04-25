@@ -13,3 +13,10 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+button {
+    background-color:var(--primary-color);
+}
+button:hover {
+    background-color:var(--primary-color);
+}
