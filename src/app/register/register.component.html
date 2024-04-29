@@ -1,99 +1,161 @@
-<div class="container">
-  <div class="row shadow-lg my-4 rounded px-4 justify-content-evenly">
-    <div class="col-10 col-md-5 align-items-center d-flex justify-content-center">
-      <img
-        class="my-3 col-md-10"
-        src="assets/img/logo-png-black.png"
-        alt="Logo"
-      />
-    </div>
-    <div class="col-10 col-md-5 tab-content">
-      <div
-        class="tab-pane fade show active py-3"
-        id="pills-login"
-        role="tabpanel"
-        aria-labelledby="tab-login"
-      >
-        <form>
-          <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="floatingInput"
-              placeholder="username"
-            />
-            <label for="floatingInput">Username</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input
-              type="email"
-              class="form-control"
-              id="floatingInput"
-              placeholder="name@example.com"
-            />
-            <label for="floatingInput">Email address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input
-              type="password"
-              class="form-control"
-              id="floatingPassword"
-              placeholder="Password"
-            />
-            <label for="floatingPassword">Password</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input
-              type="password"
-              class="form-control"
-              id="floatingPassword"
-              placeholder="Confirm Password"
-            />
-            <label for="floatingPassword">Confirm password</label>
-          </div>
-          <div class="row mb-4">
-            <div class="col-md-6 d-flex justify-content-center">
-              <div class="form-check mb-3 mb-md-0">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="loginCheck"
-                  checked
-                />
-                <label class="form-check-label" for="loginCheck">
-                  Remember me
-                </label>
-              </div>
-            </div>
-            <div class="col-md-6 d-flex justify-content-center">
-              <a href="#!" class="text-decoration-none">Forgot password?</a>
-            </div>
-          </div>
-          <button
-            type="submit"
-            data-mdb-button-init
-            data-mdb-ripple-init
-            class="btn btn-primary mb-3 w-100"
-          >
-            Register
-          </button>
-          <div class="text-center">
-            <p>
-              Already registerd?
-              <a [routerLink]="'/login'" class="text-decoration-none">Login</a>
-            </p>
-          </div>
-        </form>
+<div class="container mt-3 ">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-8 col-lg-5 shadow-lg my-4 p-4 rounded">
+      <div class="d-flex justify-content-center">
+        <img class="my-3 w-50" src="assets/img/logo-png-black.png" alt="Logo" />
       </div>
-      <div
-        class="tab-pane fade"
-        id="pills-register"
-        role="tabpanel"
-        aria-labelledby="tab-register"
-      >
-        <!-- Register form or content goes here -->
+      @if(errorMessage){
+      <div class="alert alert-danger text-center">
+        {{ errorMessage }}
       </div>
+      }
+      <form [formGroup]="registerForm" (ngSubmit)="handleRegister()">
+        <div class="form-floating mb-3">
+          <input type="text" name="fname" class="form-control border-0 border-bottom " id="floatingFName"
+            placeholder="fname" formControlName="fname" />
+          <label for="floatingFname">First name</label>
+          @if(registerForm.controls['fname'].touched && registerForm.controls['fname'].invalid){
+          @if (registerForm.controls['fname'].errors?.['required']){
+          <p class="text-danger">* First name is required</p>
+          }
+          }
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control border-0 border-bottom " id="floatingLname" placeholder="lname"
+            name="lname" formControlName="lname" />
+          <label for="floatingLname">Last name</label>
+          @if(registerForm.controls['lname'].touched && registerForm.controls['lname'].invalid){
+          @if (registerForm.controls['lname'].errors?.['required']){
+          <p class="text-danger">* Last name is required</p>
+          }
+          }
+        </div>
+        <div class="d-flex my-2 border py-3 px-2 rounded border-0 border-bottom ">
+          <label for="">Gender :</label>
+          <div class="form-check mx-4">
+            <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1"
+              formControlName="gender">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Male
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault2"
+              formControlName="gender" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              Female
+            </label>
+          </div>
+
+        </div>
+        @if(registerForm.controls['gender'].touched && registerForm.controls['gender'].invalid){
+        @if (registerForm.controls['gender'].errors?.['required']){
+        <p class="text-danger mt-0">* Gender is required</p>
+        }
+        }
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control border-0 border-bottom" id="floatingEmail"
+            placeholder="name@example.com" name="email" formControlName="email" />
+          <label for="floatingEmail">Email address</label>
+          @if(registerForm.controls['email'].touched && registerForm.controls['email'].invalid){
+          @if (registerForm.controls['email'].errors?.['email']){
+          <p class="text-danger">* Enter a valid email</p>
+          } @else if (registerForm.controls['email'].errors?.['required']){
+          <p class="text-danger">* Email is required</p>
+          }
+          }
+        </div>
+        <div class="row justify-content-between ">
+          <select class=" form-select py-3 mx-2 border-0 border-bottom" name="country_id" id="country"
+            formControlName="country_id">
+            <option value="" disabled selected>Choose your country</option>
+            @for (country of countries; track $index) {
+            <option [value]="country.id ">{{ country.name }}</option>
+            }
+          </select>
+          @if(registerForm.controls['country_id'].touched && registerForm.controls['country_id'].invalid){
+          @if (registerForm.controls['country_id'].errors?.['required']){
+          <p class="text-danger mt-0">* Country is required</p>
+          }
+          }
+          <select class=" form-select my-2 py-3 mx-2 border-0 border-bottom" name="state_id" id="state"
+            formControlName="state_id">
+            <option value="" disabled selected>Choose your state</option>
+            @for (state of states; track $index) {
+            <option [value]="state.id ">{{ state.name }}</option>
+            }
+          </select>
+          @if(registerForm.controls['state_id'].touched && registerForm.controls['state_id'].invalid){
+          @if (registerForm.controls['state_id'].errors?.['required']){
+          <p class="text-danger mt-0">* State is required</p>
+          }
+          }
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control border-0 border-bottom" id="floatingPassword"
+            placeholder="password" name="password" formControlName="password" />
+          <label for="floatingPassword">Password</label>
+        </div>
+        @if(registerForm.controls['password'].touched && registerForm.controls['password'].invalid){
+        @if (registerForm.controls['password'].errors?.['pattern']){
+        <p class="text-danger">* Password must contain at least 8 characters, including uppercase, lowercase, numbers,
+          and special characters ($!%*?&)</p>
+        } @else if (registerForm.controls['password'].errors?.['required']){
+        <p class="text-danger">* Password is required</p>
+        }
+        }
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control border-0 border-bottom" id="floatingRePassword"
+            placeholder="Confirm Password" name="password_confirmation" formControlName="password_confirmation" />
+          <label for="floatingPassword">Confirm password</label>
+          @if(registerForm.controls['password_confirmation'].touched ){
+          @if ( registerForm.controls['password_confirmation'].invalid &&
+          registerForm.controls['password_confirmation'].errors?.['required']){
+          <p class="text-danger">* Password confirmation is required</p>
+          }
+          @else if (registerForm.errors?.['PasswordNoMatch']){
+          <p class="text-danger">* Passwords don't match</p>
+          }
+          }
+        </div>
+
+        <select class="form-select border-0 border-bottom py-3 mb-3" id="subscription"
+          formControlName="subscription_id">
+          <option value="" disabled selected>Choose your degree</option>
+          <option value="1">Egyptian student</option>
+          <option value="2">Egyptian resident</option>
+          <option value="3">Egyptian consultant</option>
+          <option value="4">Non-Egyptian</option>
+        </select>
+        @if(registerForm.controls['subscription_id'].touched && registerForm.controls['subscription_id'].invalid){
+        @if (registerForm.controls['subscription_id'].errors?.['required']){
+        <p class="text-danger mt-0">* Degree is required</p>
+        }
+        }
+        <div class="row mb-4">
+          <div class="col-md-6 d-flex justify-content-center">
+            <div class="form-check mb-3 mb-md-0">
+              <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+              <label class="form-check-label" for="loginCheck">
+                Remember me
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center">
+            <a href="#!" class="text-decoration-none">Forgot password?</a>
+          </div>
+        </div>
+        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary mb-3 w-100">
+          Register
+        </button>
+        <div class="text-center">
+          <p>
+            Already registerd?
+            <a [routerLink]="'/login'" class="text-decoration-none">Login</a>
+          </p>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>

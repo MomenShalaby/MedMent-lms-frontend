@@ -1,15 +1,9 @@
-.divider:after,
-.divider:before {
-content: "";
-flex: 1;
-height: 1px;
-background: #eee;
+button {
+    background-color:var(--primary-color);
 }
-.h-custom {
-height: calc(100% - 73px);
+button:hover {
+    background-color:var(--primary-color);
 }
-@media (max-width: 450px) {
-.h-custom {
-height: 100%;
-}
+a {
+    color: var(--primary-color);
 }
