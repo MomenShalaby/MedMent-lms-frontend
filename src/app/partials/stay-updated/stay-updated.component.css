@@ -1,12 +1,14 @@
 .stay-updated-start{
-    margin-top: 80px !important;
+    scroll-margin-top: 66px;  
 }
 
 button {
-    background-color:var(--primary-color);
     border: none;
+    background-color: var(--accent-color);
     font-weight: 500;
-}
-button:hover {
-    background-color:var(--button-hover);
-}
+    /* font-size: 15px; */
+  }
+  
+  button:hover {
+    background: rgba(var(--accent-color-rgb), 0.8);
+  }

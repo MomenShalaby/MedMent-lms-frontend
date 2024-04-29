@@ -1,120 +1,79 @@
-.container-fluid{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+section{
+    padding: 0 0 40px 0 !important;
 }
 
-.courses-container{
-    gap: 20px;
-}
-
-img{
-    width: 290px;
-}
-
-.card{
-    width: 300px;
-}
-
-.col{
-    display: flex;
-    justify-content: space-around;
-}
-
-i {
-    position: relative;
-    display: inline-block;
-    font-size: 0.9rem;
-    padding-right: 0.1rem;
-    color: #d3d3d3;
-}
-
-.filled {
-    color: var(--primary-color);
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.card-category{
-    color: #8d8c8c;
+.courses .course-item {
+    border-radius: 5px;
+    border: 1px solid rgba(var(--default-color-rgb), 0.1);
+  }
+  
+  .courses .course-content {
+    padding: 15px;
+  }
+  
+  .courses .course-content h3 {
+    font-weight: 700;
+    font-size: 20px;
+  }
+  
+  .courses .course-content h3 a {
+    color: var(--heading-color);
+    transition: 0.3s;
+  }
+  
+  .courses .course-content h3 a:hover {
+    color: var(--accent-color);
+  }
+  
+  .courses .course-content .category {
+    background: var(--accent-color);
+    color: var(--contrast-color);
+    font-size: 14px;
+    padding: 6px 14px;
+    margin: 0;
+    border-radius: 5px;
+  }
+  
+  .courses .course-content .price {
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    color: rgba(var(--default-color-rgb), 0.8);
+  }
+  
+  .courses .course-content .description {
+    font-size: 14px;
+    color: rgba(var(--default-color-rgb), 0.8);
+  }
+  
+  .courses .trainer {
+    padding-top: 15px;
+    border-top: 1px solid rgba(var(--default-color-rgb), 0.1);
+  }
+  
+  .courses .trainer .trainer-profile img {
+    max-width: 50px;
+    border-radius: 50px;
+  }
+  
+  .courses .trainer .trainer-profile .trainer-link {
+    padding-left: 10px;
     font-weight: 600;
-}
-
-.favourite i{
-    color: var(--primary-color);
-    font-size: 1rem;
-}
-
-.card {
-    border: 1px solid var(--color-border-light);
-    overflow: hidden;
-    box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.05);
-}
+    font-size: 16px;
+    color: rgba(var(--default-color-rgb), 0.8);
+    transition: 0.3s;
+  }
   
-.card-product {
-    overflow: hidden;
-}
+  .courses .trainer .trainer-profile .trainer-link:hover {
+    color: var(--accent-color);
+  }
   
-.card-product img {
-    position: relative;
-    aspect-ratio: 1/1;
-    width: 100%;
-    object-fit: cover;
-}
+  .courses .trainer .trainer-rank {
+    font-size: 18px;
+    color: rgba(var(--default-color-rgb), 0.4);
+  }
   
-.badge{
-    border-radius: 8px;
-    padding: 6px 8px;
-    background-color: #ff8c00;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 2;
-}
-
-.card:hover .overlay {
-    display: block;
-}
-
-.card:hover .addToCart{
-    opacity: 1;
-    transform: translateY(0);
-    transition: 0.4s transform;
-}
+  .courses .trainer .trainer-rank .user-icon {
+    font-size: 22px;
+  }
   
-.overlay{
-    display: none;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background-color: #0000004f;
-    z-index: 3;
-}
-
-.btn {
-    text-align: center;
-    background-color: white;
-    border: 1px solid var(--color-border-dark);
-    border-radius: 50rem;
-}
-  
-.addToCart {
-    font-size: var(--fsize-300);
-    margin-bottom: 0.8rem;
-    padding-block: 0.3rem;
-    width: 85%;
-    transform: translateY(2rem);
-    opacity: 0;
-    z-index: 4;
-    position: absolute;
-}
-  
-.addToCart:hover {
-    background-color: rgba(226, 222, 222, 0.91);
-}
-
-.rate-number{
-    font-weight: 500;
-}
