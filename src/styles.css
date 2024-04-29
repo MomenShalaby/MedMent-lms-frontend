@@ -36,7 +36,7 @@ scroll-behavior: smooth;
 --color-border-light: rgba(211, 211, 211, 0.75);
 --color-border-dark: rgba(0, 0, 0, 0.3);
 
---button-color: #1967d2;
+--button-color:  #2ea4c1;
 --button-color-hover: #344ca9;
 
 --text-color-dark: #333;
@@ -47,6 +47,8 @@ scroll-behavior: smooth;
 --transition-short: 0.3s;
 --transition-mid: 0.5s;
 --transition-long: 1s;
+
+
 
 }
 
