@@ -15,7 +15,7 @@ import { ViewCoursesComponent } from './admin/dashboard/view-courses/view-course
 import { ViewEventsComponent } from './admin/dashboard/view-events/view-events.component';
 import { ContactUsComponent } from './contact-us-page/contact-us/contact-us.component';
 import { AboutComponent } from './about-page/about/about.component';
-import { SupportUsPageComponent } from './support-us-page/support-us-page.component';
+// import { SupportUsPageComponent } from './support-us-page/support-us-page.component';
 
 export const routes: Routes = [
     {
@@ -107,9 +107,9 @@ export const routes: Routes = [
         title: 'Contact Us'
     },
 
-    {
-        path: 'support-us',
-        component: SupportUsPageComponent,
-        title: 'Support Us'
-    }
+    // {
+    //     path: 'support-us',
+    //     component: SupportUsPageComponent,
+    //     title: 'Support Us'
+    // }
 ];
