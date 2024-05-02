@@ -20,8 +20,10 @@
     "@angular/router": "^17.3.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@popperjs/core": "^2.11.8",
+    "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "primeng": "^17.15.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
@@ -31,6 +33,7 @@
     "@angular/cli": "^17.3.4",
     "@angular/compiler-cli": "^17.3.0",
     "@angular/localize": "^17.3.4",
+    "@types/aos": "^3.0.7",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",

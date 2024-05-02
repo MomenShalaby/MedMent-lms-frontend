@@ -13,6 +13,9 @@ import { ProfileComponent } from './admin/profile/profile.component';
 import { AddCourseComponent } from './admin/dashboard/add-course/add-course.component';
 import { ViewCoursesComponent } from './admin/dashboard/view-courses/view-courses.component';
 import { ViewEventsComponent } from './admin/dashboard/view-events/view-events.component';
+import { ContactUsComponent } from './contact-us-page/contact-us/contact-us.component';
+import { AboutComponent } from './about-page/about/about.component';
+import { SupportUsPageComponent } from './support-us-page/support-us-page.component';
 
 export const routes: Routes = [
     {
@@ -90,5 +93,23 @@ export const routes: Routes = [
         path: 'admin-profile',
         component: ProfileComponent,
         title: 'Admin profile'
+    },
+
+    {
+        path: 'about',
+        component: AboutComponent,
+        title: 'About'
+    },
+
+    {
+        path: 'contact-us',
+        component: ContactUsComponent,
+        title: 'Contact Us'
+    },
+
+    {
+        path: 'support-us',
+        component: SupportUsPageComponent,
+        title: 'Support Us'
     }
 ];

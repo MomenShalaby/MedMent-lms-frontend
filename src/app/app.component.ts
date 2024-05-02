@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { StayUpdatedComponent } from './partials/stay-updated/stay-updated.component';
+import Aos from 'aos';
+
+
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -12,6 +15,15 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit{
   title = 'abcde';
+
+  ngOnInit() {
+    Aos.init();
+  }
+
+  ngAfterViewInit(): void {
+    Aos.init();
+  }
 }
+

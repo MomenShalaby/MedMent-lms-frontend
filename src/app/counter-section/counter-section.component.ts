@@ -54,7 +54,7 @@ export class CounterSectionComponent {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    if (window.scrollY > 810) {
+    if (window.scrollY > 900) {
       let element = document.getElementById('counter1');
       element!.classList.add('counter-number1');
     } else {
@@ -62,7 +62,7 @@ export class CounterSectionComponent {
       element!.classList.remove('counter-number1');
     }
 
-    if (window.scrollY > 810) {
+    if (window.scrollY > 900) {
       let element = document.getElementById('counter2');
       element!.classList.add('counter-number2');
     } else {
@@ -70,7 +70,7 @@ export class CounterSectionComponent {
       element!.classList.remove('counter-number2');
     }
     
-    if (window.scrollY > 810) {
+    if (window.scrollY > 900) {
       let element = document.getElementById('counter3');
       element!.classList.add('counter-number3');
     } else {
@@ -78,7 +78,7 @@ export class CounterSectionComponent {
       element!.classList.remove('counter-number3');
     }
 
-    if (window.scrollY > 810) {
+    if (window.scrollY > 900) {
       let element = document.getElementById('counter4');
       element!.classList.add('counter-number4');
     } else {
