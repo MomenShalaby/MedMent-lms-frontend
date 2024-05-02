@@ -7,3 +7,7 @@ button:hover {
 a {
     color: var(--primary-color);
 }
+.card-header {
+    background-color: var(--primary-color);
+
+}

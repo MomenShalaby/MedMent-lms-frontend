@@ -19,7 +19,7 @@ export class UsersService {
   private user = new BehaviorSubject<object>({})
 
 
-  setUser(newUser: object) {
+  setLoggedUser(newUser: object) {
     this.user.next(newUser)
   }
 
@@ -40,6 +40,8 @@ export class UsersService {
       );
   }
 
+
+  
   login(user: object) {
     return this.http.post('http://127.0.0.1:8000/api/login', user, httpOptions)
       .pipe(

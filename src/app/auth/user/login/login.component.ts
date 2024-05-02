@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsersService } from '../services/users/users.service';
+import { UsersService } from '../../../services/users/users.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +12,8 @@ import { UsersService } from '../services/users/users.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  @Input() success?: boolean;
   errorMessage?: string;
+  updated: string = this.activatedRoute.snapshot.queryParams['updated'];
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UsersService, private router: Router) {
 

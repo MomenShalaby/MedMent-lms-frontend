@@ -9,13 +9,13 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  isLoginPage: boolean = false;
+  isAdmin: boolean = false;
 
-  constructor(private router: Router) {
+   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Check if the current route is '/login'
-        this.isLoginPage = event.url === '/login';
+        // Check if the current route starts with '/admin'
+        this.isAdmin = event.url.startsWith('/admin');
       }
     });
   }

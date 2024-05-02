@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UsersService } from '../services/users/users.service';
-import { CountryService } from '../services/locations/country.service';
-import { StateService } from '../services/locations/state.service';
+import { UsersService } from '../../../services/users/users.service';
+import { CountryService } from '../../../services/locations/country.service';
+import { StateService } from '../../../services/locations/state.service';
 
 
 @Component({
@@ -29,11 +29,10 @@ export class RegisterComponent {
       lname: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       gender: new FormControl('', Validators.required),
-      password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       password_confirmation: new FormControl('', Validators.required),
-      country_id: new FormControl('', Validators.required),
-      state_id: new FormControl('', Validators.required),
-      subscription_id: new FormControl('', Validators.required),
+      country_id: new FormControl(''),
+      state_id: new FormControl('')
     },
       { validators: this.confirmPasswordValidator }
     );
@@ -79,11 +78,9 @@ export class RegisterComponent {
 
   handleRegister() {
     if (!this.registerForm.valid) {
-      console.log('not valid');
-
       this.registerForm.markAllAsTouched();
     }
-     else {
+    else {
       this.userService.addUser(this.registerForm.value).subscribe(
         response => {
           localStorage.setItem('token', (response as any).data.token)
@@ -96,8 +93,6 @@ export class RegisterComponent {
           console.error('Error creating post:', error);
           const values = Object.values(error.error.errors) as string[];
           this.errorMessage = values[0];
-
-
           console.log(this.errorMessage);
 
         }

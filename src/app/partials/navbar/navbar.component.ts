@@ -9,14 +9,14 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  isLoginPage: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // Check if the current route is '/login'
-        this.isLoginPage = event.url === '/login';
-      }
-    });
-  }
+   this.router.events.subscribe(event => {
+     if (event instanceof NavigationEnd) {
+       // Check if the current route starts with '/admin'
+       this.isAdmin = event.url.startsWith('/admin');
+     }
+   });
+ }
 }

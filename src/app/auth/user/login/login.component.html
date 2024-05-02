@@ -4,15 +4,16 @@
       <div class="d-flex justify-content-center">
         <img class="my-3 w-50" src="assets/img/logo-png-black.png" alt="Logo" />
       </div>
-      @if(success){
-      <div class="alert alert-success text-center">
-        You signed up successfully, now log in
-      </div>
-      }
+
       @if(errorMessage){
       <div class="alert alert-danger text-center">
         {{ errorMessage }}
       </div>
+      }
+      @if(updated){
+      <div class="alert alert-success text-center">
+        Password updated successfully
+        </div>
       }
       <div class="tab-content">
         <div class="tab-pane fade show active py-3 px-3" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
@@ -49,7 +50,7 @@
                 </div>
               </div>
               <div class="col-md-6 d-flex justify-content-center">
-                <a href="#!" class="text-decoration-none">Forgot password?</a>
+                <a [routerLink]="'/forgot-password'" class="text-decoration-none">Forgot password?</a>
               </div>
             </div>
             <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary mb-3 w-100">
