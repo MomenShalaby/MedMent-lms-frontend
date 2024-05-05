@@ -289,3 +289,15 @@
     display: block;
   }
 }
+/* .header .nav-profile {
+  color: #012970;
+} */
+
+.header .profile-img {
+  max-height: 36px;
+}
+
+/* .header .nav-profile span {
+  font-size: 14px;
+  font-weight: 600;
+} */

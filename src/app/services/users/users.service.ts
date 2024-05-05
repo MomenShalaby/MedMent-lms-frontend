@@ -20,7 +20,11 @@ export class UsersService {
 
 
   setLoggedUser(newUser: object) {
-    this.user.next(newUser)
+    this.user.next(newUser)  
+  }
+
+  getLoggedUser(){
+    return this.user.asObservable()
   }
 
 

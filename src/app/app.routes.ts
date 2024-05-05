@@ -9,11 +9,11 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AddEventComponent } from './admin/dashboard/add-event/add-event.component';
-import { ProfileComponent } from './admin/profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { AddCourseComponent } from './admin/dashboard/add-course/add-course.component';
 import { ViewCoursesComponent } from './admin/dashboard/view-courses/view-courses.component';
 import { ViewEventsComponent } from './admin/dashboard/view-events/view-events.component';
-import { ContactUsComponent } from './contact-us-page/contact-us/contact-us.component';
+import { ContactUsComponent } from './contact-us-page/contact-us/contact-us.component'; 
 import { AboutComponent } from './about-page/about/about.component';
 // import { SupportUsPageComponent } from './support-us-page/support-us-page.component';
 
@@ -105,6 +105,11 @@ export const routes: Routes = [
         path: 'contact-us',
         component: ContactUsComponent,
         title: 'Contact Us'
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
+        title: 'profile'
     },
 
     // {

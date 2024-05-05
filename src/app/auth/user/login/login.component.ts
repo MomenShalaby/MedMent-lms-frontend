@@ -39,7 +39,11 @@ export class LoginComponent {
           localStorage.setItem('token', (response as any).data.token)
           console.log(localStorage.getItem('token'));
 
-          // this.router.navigate(['/']);
+          this.userService.setLoggedUser((response as any).data
+        )
+
+
+          this.router.navigate(['/']);
         },
         error => {
           // const values = Object.values(error.error.errors) as string[];
