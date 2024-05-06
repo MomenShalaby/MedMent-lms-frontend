@@ -1483,7 +1483,7 @@ ul.top-info-box li .info-box .info-box-subtitle {
   margin: 0;
 }
 .shuffle-btn-group span.active {
-  color: #212121;
+  color: #fff;
   background: var(--accent-color);
 }
 

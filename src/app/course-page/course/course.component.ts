@@ -4,11 +4,12 @@ import { CategoryComponent } from '../category/category.component';
 import { SearchComponent } from '../search/search.component';
 import { CourseService } from '../../core/services/course/course-service.service';
 import { Course } from '../../core/models/course.model';
+import { PageTitleComponent } from '../../partials/page-title/page-title.component';
 
 @Component({
   selector: 'app-course',
   standalone: true,
-  imports: [CardComponent, CategoryComponent, SearchComponent],
+  imports: [CardComponent, CategoryComponent, SearchComponent, PageTitleComponent],
   templateUrl: './course.component.html',
   styleUrl: './course.component.css'
 })

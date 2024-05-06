@@ -1876,7 +1876,7 @@ label {
 ================================================== */
 .post {
   /* border-bottom: 1px solid #dadada; */
-  padding: 0 0 30px;
+  padding: 0 0 20px;
   /* margin: 0 0 45px; */
 }
 
@@ -1900,14 +1900,7 @@ label {
   position: relative;
   line-height: 34px;
   text-transform: capitalize;
-}
-
-.entry-header .entry-title a {
   color: #303030;
-}
-
-.entry-header .entry-title a:hover {
-  color: var(--accent-color);
 }
 
 .post-single .entry-header .entry-title {
@@ -1917,35 +1910,17 @@ label {
 /* Meta */
 .post-meta {
   padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.post-meta a {
-  color: #303030;
-}
-
-.post-meta a:hover {
-  color: var(--accent-color);
-}
-
-.post-meta span {
-  margin-right: 10px;
-  padding-right: 10px;
-  border-right: 1px solid #dadada;
-  line-height: 12px;
-  display: inline-block;
-}
-
-.post-meta i {
-  color: #bbb;
-  margin-right: 3px;
-}
-
-.post-meta .post-comment {
-  border-right: 0;
-}
-
-.post-meta .post-comment .comments-link {
-  margin-left: 5px;
+.post-meta button{
+  border: 0;
+  border-radius: 10px;
+  outline: none;
+  padding: 3px 15px;
+  color: #fff;
+  background-color: var(--accent-color);
 }
 
 .post-footer .btn.btn-primary {
@@ -2355,6 +2330,26 @@ label {
 .Support{
     color: #fff !important;
 }
+
+.lecture-section{
+  outline: none;
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+}
+
+.lecture-section i{
+  color: #bbb;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: var(--accent-color) !important;
+}
+
+/* .accordion-button:not(.collapsed)::after {
+  background-image: url('') !important;
+} */
 
 @media screen and (max-width: 990px) {
     .post {

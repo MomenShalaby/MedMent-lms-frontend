@@ -1,27 +1,3 @@
-<!-- Page Title -->
-<div class="page-title" data-aos="fade">
-    <div class="heading">
-        <div class="container">
-            <div class="row d-flex justify-content-center text-center">
-                <div class="col-lg-8">
-                    <h1 class="Support">Support Us<br></h1>
-                    <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint
-                        voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi
-                        ratione sint. Sit quaerat ipsum dolorem.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <nav class="breadcrumbs">
-        <div class="container">
-            <ol>
-                <li><a href="index.html">Home</a></li>
-                <li class="current">Support Us<br></li>
-            </ol>
-        </div>
-    </nav>
-</div><!-- End Page Title -->
-
 <section id="main-container" class="main-container">
   <div class="container">
 
@@ -36,48 +12,46 @@
           </div><!-- header end -->
 
           <div class="entry-content">
-            <p>{{course.long_desc}}</p>
+            <p>{{course.description}}</p>
           </div>
       </div><!-- Slider col end -->
 
       <div class="col-lg-4 mt-5 mt-lg-0">
-
-        <h3 class="column-title mrt-0">{{course.name}}</h3>
-        <p>{{course.short_desc}}</p>
-
-        <ul class="project-info list-unstyled">
-          <li>
-            <p class="project-info-label">Client</p>
-            <p class="project-info-content">Pransbay Powers Authority</p>
-          </li>
-          <li>
-            <p class="project-info-label">Architect</p>
-            <p class="project-info-content">Dlarke Pelli Incorp</p>
-          </li>
-          <li>
-            <p class="project-info-label">Location</p>
-            <p class="project-info-content">McLean, VA</p>
-          </li>
-          <li>
-            <p class="project-info-label">Size</p>
-            <p class="project-info-content">65,000 SF</p>
-          </li>
-          <li>
-            <p class="project-info-label">Year Completed</p>
-            <p class="project-info-content">2015</p>
-          </li>
-          <li>
-            <p class="project-info-label">Categories</p>
-            <p class="project-info-content">Commercial, Interiors</p>
-          </li>
-          <li>
-            <p class="project-link">
-              <a routerLink="vedio" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-              <!-- <a class="btn btn-primary" target="_blank" href="#">View Project</a> -->
-            </p>
-          </li>
-        </ul>
-
+        <div class="sidebar">
+          <h3 class="widget-title">Course Info</h3>
+          <ul class="project-info list-unstyled">
+            <li>
+              <p class="project-info-label">Title</p>
+              <p class="project-info-content">{{course.title}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Status</p>
+              <p class="project-info-content">{{course.status}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Instructor</p>
+              <p class="project-info-content">{{course.instructor}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Date</p>
+              <p class="project-info-content">{{course.created_at | date: 'MMM dd yyyy'}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Duration</p>
+              <p class="project-info-content">{{course.duration}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Categories</p>
+              <p class="project-info-content">{{course.category.name}}</p>
+            </li>
+            <li>
+              <p class="project-link">
+                <a routerLink="vedio" class="read-more"><span>Start Learning</span><i class="bi bi-arrow-right"></i></a>
+                <!-- <a class="btn btn-primary" target="_blank" href="#">View Project</a> -->
+              </p>
+            </li>
+          </ul>
+        </div>
       </div><!-- Content col end -->
 
     </div><!-- Row end -->

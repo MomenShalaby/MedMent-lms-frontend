@@ -2,7 +2,6 @@
     color: var(--default-color);
     background-color: rgba(var(--default-color-rgb), 0.03);
     font-size: 14px;
-    padding-bottom: 50px;
     position: relative;
   }
   

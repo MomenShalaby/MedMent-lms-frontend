@@ -5,11 +5,12 @@ import { Event } from '../core/models/event.model';
 import { CommonModule } from '@angular/common';
 import { Tag } from '../core/models/tag.model';
 import { TagService } from '../core/services/tags/tag.service';
+import { PageTitleComponent } from '../partials/page-title/page-title.component';
 
 @Component({
   selector: 'app-social-activities-page',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, PageTitleComponent],
   templateUrl: './social-activities-page.component.html',
   styleUrls: ['./social-activities-page.component.css', '../../assets/css/style.css']
 })

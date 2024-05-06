@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ContactUsService } from '../../core/services/contact-us/contact-us.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactUs } from '../../core/models/contact-us.model';
+import { PageTitleComponent } from '../../partials/page-title/page-title.component';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, PageTitleComponent],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css'
 })
