@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UsersService } from '../services/users/users.service';
+import { UsersService } from '../../../services/users/users.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +12,8 @@ import { UsersService } from '../services/users/users.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  @Input() success?: boolean;
   errorMessage?: string;
+  updated: string = this.activatedRoute.snapshot.queryParams['updated'];
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UsersService, private router: Router) {
 
@@ -38,8 +38,12 @@ export class LoginComponent {
 
           localStorage.setItem('token', (response as any).data.token)
           console.log(localStorage.getItem('token'));
-          
-          //this.router.navigate(['/']);
+
+          this.userService.setLoggedUser((response as any).data
+        )
+
+
+          this.router.navigate(['/']);
         },
         error => {
           // const values = Object.values(error.error.errors) as string[];

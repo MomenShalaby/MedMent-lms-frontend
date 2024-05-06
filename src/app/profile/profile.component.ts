@@ -1,31 +1,21 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { UsersService } from '../../services/users/users.service';
+import { UsersService } from '../services/users/users.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  imports: [],
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css'
 })
-export class NavbarComponent {
-  isAdmin: boolean = false;
-  user: any;
+export class ProfileComponent {
   private userSubscription?: Subscription;
+  user :any;
 
 
-
-  constructor(private router: Router, private userService: UsersService) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        // Check if the current route starts with '/admin'
-        this.isAdmin = event.url.startsWith('/admin');
-      }
-    });
+  constructor(private userService: UsersService) {
     this.userSubscription = new Subscription();
-
   }
 
   ngOnInit(): void {
@@ -50,4 +40,5 @@ export class NavbarComponent {
       this.userSubscription.unsubscribe();
     }
   }
+
 }

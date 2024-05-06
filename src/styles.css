@@ -1,1 +1,74 @@
 
+/* Add padding to the top of the content equal to the height of the fixed navbar */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/**ANCHOR -  Variables */
+
+:root {
+scroll-behavior: smooth;
+
+/* Colors */
+--primary-color: #2ea4c1;
+--button-hover: #257f96;
+
+--background-color: #fff;
+--background-color-grey: rgba(245, 247, 252, 0.8);
+--background-color-dark: #b6b6b6;
+
+--color-primary-dark: #1a1b21;
+--color-primary-light: rgba(211, 211, 211, 0.8);
+
+--color-accent: #fa6152;
+--color-accent-washed: rgba(32, 30, 134, 0.65);
+
+--color-red: rgb(206, 24, 24);
+
+--colorsss: #ddd;
+
+--color-danger: #c0392b;
+--color-success: #27ae60;
+
+--color-border-light: rgba(211, 211, 211, 0.75);
+--color-border-dark: rgba(0, 0, 0, 0.3);
+
+--button-color:  #2ea4c1;
+--button-color-hover: #344ca9;
+
+--text-color-dark: #333;
+--text-color-light: #777;
+--text-color-white: white;
+
+/* Transitions */
+--transition-short: 0.3s;
+--transition-mid: 0.5s;
+--transition-long: 1s;
+
+
+
+}
+
+/* Add padding to the top of the content equal to the height of the fixed navbar */
+body {
+  font-family: "Jost", sans-serif;
+  color: var(--text-color-dark);
+}
+
+button {
+  background-color: #8cc7d8;
+}
+
+.w-90{
+  max-width: 90% !important;
+  margin: auto;
+}
+
+
+@media screen and (max-width: 600px) {
+  .hide-on-mobile{
+    display: none;
+  }
+}

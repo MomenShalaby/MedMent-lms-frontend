@@ -1,0 +1,12 @@
+button {
+  background-color: var(--primary-color);
+}
+button:hover {
+  background-color: var(--primary-color);
+}
+a {
+  color: var(--primary-color);
+}
+.card-header {
+  background-color: var(--primary-color);
+}

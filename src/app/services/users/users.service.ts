@@ -19,8 +19,12 @@ export class UsersService {
   private user = new BehaviorSubject<object>({})
   isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
-  setUser(newUser: object) {
-    this.user.next(newUser)
+  setLoggedUser(newUser: object) {
+    this.user.next(newUser)  
+  }
+
+  getLoggedUser(){
+    return this.user.asObservable()
   }
 
   private handleError(operation = 'operation', user: object) {
@@ -41,6 +45,8 @@ export class UsersService {
       );
   }
 
+
+  
   login(user: object) {
     return this.http.post('http://127.0.0.1:8000/api/login', user, httpOptions)
       .pipe(
