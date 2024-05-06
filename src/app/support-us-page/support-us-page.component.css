@@ -1,0 +1,30 @@
+.read-more {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 10px 24px 12px 24px;
+  border-radius: 50px;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.read-more i {
+  font-size: 18px;
+  margin-left: 5px;
+  line-height: 0;
+  transition: 0.3s;
+}
+
+.read-more:hover {
+  background: rgba(var(--accent-color-rgb), 0.8);
+  padding-right: 19px;
+}
+
+.read-more:hover i {
+  margin-left: 10px;
+}

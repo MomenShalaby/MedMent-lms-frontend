@@ -30,7 +30,7 @@
     padding: 8px 30px;
     border: 0;
     outline: none;
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);
     font-size: 13px;
     color: white;
 }

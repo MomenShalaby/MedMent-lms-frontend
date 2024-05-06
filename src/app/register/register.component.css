@@ -1,11 +1,17 @@
 button {
-    background-color:var(--primary-color);
+    background-color:var(--accent-color);
+    border-color: var(--accent-color);
 }
 button:hover {
-    background-color:var(--primary-color);
+    background-color:rgba(var(--accent-color-rgb), 0.85);
+    border-color: rgba(var(--accent-color-rgb), 0.85);
 }
 a {
     color: var(--primary-color);
+}
+.form-check-input:checked {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
 }
 /**
 *

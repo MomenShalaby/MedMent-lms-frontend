@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgbNav, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'primeng/carousel';
 
 
@@ -7,8 +8,8 @@ import { CarouselModule } from 'primeng/carousel';
   standalone: true,
   imports: [CarouselModule],
   templateUrl: './support-us-page.component.html',
-  styleUrl: './support-us-page.component.css'
+  styleUrls: ['./support-us-page.component.css', '../../assets/css/style.css']
 })
 export class SupportUsPageComponent {
-
+  @Input() course: any;
 }

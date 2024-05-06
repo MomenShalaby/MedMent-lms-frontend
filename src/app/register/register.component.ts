@@ -90,7 +90,7 @@ export class RegisterComponent {
           console.log(localStorage.getItem('token'));
           console.log('User added successfully:', response);
 
-          // this.router.navigate(['/login'], { queryParams: { success: true } });
+          this.router.navigate(['/interests'], { queryParams: { success: true } });
         },
         error => {
           console.error('Error creating post:', error);

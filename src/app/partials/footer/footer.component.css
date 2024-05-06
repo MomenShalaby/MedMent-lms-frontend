@@ -15,16 +15,8 @@
   }
   
   .footer .footer-about .logo img {
-    max-height: 40px;
+    max-height: 55px;
     margin-right: 6px;
-  }
-  
-  .footer .footer-about .logo span {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-family: var(--heading-font);
-    color: var(--heading-color);
   }
   
   .footer .footer-about p {
