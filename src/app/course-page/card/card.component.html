@@ -3,7 +3,7 @@
     <div class="row">
       @for(course of courses; track $index){
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-          <a [routerLink]="course.id" class="course-item">
+          <a [routerLink]="'course/' + course.id" class="course-item">
             <img [src]="'http://localhost:8000' + course.image" class="img-fluid" alt="...">
             <div class="course-content">
               <div class="d-flex justify-content-between align-items-center mb-3">
@@ -11,7 +11,7 @@
                 <!-- <p class="price">$169</p> -->
               </div>
 
-              <h3><a [routerLink]="'course/' + course.id">{{course.name}}</a></h3>
+              <h3>{{course.name}}</h3>
               <p class="description">{{course.short_desc}}</p>
               <div class="trainer d-flex justify-content-between align-items-center">
                 <div class="trainer-profile d-flex align-items-center">
