@@ -29,19 +29,22 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.getLoggedUser().subscribe(
-      // this.userService.getLoggedUser().subscribe(
-      user => {
-        if (user && Object.keys(user).length !== 0) {
-          this.user = user;
-          console.log(user);
-        }
+    // this.userSubscription = this.userService.getLoggedUser().subscribe(
+    //   // this.userService.getLoggedUser().subscribe(
+    //   user => {
+    //     if (user && Object.keys(user).length !== 0) {
+    //       this.user = user;
+    //       console.log(user);
+    //     }
 
-      },
-      error => {
-        console.error('Error fetching user:', error);
-      }
-    );
+    //   },
+    //   error => {
+    //     console.error('Error fetching user:', error);
+    //   }
+    // );\
+    if(localStorage.getItem('userDate')){
+      this.user = localStorage.getItem('userDate')
+    }
   }
 
   ngOnDestroy(): void {

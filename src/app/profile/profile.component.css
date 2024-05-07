@@ -51,3 +51,7 @@
   .profile .profile-edit img {
     max-width: 120px;
   }
+
+  .nav-link {
+    color: var(--primary-color);
+  }

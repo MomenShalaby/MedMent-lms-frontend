@@ -36,12 +36,11 @@ export class LoginComponent {
           console.log('Logged in successfully:', response);
           // console.log(response.);
 
-          localStorage.setItem('token', (response as any).data.token)
+          localStorage.setItem('userData', JSON.stringify((response as any).data))
           console.log(localStorage.getItem('token'));
 
           this.userService.setLoggedUser((response as any).data
         )
-
 
           this.router.navigate(['/']);
         },
