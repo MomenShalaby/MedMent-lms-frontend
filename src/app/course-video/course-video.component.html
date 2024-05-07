@@ -1,0 +1,172 @@
+<div class="body-inner">
+
+<section id="main-container" class="main-container">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 mb-5 mb-lg-0">
+
+        <div class="post specific-post">
+          <div class="post-media post-video">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" [src]="lectures[currentLecture].video_url | safe" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <div class="post-body">
+            <div class="entry-header">
+              <div class="post-meta">
+                @if(currentLecture > 0){
+                  <button class="me-auto" (click)="previousLecture()">
+                    <i class="fa-solid fa-angle-left"></i>
+                    <span class="ms-2">Previous</span>
+                  </button>
+                }
+                @if(currentLecture != lectures.length-1){
+                  <button class="ms-auto" (click)="nextLecture()">
+                    <span class="me-2">Next</span>
+                    <i class="fa-solid fa-angle-right"></i>
+                  </button>
+                }
+              </div>
+              <h2 class="entry-title">
+                {{lectures[currentLecture].title}}
+              </h2>
+            </div><!-- header end -->
+            <div class="entry-content">
+              <p>{{lectures[currentLecture].content}}</p>
+            </div>
+          </div><!-- post-body end -->
+        </div><!-- 2nd post end -->
+
+        <div class="post">
+          <div class="post-body">
+            <div class="entry-header">
+              <h2 class="entry-title">
+                Carriculum
+              </h2>
+            </div><!-- header end -->
+
+            <div ngbAccordion [closeOthers]="true">
+              @for (section of course.sections; track $index) {
+                <div ngbAccordionItem [collapsed]="true">
+                  <h2 ngbAccordionHeader>
+                    <button ngbAccordionButton>{{ section.title }}</button>
+                  </h2>
+                  <div ngbAccordionCollapse>
+                    @for(lecture of section.lectures; track $index){
+                    <div ngbAccordionBody class="border-bottom">
+                      <button class="d-flex justify-content-between align-items-center lecture-section" (click)="changeLecture($index)">
+                        <div>
+                          <i class="fa-solid fa-video"></i>
+                          <span class="ms-2">{{lecture.title}}</span>
+                        </div>
+                        <i class="fa-solid fa-lock"></i>
+                      </button>
+                    </div>
+                  }
+                  </div>
+                </div>
+              }
+            </div>
+
+          </div><!-- post-body end -->
+        </div><!-- 3rd post end -->
+
+      </div><!-- Content Col end -->
+
+      <div class="col-lg-4">
+
+        <div class="sidebar sidebar-right">
+            
+            <div class="widget recent-posts">
+                <h3 class="widget-title">Course Info</h3>
+                <ul class="list-unstyled">
+                  <li class="d-flex info-item">
+                    <div class="posts-thumb">
+                      Lectures
+                    </div>
+                    <div class="post-info">
+                      {{lectures.length}}
+                    </div>
+                  </li><!-- 1st post end-->
+    
+                  <li class="d-flex info-item">
+                    <div class="posts-thumb">
+                      Duration
+                    </div>
+                    <div class="post-info">
+                        {{course.duration}}
+                    </div>
+                  </li><!-- 2nd post end-->
+    
+                  <li class="d-flex info-item">
+                    <div class="posts-thumb">
+                        Course Level
+                    </div>
+                    <div class="post-info">
+                        Advanced
+                    </div>
+                  </li><!-- 3rd post end-->
+    
+                </ul>
+    
+              </div><!-- Recent post end -->
+
+          <div class="widget recent-posts">
+            <h3 class="widget-title">Related Courses</h3>
+            <ul class="list-unstyled">
+              <li class="d-flex align-items-center">
+                <div class="posts-thumb">
+                  <a href="#"><img loading="lazy" alt="img" src="images/news/news1.jpg"></a>
+                </div>
+                <div class="post-info">
+                  <h4 class="entry-title">
+                    <a href="#">We Just Completes Medical Clinic In Mid-missouri</a>
+                  </h4>
+                </div>
+              </li><!-- 1st post end-->
+
+              <li class="d-flex align-items-center">
+                <div class="posts-thumb">
+                  <a href="#"><img loading="lazy" alt="img" src="images/news/news2.jpg"></a>
+                </div>
+                <div class="post-info">
+                  <h4 class="entry-title">
+                    <a href="#">Thandler Airport Water Reclamation Facility Expansion Project Named</a>
+                  </h4>
+                </div>
+              </li><!-- 2nd post end-->
+
+              <li class="d-flex align-items-center">
+                <div class="posts-thumb">
+                  <a href="#"><img loading="lazy" alt="img" src="images/news/news3.jpg"></a>
+                </div>
+                <div class="post-info">
+                  <h4 class="entry-title">
+                    <a href="#">Silicon Bench And Cornike Begin Construction Solar Facilities</a>
+                  </h4>
+                </div>
+              </li><!-- 3rd post end-->
+
+            </ul>
+
+          </div><!-- Recent post end -->
+
+          <div class="widget">
+            <h3 class="widget-title">Categories</h3>
+            <ul class="arrow nav nav-tabs">
+              @for(category of categories; track $index){
+                <li><a href="#">{{category.name}}</a></li>
+              }
+            </ul>
+          </div><!-- Categories end -->
+
+        </div><!-- Sidebar end -->
+      </div><!-- Sidebar Col end -->
+
+    </div><!-- Main row end -->
+
+  </div><!-- Container end -->
+</section><!-- Main container end -->
+

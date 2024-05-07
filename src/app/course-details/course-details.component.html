@@ -1,0 +1,60 @@
+<section id="main-container" class="main-container">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-8">
+          <div class="item">
+            <img class="img-fluid w-100" [src]="'http://localhost:8000' + course.image" alt="project-image" />
+          </div>
+
+          <div class="entry-header">
+            <h2 class="entry-title">{{course.name}}</h2>
+          </div><!-- header end -->
+
+          <div class="entry-content">
+            <p>{{course.description}}</p>
+          </div>
+      </div><!-- Slider col end -->
+
+      <div class="col-lg-4 mt-5 mt-lg-0">
+        <div class="sidebar">
+          <h3 class="widget-title">Course Info</h3>
+          <ul class="project-info list-unstyled">
+            <li>
+              <p class="project-info-label">Title</p>
+              <p class="project-info-content">{{course.title}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Status</p>
+              <p class="project-info-content">{{course.status}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Instructor</p>
+              <p class="project-info-content">{{course.instructor}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Date</p>
+              <p class="project-info-content">{{course.created_at | date: 'MMM dd yyyy'}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Duration</p>
+              <p class="project-info-content">{{course.duration}}</p>
+            </li>
+            <li>
+              <p class="project-info-label">Categories</p>
+              <p class="project-info-content">{{course.category.name}}</p>
+            </li>
+            <li>
+              <p class="project-link">
+                <a routerLink="vedio" class="read-more"><span>Start Learning</span><i class="bi bi-arrow-right"></i></a>
+                <!-- <a class="btn btn-primary" target="_blank" href="#">View Project</a> -->
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div><!-- Content col end -->
+
+    </div><!-- Row end -->
+
+  </div><!-- Conatiner end -->
+</section><!-- Main container end -->

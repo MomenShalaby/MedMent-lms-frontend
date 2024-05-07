@@ -16,12 +16,12 @@ section{
     font-size: 20px;
   }
   
-  .courses .course-content h3 a {
+  .courses .course-content h3{
     color: var(--heading-color);
     transition: 0.3s;
   }
   
-  .courses .course-content h3 a:hover {
+  .courses .course-content h3:hover {
     color: var(--accent-color);
   }
   
@@ -68,12 +68,18 @@ section{
     color: var(--accent-color);
   }
   
-  .courses .trainer .trainer-rank {
+  .courses .trainer .trainer-rank h3{
+    color: rgba(var(--default-color-rgb), 0.8);
+    font-size: 16px;
+  }
+
+  .courses .trainer .trainer-rank{
     font-size: 18px;
     color: rgba(var(--default-color-rgb), 0.4);
   }
   
   .courses .trainer .trainer-rank .user-icon {
     font-size: 22px;
+    color: rgba(var(--default-color-rgb), 0.4);
   }
   

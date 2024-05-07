@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 
 const httpOptions = {
@@ -17,7 +17,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
   private user = new BehaviorSubject<object>({})
-
+  isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
   setLoggedUser(newUser: object) {
     this.user.next(newUser)  
@@ -26,8 +26,6 @@ export class UsersService {
   getLoggedUser(){
     return this.user.asObservable()
   }
-
-
 
   private handleError(operation = 'operation', user: object) {
     return (error: any): Observable<object> => {
@@ -40,6 +38,9 @@ export class UsersService {
   addUser(user: object): Observable<object> {
     return this.http.post<object>('http://127.0.0.1:8000/api/register', user, httpOptions)
       .pipe(
+        tap(() => {
+          this.isAuthenticated$.next(true);
+        }),
         catchError(this.handleError('addUser', user))
       );
   }
@@ -49,6 +50,9 @@ export class UsersService {
   login(user: object) {
     return this.http.post('http://127.0.0.1:8000/api/login', user, httpOptions)
       .pipe(
+        tap(() => {
+          this.isAuthenticated$.next(true);
+        }),
         catchError(this.handleError('addUser', user))
       );
   }

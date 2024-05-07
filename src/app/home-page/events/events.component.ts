@@ -1,53 +1,34 @@
-import { Component } from '@angular/core';
-
-interface Event {
-  id: number;
-  Eventname: string;
-  level: string;
-  category: string;
-  image: string;
-  rate: number;
-}
+import { Component, OnInit } from '@angular/core';
+import { EventService } from '../../core/services/events/event-service.service';
+import { Event } from '../../core/models/event.model';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, CommonModule],
   templateUrl: './events.component.html',
   styleUrl: './events.component.css'
 })
-export class EventsComponent {
-  Events : Event[] = [
-    {
-      "id": 1,
-      "Eventname": "Build a computer vision app with Azure Cognitive Services",
-      "level": "Begginer",
-      "category": "Anatomy",
-      "image": "assets/img/Events/blood research-amico.png",
-      "rate": 4
-    },
-    {
-      "id": 2,
-      "Eventname": "BI Foundations with SQL, ETL and Data Warehousing Specialization",
-      "level": "Middle",
-      "category": "Pathology",
-      "image": "assets/img/Events/rice field-pana.png",
-      "rate": 5
-    },
-    {
-      "id": 3,
-      "Eventname": "Data Science with Databricks for Data Analysts Specialization",
-      "level": "Advance",
-      "category": "Physiology",
-      "image": "assets/img/Events/blood research-cuate.png",
-      "rate": 4.3
-    }
-  ];
-
-  allEvents: Event[] = [];
+export class EventsComponent implements OnInit{
+  events : Event[] = [];
   searchTerm: string = '';
 
-  constructor() {
-    this.allEvents = this.Events;
+  constructor(private eventService: EventService) {}
+
+  ngOnInit(): void {
+    this.getNewestEvents();
+  }
+  
+  getNewestEvents(){
+    this.eventService.getEvents().subscribe({
+      next: (res) => {
+        this.events = res.data.slice(0, 2);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
 }

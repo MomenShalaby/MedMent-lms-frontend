@@ -2,7 +2,6 @@
     color: var(--default-color);
     background-color: rgba(var(--default-color-rgb), 0.03);
     font-size: 14px;
-    padding-bottom: 50px;
     position: relative;
   }
   
@@ -15,16 +14,8 @@
   }
   
   .footer .footer-about .logo img {
-    max-height: 40px;
+    max-height: 55px;
     margin-right: 6px;
-  }
-  
-  .footer .footer-about .logo span {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-family: var(--heading-font);
-    color: var(--heading-color);
   }
   
   .footer .footer-about p {

@@ -5,17 +5,25 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CourseServiceService {
+export class CourseService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl: string = "http://localhost:8000";
+  baseUrl: string = "http://localhost:8000/api";
 
   getAllCourses(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/api/courses`);
+    return this.http.get<any>(`${this.baseUrl}/courses?include=category,sections,sections.lectures`);
   }
 
   getCourseById(id: number | undefined) : Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/api/courses/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/courses/${id}?include=category,sections,sections.lectures`);
+  }
+
+  getCourseSections(id: number | undefined) : Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/courses/${id}?include=category`);
+  }
+
+  getCourseLectures(id: number | undefined) : Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/courses/${id}?include=category`);
   }
 }
