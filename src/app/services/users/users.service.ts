@@ -27,6 +27,11 @@ export class UsersService {
     return this.user.asObservable()
   }
 
+  reset(){
+    this.user.next({});
+    console.log(this.user.value);
+    
+  }
   private handleError(operation = 'operation', user: object) {
     return (error: any): Observable<object> => {
       console.error(`${operation} failed:`, error);

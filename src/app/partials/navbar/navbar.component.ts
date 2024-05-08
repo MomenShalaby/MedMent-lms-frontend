@@ -29,28 +29,45 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
-    // this.userSubscription = this.userService.getLoggedUser().subscribe(
-    //   // this.userService.getLoggedUser().subscribe(
-    //   user => {
-    //     if (user && Object.keys(user).length !== 0) {
-    //       this.user = user;
-    //       console.log(user);
-    //     }
-
-    //   },
-    //   error => {
-    //     console.error('Error fetching user:', error);
-    //   }
-    // );\
-    if(localStorage.getItem('userDate')){
-      this.user = localStorage.getItem('userDate')
+    this.userSubscription = this.userService.getLoggedUser().subscribe(
+      user => {
+        if (user && Object.keys(user).length !== 0) {
+          this.user = user;
+          console.log(user);
+        }
+      },
+      error => {
+        console.error('Error fetching user:', error);
+      }
+    );
+    const userDataString = localStorage.getItem('userData');
+    if (userDataString) {
+      this.user = JSON.parse(userDataString);
     }
   }
 
+
   ngOnDestroy(): void {
-    // Unsubscribe to avoid memory leaks
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
+    this.userService.reset()
+    this.user = {}
+    this.subscribeToUser()
+
+    localStorage.removeItem('userData');
+    window.location.href = '/';
+
+  }
+
+  subscribeToUser() {
+    this.userSubscription = this.userService.getLoggedUser().subscribe(
+      user => {
+        if (user && Object.keys(user).length !== 0) {
+          this.user = user;
+          console.log(user);
+        }
+      },
+      error => {
+        console.error('Error fetching user:', error);
+      }
+    );
   }
 }

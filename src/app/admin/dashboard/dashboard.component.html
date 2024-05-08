@@ -1,9 +1,19 @@
-<div class="container row">
-    <div class="col-3">
-        <app-admin-navbar></app-admin-navbar>
-    </div>
-    <div class="col-9">
-        <app-sidebar></app-sidebar>
-        <router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Navbar -->
+        <div class="col-3">
+            <app-admin-navbar></app-admin-navbar>
+        </div>
+        <!-- Sidebar and Main Content -->
+        <div class="col-9 d-flex flex-column">
+            <!-- Sidebar -->
+            <div class="flex-shrink-0">
+                <app-sidebar></app-sidebar>
+            </div>
+            <!-- Main Content -->
+            <div class="flex-grow-1">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     </div>
 </div>

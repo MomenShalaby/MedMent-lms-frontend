@@ -25,22 +25,13 @@ export class LoginComponent {
   }
 
   handleLogin() {
-
     if (!this.loginForm.valid) {
-      console.log('not valid');
-
       this.loginForm.markAllAsTouched();
     } else {
       this.userService.login(this.loginForm.value).subscribe(
         response => {
-          console.log('Logged in successfully:', response);
-          // console.log(response.);
-
           localStorage.setItem('userData', JSON.stringify((response as any).data))
-          console.log(localStorage.getItem('token'));
-
-          this.userService.setLoggedUser((response as any).data
-        )
+          this.userService.setLoggedUser((response as any).data)
 
           this.router.navigate(['/']);
         },

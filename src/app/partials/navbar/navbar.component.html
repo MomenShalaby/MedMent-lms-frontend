@@ -1,4 +1,4 @@
-
+@if(!isAdmin){
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container-fluid container-xl position-relative d-flex align-items-center">
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,22 +16,20 @@
     <nav id="navmenu" class="navmenu">
       <ul>
         <!-- <li><a href="#" class="active">Home</a></li> -->
-        <li><a href="about">About</a></li>
-        <li><a href="course">Courses</a></li>
+        <li><a [routerLink]="['/about']">About</a></li>
+        <li><a [routerLink]="['/course']">Courses</a></li>
         <!-- <li><a href="">Trainers</a></li> -->
-        <li><a href="events">Events</a></li>
-        <li><a href="membership">Membership</a></li>
-        <li><a href="support-us">Support Us</a></li>
-        <li><a href="contact-us">Contact</a></li>
+        <li><a [routerLink]="['/events']">Events</a></li>
+        <li><a [routerLink]="['/membership']">Membership</a></li>
+        <li><a [routerLink]="['/support-us']">Support Us</a></li>
+        <li><a [routerLink]="['/contact-us']">Contact</a></li>
 
         @if(user){
   
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            @if(user.user.gender == 'female'){
 
-            }
             <img src="assets/img{{ user.user.avatar }}" alt="Profile" class="profile-img rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.user.fname +' '+ user.user.lname}}</span>
           </a>
@@ -70,7 +68,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" (click)="ngOnDestroy()">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -107,3 +105,4 @@
     <li><a href="#">Dropdown 4</a></li>
   </ul>
 </li> -->
+}
