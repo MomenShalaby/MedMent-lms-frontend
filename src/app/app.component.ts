@@ -21,7 +21,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy{
   title = 'abcde';
   private destroy$ = new Subject<void>();
 
-  constructor(private router: Router, private viewportScroll: ViewportScroller) {}
+  constructor(private router: Router, private viewportScroll: ViewportScroller) {
+    Aos.init();
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();
