@@ -1,0 +1,9 @@
+.container{
+    height: 100vh;
+    padding-top: 80px;
+}
+button[type="submit"], input[type="file"]{
+    background-color: var(--primary-color);
+}
+
+/* drop down tags */

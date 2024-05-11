@@ -1,118 +1,265 @@
-<!-- Profile Edit Form -->
-<form>
-    <div class="container mt-5">
-        <form>
-            <div class="row mb-3">
-                <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                <div class="col-md-8 col-lg-9">
-                    <img src="assets/img/{{ user.avatar }}" alt="Profile" width="100px">
+<div class="container mt-5">
+
+
+    <!-- Avatar Edit Section -->
+    <div class="my-5">
+        <p class="card-title">Udate Avatar Section</p>
+        <hr />
+        <form [formGroup]="editAvatarForm" (ngSubmit)="editAvatar()" enctype="multipart/form-data">
+            @if(avatarSuccess){
+            <div class="alert alert-success">
+                {{ avatarSuccess }}
+            </div>
+            } @if(avatarError){
+            <div class="alert alert-danger">
+                {{ avatarError }}
+            </div>
+            }
+            <div class="card p-3 my-3">
+                <div class="row mb-3">
+                    @if(imageSrc){
+                    <div class="mb-2">
+                        <img [src]="imageSrc" alt="Event" width="100px" />
+                    </div>
+                    }
                     <div class="pt-2">
-                        <label for="uploadImage" class="btn btn-primary btn-sm" title="Upload new profile image">
+                        <label for="uploadImage" class="btn btn-secondary btn-sm" title="Upload new event image">
                             <i class="bi bi-upload"></i> Upload
-                            <input type="file" id="uploadImage" style="display: none;">
+                            <input type="file" id="uploadImage" style="display: none" (change)="onFileSelected($event)"
+                                formControlName="avatar" />
                         </label>
-                        <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
-                                class="bi bi-trash"></i> Remove</a>
+                        @if(imageSrc){
+
+                        <button class="btn btn-danger btn-sm" title="Remove my event image" (click)="removeAvatar()">
+                            <i class="bi bi-trash"></i> Remove
+                        </button>
+                        }
+                        <button type="submit" class="btn btn-success btn-sm" title="Update avatar">
+                            <i class="bi bi-check2"></i> Update
+                        </button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-    
+    <!--End of Avatar Edit Section -->
 
-    <div class="row mb-3">
-        <label for="fName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="fame" type="text" class="form-control" id="fname" value="{{ user.fname }}">
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="lname" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="lame" type="text" class="form-control" id="lname" value="{{ user.lname }}">
-        </div>
+
+    <!-- General Info Edit Section -->
+
+    <div>
+        <p class="card-title">Udate General Info Section</p>
+        <hr />
+        <form [formGroup]="editGeneralForm" (ngSubmit)="editGeneral()">
+            @if(generalSuccess){
+            <div class="alert alert-success">
+                {{ generalSuccess }}
+            </div>
+            } @if(generalError){
+            <div class="alert alert-danger">
+                {{ generalError }}
+            </div>
+            }
+            <div class="card p-3 my-3">
+                <div class="row mb-3">
+                    <label for="fName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input type="text" class="form-control" id="fname" value="{{ user.fname }}"
+                            formControlName="fname" />
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <label for="lname" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input type="text" class="form-control" id="lname" value="{{ user.lname }}"
+                            formControlName="lname" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="bio" class="col-md-4 col-lg-3 col-form-label">Bio</label>
+                    <div class="col-md-8 col-lg-9">
+                        <textarea class="form-control" id="bio" style="height: 100px"
+                            formControlName="bio">{{ user.bio }}</textarea>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input type="email" class="form-control" id="Email" value="{{ user.email }}"
+                            formControlName="email" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                    <div class="col-md-8 col-lg-9">
+                        <select class="form-select py-2" id="country" formControlName="country_id">
+                            <option value="" disabled selected>Choose your country</option>
+                            @for (country of countries; track $index) { @if(country.id ==
+                            user.country.id){
+
+                            <option [value]="country.id">{{ country.name }}</option>
+                            }@else {
+
+                            <option [value]="country.id">{{ country.name }}</option>
+                            } }
+                        </select>
+                        <!-- @if(registerForm.controls['country_id'].touched && registerForm.controls['country_id'].invalid){
+          @if (registerForm.controls['country_id'].errors?.['required']){
+          <p class="text-danger mt-0">* Country is required</p>
+        }
+          } -->
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="state" class="col-md-4 col-lg-3 col-form-label">State</label>
+                    <div class="col-md-8 col-lg-9">
+                        <select class="form-select my-2" id="state" formControlName="state_id">
+                            <option value="" disabled selected>Choose your state</option>
+                            @for (state of states; track $index) { @if(state.id ==
+                            user.state.id){
+                            <option [value]="state.id">{{ state.name }}</option>
+                            }@else{
+                            <option [value]="state.id">{{ state.name }}</option>
+                            } }
+                        </select>
+                        <!-- @if(registerForm.controls['state_id'].touched && registerForm.controls['state_id'].invalid){
+                @if (registerForm.controls['state_id'].errors?.['required']){
+                    <p class="text-danger mt-0">* State is required</p>
+                }
+            } -->
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success w-25" title="Update general info">
+                    <i class="bi bi-check2"></i> Update
+                </button>
+            </div>
+        </form>
     </div>
 
-    <div class="row mb-3">
-        <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
-        <div class="col-md-8 col-lg-9">
-            <textarea name="about" class="form-control" id="about"
-                style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
-        </div>
-    </div>
+    <!-- End General Info Edit Section -->
 
-    <div class="row mb-3">
-        <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
-        </div>
-    </div>
 
-    <div class="row mb-3">
-        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+    <form>
+        <div class="container mt-5">
+            <p class="card-title">Education section</p>
+            <hr />
+            @for(education of user.education; track $index){
+            <div class="card p-3 my-3">
+                <div class="row mb-3">
+                    <label for="degree" class="col-md-4 col-lg-3 col-form-label">Degree Name</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input name="degree" type="text" class="form-control" id="degree"
+                            value="{{ education.degree.name }}" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="start_date" class="col-md-4 col-lg-3 col-form-label">Start date</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input type="date" name="start_date" class="form-control" id="start_date"
+                            value="{{ education.start_date }}" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="end_date" class="col-md-4 col-lg-3 col-form-label">End date</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input type="date" name="end_date" class="form-control" id="end_date"
+                            value="{{ education.end_date }}" />
+                    </div>
+                </div>
+            </div>
+            }
         </div>
-    </div>
+    </form>
+    <form>
+        <div class="container mt-5">
+            <p class="card-title">Experience section</p>
+            <hr />
+            @for(experience of user.experiences; track $index){
+            <div class="card p-3 my-3">
+                <div class="row mb-3">
+                    <label for="degree" class="col-md-4 col-lg-3 col-form-label">Position</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input name="degree" type="text" class="form-control" id="degree"
+                            value="{{ experience.title }}" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="degree" class="col-md-4 col-lg-3 col-form-label">Description</label>
+                    <div class="col-md-8 col-lg-9">
+                        <textarea name="degree" type="text" class="form-control" id="degree" value=""
+                            rows="5">{{ experience.description }}</textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="start_date" class="col-md-4 col-lg-3 col-form-label">Start date</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input type="date" name="start_date" class="form-control" id="start_date"
+                            value="{{ experience.start_date }}" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="end_date" class="col-md-4 col-lg-3 col-form-label">End date</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input type="date" name="end_date" class="form-control" id="end_date"
+                            value="{{ experience.end_date }}" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                    <div class="col-md-8 col-lg-9">
+                        <select class="form-select py-2" name="country_id" id="country" formControlName="country_id">
+                            <option value="{{ experience.country.id }}" disabled>
+                                {{ experience.country.id }}
+                            </option>
+                            <!-- @for (country of countries; track $index) {
+                        @if(country.id == experience.country.id){
 
-    <div class="row mb-3">
-        <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="country" type="text" class="form-control" id="Country" value="USA">
+                        <option [value]="country.id" selected>{{ country.name }}</option>
+                        }@else {
+
+                        <option [value]="country.id ">{{ country.name }}</option>
+                        }
+                        } -->
+                        </select>
+                        <!-- @if(registerForm.controls['country_id'].touched && registerForm.controls['country_id'].invalid){
+                  @if (registerForm.controls['country_id'].errors?.['required']){
+                  <p class="text-danger mt-0">* Country is required</p>
+                  }
+                  } -->
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="hospital" class="col-md-4 col-lg-3 col-form-label">Hospital</label>
+                    <div class="col-md-8 col-lg-9">
+                        <select class="form-select py-2" name="hospital_id" id="hospital" formControlName="hospital_id">
+                            <option value="" disabled selected>Choose your hospital</option>
+                            @for (hospital of countries; track $index) { @if(hospital.id ==
+                            experience.hospital.id){
+
+                            <option [value]="hospital.id">{{ hospital.name }}</option>
+                            }@else {
+
+                            <option [value]="hospital.id">{{ hospital.name }}</option>
+                            } }
+                        </select>
+                        <!-- @if(registerForm.controls['hospital_id'].touched && registerForm.controls['hospital_id'].invalid){
+                  @if (registerForm.controls['hospital_id'].errors?.['required']){
+                  <p class="text-danger mt-0">* Hospital is required</p>
+                  }
+                  } -->
+                    </div>
+                </div>
+            </div>
+
+            }
         </div>
-    </div>
-
-    <div class="row mb-3">
-        <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="address" type="text" class="form-control" id="Address"
-                value="A108 Adam Street, New York, NY 535022">
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
-        </div>
-    </div>
-
+    </form>
     <div class="text-center">
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </div>
-</form><!-- End Profile Edit Form -->
+</div>

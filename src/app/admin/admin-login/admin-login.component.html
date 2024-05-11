@@ -1,67 +1,59 @@
-<div class="container ">
-  <div class="row justify-content-center">
-    <div class="col-10 col-md-8 col-lg-5 shadow-lg my-4 rounded">
-      <div class="d-flex justify-content-center">
-        <img class="my-3 w-25" src="assets/img/admin-logo.png" alt="Logo" />
-      </div>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="m-auto my-5" style="width: 400px;">
 
-      @if(errorMessage){
-      <div class="alert alert-danger text-center">
-        {{ errorMessage }}
-      </div>
-      }
-      <!-- @if(updated){
-      <div class="alert alert-success text-center">
-        Password updated successfully
-      </div>
-      } -->
-      <div class="tab-content">
-        <div class="tab-pane fade show active py-3 px-3" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-          <form [formGroup]="adminLoginForm" (ngSubmit)="handleLogin()" novalidate>
-            <div class="form-floating mb-3">
-              <input type="email" class="form-control border-0 border-bottom" id="floatingInput" name="email"
-                placeholder="name@example.com" formControlName="email" />
-              <label for="floatingInput">Email address</label>
-            </div>
-            @if(adminLoginForm.controls['email'].touched && adminLoginForm.controls['email'].invalid){
-            @if (adminLoginForm.controls['email'].errors?.['email']){
-            <p class="text-danger">* Enter a valid email</p>
-            } @else if (adminLoginForm.controls['email'].errors?.['required']){
-            <p class="text-danger">* Email is required</p>
+    @if(errorMessage){
+    <div class="alert alert-danger text-center">
+      {{ errorMessage }}
+    </div>
+    }
+
+    <div class="card text-center  ">
+      <div class="card-header h5 text-white ">Admin login</div>
+      <div class="card-body px-5">
+        <form [formGroup]="adminLoginForm" (ngSubmit)="handleLogin()" novalidate>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control border-0 border-bottom" id="floatingInput" name="email"
+              placeholder="name@example.com" formControlName="email" />
+            <label for="floatingInput">Email address</label>
+          </div>
+          @if(adminLoginForm.controls['email'].touched && adminLoginForm.controls['email'].invalid){
+          @if (adminLoginForm.controls['email'].errors?.['email']){
+          <p class="text-danger">* Enter a valid email</p>
+          } @else if (adminLoginForm.controls['email'].errors?.['required']){
+          <p class="text-danger">* Email is required</p>
+          }
+          }
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control border-0 border-bottom" id="floatingPassword" name="password"
+              placeholder="Password" formControlName="password" />
+            <label for="floatingPassword">Password</label>
+            @if(adminLoginForm.controls['password'].touched && adminLoginForm.controls['password'].invalid){
+            @if (adminLoginForm.controls['password'].errors?.['required']){
+            <p class="text-danger">* Password is required</p>
             }
             }
-            <div class="form-floating mb-3">
-              <input type="password" class="form-control border-0 border-bottom" id="floatingPassword" name="password"
-                placeholder="Password" formControlName="password" />
-              <label for="floatingPassword">Password</label>
-              @if(adminLoginForm.controls['password'].touched && adminLoginForm.controls['password'].invalid){
-              @if (adminLoginForm.controls['password'].errors?.['required']){
-              <p class="text-danger">* Password is required</p>
-              }
-              }
-            </div>
-            <div class="row mb-4">
-              <div class="col-md-6 d-flex justify-content-center">
-                <div class="form-check mb-3 mb-md-0">
-                  <input class="form-check-input " type="checkbox" value="" id="loginCheck" checked />
-                  <label class="form-check-label" for="loginCheck">
-                    Remember me
-                  </label>
-                </div>
-              </div>
-              <div class="col-md-6 d-flex justify-content-center">
-                <a [routerLink]="'/forgot-password'" class="text-decoration-none">Forgot password?</a>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-6 d-flex justify-content-center">
+              <div class="form-check mb-3 mb-md-0">
+                <input class="form-check-input " type="checkbox" value="" id="loginCheck" checked />
+                <label class="form-check-label" for="loginCheck">
+                  Remember me
+                </label>
               </div>
             </div>
-            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary mb-3 w-100">
-              Sign in
-            </button>
+            <div class="col-md-6 d-flex justify-content-center">
+              <a [routerLink]="'/forgot-password'" class="text-decoration-none">Forgot password?</a>
+            </div>
+          </div>
+          <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary mb-3 w-100">
+            Sign in
+          </button>
 
-          </form>
-        </div>
-        <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-          <!-- Register form or content goes here -->
-        </div>
+        </form>
+      </div>
+      <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+        <!-- Register form or content goes here -->
       </div>
     </div>
   </div>
