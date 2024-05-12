@@ -1,7 +1,8 @@
 @if(!isAdmin){
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container-fluid container-xl position-relative d-flex align-items-center">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="mobile-nav-toggle d-xl-none bi bi-list"></span>
     </button>
 
@@ -53,27 +54,6 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
             <li>
               <a class="dropdown-item d-flex align-items-center" (click)="ngOnDestroy()">
                 <i class="bi bi-box-arrow-right"></i>

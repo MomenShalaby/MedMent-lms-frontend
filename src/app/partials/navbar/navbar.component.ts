@@ -31,35 +31,33 @@ export class NavbarComponent {
       (isAuthinticated) => {
         this.isAuthinticated = isAuthinticated;
         // // get user data from service
-        this.userService.getLoggedUser().subscribe(
-          (user) => {
-            console.log(user);
-            this.user = user;
-            // console.log(this.user);
-          },
-          (error) => { 
-            console.error('Error egtting user data from service:', error) }
-        )
-      }
+        if (isAuthinticated) {
+          this.userService.getLoggedUser().subscribe(
+            (user) => {
+              this.user = user;
+              // console.log(this.user);
+            },
+            (error) => {
+              console.error('Error egtting user data from service:', error)
+            }
+          )
+        } else if(localStorage.getItem('userData')) {
+          this.user = JSON.parse(localStorage.getItem('userData')as string)
+        }}
     )
 
 
 
 
-    // if (!this.isAuthinticated){
-    //   this.userService.getLoggedUser().subscribe(
-    //     (user) => { this.user = user },
-    //     (error)=>{ console.error('Error fetching user from api:', error) }
-    //   )
-    // }
   }
 
   ngOnDestroy(): void {
     this.userService.reset();
-    this.user = {};
+    this.user = '';
     this.subscribeToUser();
 
     localStorage.removeItem('userData');
+    localStorage.removeItem('token');
     window.location.href = '/';
   }
 
@@ -69,7 +67,6 @@ export class NavbarComponent {
         if (user && Object.keys(user).length !== 0) {
           this.user = (user as any).data;
           localStorage.setItem('token', JSON.stringify((user as any).data.token));
-          console.log(this.user);
         }
       },
       (error) => {

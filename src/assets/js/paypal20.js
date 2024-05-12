@@ -1,8 +1,7 @@
-const baseUrl = 'http://localhost:8000/api';
-const token = localStorage.getItem('token');
+const baseUrl20 = 'http://localhost:8000/api';
+const token20 = JSON.parse(localStorage.getItem('token'));
 // Render the PayPal button into #paypal-button-container
-paypal
-  .Buttons({
+paypal.Buttons({
     style: {
       layout: "horizontal",
       color: "silver",
@@ -12,13 +11,13 @@ paypal
 
     // Call your server to set up the transaction
     createOrder: function (data, actions) {
-      return fetch(`${baseUrl}/payment/paypal/create-order`, {
+      return fetch(`${baseUrl20}/payment/paypal/create-order`, {
         method: "post",
         headers: {
           "content-type": "application/json",
           Accept: "application/json",
           //   user token زودي كمان
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${token20}`,
 
         },
         body: JSON.stringify({
@@ -35,12 +34,12 @@ paypal
 
     // Call your server to finalize the transaction
     onApprove: function (data, actions) {
-      return fetch(`${baseUrl}/payment/paypal/capture-order`, {
+      return fetch(`${baseUrl20}/payment/paypal/capture-order`, {
         method: "post",
         headers: {
           "content-type": "application/json",
           Accept: "application/json",
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${token20}`,
 
         },
         body: JSON.stringify({

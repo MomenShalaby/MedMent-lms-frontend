@@ -114,11 +114,6 @@ button {
     padding: 1px 0 3px 0;
   }
 
-  .paypal-button {
-    background-color: #007bff ; /* Change background color */ 
-    color: #ffffff; /* Change text color */
-    border-radius: 5px; /* Add border radius */
-    padding: 10px 20px; /* Adjust padding */
-    font-size: 16px; /* Adjust font size */
-    cursor: pointer; /* Change cursor on hover */
+  .payCard {
+    height: 180px;
   }

@@ -14,35 +14,31 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  private userSubscription?: Subscription;
+  // private userSubscription?: Subscription;
   user: any;
 
 
   constructor(private userService: UsersService, private router: Router) {
-    this.userSubscription = new Subscription();
+    // this.userSubscription = new Subscription();
   }
 
   ngOnInit(): void {
-    const userData = localStorage.getItem('userData');
-    if (userData) {
-      this.user = JSON.parse(userData);
-
-    } else {
-      this.router.navigate(['/login '])
-    }
-    // this.userSubscription = this.userService.getLoggedUser().subscribe(
-    //   // this.userService.getLoggedUser().subscribe(
-    //   user => {
-    //     if (user && Object.keys(user).length !== 0) {
-    //       this.user = user;
-    //       console.log(user);
-    //     }
-
-    //   },
-    //   error => {
-    //     console.error('Error fetching user:', error);
-    //   }
-    // );
+    // const userData = localStorage.getItem('userData');
+    // if (userData) {
+    //   this.user = JSON.parse(userData);
+    // } else {
+    //   this.router.navigate(['/login'])
+    // }
+    // this.userSubscription = this.userService.fetchLoggedUser().subscribe(
+    this.userService.fetchLoggedUser().subscribe(
+      (response) => {
+        this.user = (response as any).data.user;
+      },
+      (error) => {
+        this.router.navigate(['/login'])
+        console.error('Error fetching user:', error);
+      }
+    );
   }
 
 

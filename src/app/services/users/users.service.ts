@@ -14,15 +14,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UsersService {
-
   constructor(private http: HttpClient) { }
   private user = new BehaviorSubject<object>({})
   isAuthenticated = new BehaviorSubject<boolean>(false);
   baseUrl: string = `http://localhost:8000/api`;
 
   getIsAuthenticated() {
-
-    console.log('get isAuthenticated', this.isAuthenticated);
     return this.isAuthenticated.asObservable()
   }
   setIsAuthenticated(authenticated: boolean) {
@@ -30,24 +27,22 @@ export class UsersService {
   }
 
   setLoggedUser(user: object) {
-    this.user.next(user);   
+    this.user.next(user);
   }
   getLoggedUser() {
-    const token = localStorage.getItem('token');
-    if (token && this.isAuthenticated) {
-      return this.user
-    } else {
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-      return this.http.get(`${this.baseUrl}/profile/index`, { headers })
-    }
+    return this.user.asObservable()
+  }
+  fetchLoggedUser() {
+    const token = JSON.parse(localStorage.getItem('token')as string);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get(`${this.baseUrl}/profile/index`, { headers })
   }
 
   reset() {
     this.user.next({});
-    console.log(this.user.value);
 
   }
   private handleError(operation = 'operation', user: object) {

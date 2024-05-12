@@ -78,11 +78,12 @@ export class RegisterComponent {
     else {
       this.userService.addUser(this.registerForm.value).subscribe(
         response => {
-          localStorage.setItem('token', (response as any).data.token)
-          console.log(localStorage.getItem('token'));
+          localStorage.setItem('userData', JSON.stringify((response as any).data.user));
+          localStorage.setItem('token', JSON.stringify((response as any).data.token));
+          this.userService.setIsAuthenticated(true)
+          this.userService.setLoggedUser((response as any).data.user)  
           console.log('User added successfully:', response);
-
-          this.router.navigate(['/interests'], { queryParams: { success: true } });
+          this.router.navigate(['/interests']);
         },
         error => {
           console.error('Error creating post:', error);
