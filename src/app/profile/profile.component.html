@@ -7,12 +7,6 @@
             <img src="http//:localhost:8000{{ user.avatar }}" alt="Profile" class="rounded-circle" />
             <h2>{{ user.fname + " " + user.lname }}</h2>
             <h3>{{ user.state.name + ", " + user.country.name }}</h3>
-            <!-- <div class="social-links mt-2">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> -->
-            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -42,15 +36,15 @@
             </ul>
             <div class="tab-content pt-2">
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                <!-- <app-about-user [user]="user"></app-about-user> -->
+                <app-about-user [user]="user"></app-about-user>
               </div>
 
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                <!-- <app-edit-profile [user]="user.user"></app-edit-profile> -->
+                <app-edit-profile [user]="user"></app-edit-profile>
               </div>
 
               <div class="tab-pane fade pt-3" id="profile-change-password">
-                <!-- <app-change-password [token]="user.token"></app-change-password> -->
+                <app-change-password></app-change-password>
               </div>
             </div>
             <!-- End Bordered Tabs -->

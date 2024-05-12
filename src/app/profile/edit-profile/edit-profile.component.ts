@@ -160,7 +160,7 @@ export class EditProfileComponent {
       reader.onload = (e) => {
         const base64String = e.target?.result as string;
         this.avatar = base64String; // Display the image as base64
-        this.editAvatarForm.get('avatar')?.setValue(file);       
+        this.editAvatarForm.get('avatar')?.setValue(file);
       };
       reader.readAsDataURL(file);
     }

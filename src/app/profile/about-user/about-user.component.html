@@ -1,21 +1,22 @@
 <h5 class="card-title">About</h5>
-<p class="small fst-italic">{{user.user.bio}}</p>
+<p class="small fst-italic">{{user.bio}}</p>
 
 <h5 class="card-title">Profile Details</h5>
 
 <div class="row mb-3 ">
   <div class="col-lg-3 col-md-4 label ">Full Name</div>
-  <div class="col-lg-9 col-md-8">{{ user.user.fname +' '+ user.user.lname}}</div>
+  <div class="col-lg-9 col-md-8">{{ user.fname +' '+ user.lname}}</div>
 </div>
 
 <div class="row mb-3">
   <div class="col-lg-3 col-md-4 label">Email</div>
-  <div class="col-lg-9 col-md-8">{{ user.user.email}}</div>
+  <div class="col-lg-9 col-md-8">{{ user.email}}</div>
 </div>
+@if (user.education[0]){
 <div class="row mb-3">
   <div class="col-lg-3 col-md-4 label">Education</div>
   <div class="col-lg-9 col-md-8">
-    @for(education of user.user.education; track $index){
+    @for(education of user.education; track $index){
     <div class="mb-3">
       <span>{{ education.degree.name }} </span><br>
       <span class="text-end">[{{ education.start_date }} - {{ education.end_date }}] </span>
@@ -23,11 +24,14 @@
     }
   </div>
 </div>
+}
+
+@if (user.experiences[0]){
 
 <div class="row mb-3">
   <div class="col-lg-3 col-md-4 label">Experience</div>
   <div class="col-lg-9 col-md-8">
-    @for(experience of user.user.experiences; track $index){
+    @for(experience of user.experiences; track $index){
     <div class="mb-3">
       <span>{{ experience.title }} {{ '( '+experience.description+' )' }} </span><br>
       <span>{{ experience.hospital.name }}, {{ experience.country.name }} </span><br>
@@ -36,10 +40,11 @@
     }
   </div>
 </div>
+}
 
 <div class="row mb-3">
   <div class="col-lg-3 col-md-4 label">Location</div>
-  <div class="col-lg-9 col-md-8">{{ user.user.state .name + ', ' + user.user.country.name }}</div>
+  <div class="col-lg-9 col-md-8">{{ user.state .name + ', ' + user.country.name }}</div>
 </div>
 
 <!-- 
