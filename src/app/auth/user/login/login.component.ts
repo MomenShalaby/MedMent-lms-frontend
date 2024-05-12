@@ -33,8 +33,7 @@ export class LoginComponent {
           // localStorage.setItem('userData', JSON.stringify((response as any).data.user));
           // localStorage.setItem('token', JSON.stringify((response as any).data.token));
           this.userService.setIsAuthenticated(true)
-          this.userService.setLoggedUser((response as any).data.user)
-          
+          this.userService.setLoggedUser((response as any).data.user)          
           this.router.navigate(['/']);
         },
         error => {

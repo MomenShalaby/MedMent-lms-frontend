@@ -28,18 +28,21 @@ export class NavbarComponent {
   ngOnInit(): void {
     // check for user data in service
     this.userService.getIsAuthenticated().subscribe(
-      (isAuthinticated) => this.isAuthinticated = isAuthinticated
+      (isAuthinticated) => {
+        this.isAuthinticated = isAuthinticated;
+        // // get user data from service
+        this.userService.getLoggedUser().subscribe(
+          (user) => {
+            console.log(user);
+            this.user = user;
+            // console.log(this.user);
+          },
+          (error) => { 
+            console.error('Error egtting user data from service:', error) }
+        )
+      }
     )
 
-    // // get user data from service
-    this.userService.getLoggedUser().subscribe(
-      (user) => {
-        console.log(user);
-        this.user = user;
-        // console.log(this.user);
-      },
-      (error) => { console.error('Error egtting user data from service:', error) }
-    )
 
 
 
@@ -70,6 +73,7 @@ export class NavbarComponent {
         }
       },
       (error) => {
+        this.user = JSON.parse((localStorage.getItem('userData') as any))
         console.error('Error fetching user:', error);
       }
     );
