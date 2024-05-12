@@ -1,11 +1,12 @@
-<main id="main" class="container">
+@if(user){
+<main   id="main" class="container">
   <section class="section profile">
     <div class="row">
       <div class="col-xl-4">
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-            <img src="http//:localhost:8000{{ user.avatar }}" alt="Profile" class="rounded-circle" />
-            <h2>{{ user.fname + " " + user.lname }}</h2>
+            <img [src]="user.avatar" alt="Profile" class="rounded-circle" />
+             <h2>{{ user?.fname + " " + user?.lname }}</h2>
             <h3>{{ user.state.name + ", " + user.country.name }}</h3>
           </div>
         </div>
@@ -54,4 +55,5 @@
     </div>
   </section>
 </main>
+}
 <!-- End #main -->
