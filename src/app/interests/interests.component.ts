@@ -57,7 +57,9 @@ export class InterestsComponent implements OnInit{
     this.tagService.addUserTags(this.interestsForm.value).subscribe({
       next: (res) => {
         console.log(res);
-        this.router.navigate(['/membership'])
+        // this.router.navigate(['/membership'])
+        window.location.href = "/membership";
+
         
       },
       error: (err) => {
