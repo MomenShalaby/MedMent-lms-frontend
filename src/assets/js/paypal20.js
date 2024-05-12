@@ -28,7 +28,7 @@ paypal.Buttons({
           return res.json();
         })
         .then(function (orderData) {
-          return orderData.id;
+          return orderData.data.id;
         });
     },
 
