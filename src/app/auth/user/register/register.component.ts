@@ -41,7 +41,6 @@ export class RegisterComponent {
     this.countryService.getCountries().subscribe(
       countries => {
         this.countries = countries.data.countries;
-        console.log(this.countries);
       },
       error => {
         console.error('Error fetching countries:', error);
@@ -50,15 +49,11 @@ export class RegisterComponent {
 
     // Subscribe to country_id value changes
     this.registerForm.get('country_id')?.valueChanges.subscribe(countryId => {
-      console.log(countryId);
-
       if (countryId) {
-
         // Fetch states for the selected country
         this.stateService.getStates(countryId).subscribe(
           states => {
             this.states = states.data.country.states;
-            console.log(this.states);
           },
           error => {
             console.error('Error fetching states:', error);

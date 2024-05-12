@@ -1,12 +1,17 @@
 <section class="row justify-content-center align-items-center">
     <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center flex-column gap-2">
-        <h1 class="text-center">What vibe do you want for your logo?</h1>
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, commodi aliquid pariatur voluptatem fugiat non blanditiis tempore facilis iusto libero corporis inventore in accusantium architecto rem, eum laudantium molestias sit.</p>
-        <ul class="d-flex justify-content-center align-items-center list-unstyled gap-3 my-4">
+        <h1 class="text-center">What Topics Are You Interested In?</h1>
+        <!-- <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, commodi aliquid pariatur
+            voluptatem fugiat non blanditiis tempore facilis iusto libero corporis inventore in accusantium architecto
+            rem, eum laudantium molestias sit.</p> -->
+        <ul class="row col-11 col-lg-8  d-flex justify-content-center align-items-center list-unstyled gap-2 my-4">
             @for(tag of tags; track $index){
-                <li class="chips" (click)="addRemoveTag($event, tag.id, $index)">{{tag.name}}</li>
+            <li class="chips" (click)="addRemoveTag($event, tag.id, $index)">{{tag.name}}</li>
             }
         </ul>
-        <button class="read-more" (click)="addUserTags()"><span>Continue</span><i class="bi bi-arrow-right"></i></button>
+        <form [formGroup]="interestsForm" (ngSubmit)="addUserTags()">
+            <input type="hidden" [value]="userTags" formControlName="tag">
+            <button class="read-more"><span>Continue</span><i class="bi bi-arrow-right"></i></button>
+        </form>
     </div>
 </section>

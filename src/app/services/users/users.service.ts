@@ -6,7 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   })
 };
 
@@ -17,20 +17,38 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
   private user = new BehaviorSubject<object>({})
-  isAuthenticated$ = new BehaviorSubject<boolean>(false);
+  isAuthenticated = new BehaviorSubject<boolean>(false);
+  baseUrl: string = `http://localhost:8000/api`;
 
-  setLoggedUser(newUser: object) {
-    this.user.next(newUser)  
+  getIsAuthenticated() {
+
+    console.log('get isAuthenticated', this.isAuthenticated);
+    return this.isAuthenticated.asObservable()
+  }
+  setIsAuthenticated(authenticated: boolean) {
+    this.isAuthenticated.next(authenticated)
   }
 
-  getLoggedUser(){
-    return this.user.asObservable()
+  setLoggedUser(user: object) {
+    this.user.next(user);   
+  }
+  getLoggedUser() {
+    const token = localStorage.getItem('token');
+    if (token && this.isAuthenticated) {
+      return this.user
+    } else {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+      return this.http.get(`${this.baseUrl}/profile/index`, { headers })
+    }
   }
 
-  reset(){
+  reset() {
     this.user.next({});
     console.log(this.user.value);
-    
+
   }
   private handleError(operation = 'operation', user: object) {
     return (error: any): Observable<object> => {
@@ -41,22 +59,22 @@ export class UsersService {
   }
   /** POST: add a new user to the database */
   addUser(user: object): Observable<object> {
-    return this.http.post<object>('http://127.0.0.1:8000/api/register', user, httpOptions)
+    return this.http.post<object>(`${this.baseUrl}/register`, user, httpOptions)
       .pipe(
         tap(() => {
-          this.isAuthenticated$.next(true);
+          this.isAuthenticated.next(true);
         }),
         catchError(this.handleError('addUser', user))
       );
   }
 
 
-  
+
   login(user: object) {
-    return this.http.post('http://127.0.0.1:8000/api/login', user, httpOptions)
+    return this.http.post(`${this.baseUrl}/login`, user, httpOptions)
       .pipe(
         tap(() => {
-          this.isAuthenticated$.next(true);
+          this.isAuthenticated.next(true);
         }),
         catchError(this.handleError('addUser', user))
       );

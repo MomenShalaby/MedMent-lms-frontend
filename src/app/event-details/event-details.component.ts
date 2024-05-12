@@ -51,7 +51,7 @@ export class EventDetailsComponent implements OnInit{
 
   enrollToEvent(){
     debugger
-    if(!this.userService.isAuthenticated$.value){
+    if(!this.userService.isAuthenticated.value){
       this.router.navigate(['/login']);
     }
     this.eventService.enrollToEvent(this.eventId).subscribe({

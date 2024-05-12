@@ -1,16 +1,12 @@
 @if(!isAdmin){
 <header id="header" class="header d-flex align-items-center sticky-top">
   <div class="container-fluid container-xl position-relative d-flex align-items-center">
-    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-  
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="mobile-nav-toggle d-xl-none bi bi-list"></span>
+    </button>
+
     <a class="logo d-flex align-items-center me-auto" routerLink="/">
-      <img
-        src="assets/img/logo-png-black.png"
-        alt="ABCDE Logo"
-        class="abcde"
-      />
+      <img src="assets/img/logo-png-black.png" alt="ABCDE Logo" class="abcde" />
     </a>
 
     <nav id="navmenu" class="navmenu">
@@ -20,18 +16,29 @@
         <li><a [routerLink]="['/course']">Courses</a></li>
         <!-- <li><a href="">Trainers</a></li> -->
         <li><a [routerLink]="['/events']">Events</a></li>
-        <li><a [routerLink]="['/membership']">Membership</a></li>
+        <!-- <li><a [routerLink]="['/membership']">Membership</a></li> -->
         <li><a [routerLink]="['/support-us']">Support Us</a></li>
         <li><a [routerLink]="['/contact-us']">Contact</a></li>
+        @if(!user){
+        <li class="btn-getstarted dropdown">
+          <a class="p-0 text-white" href="#"><span>Membership</span> <i
+              class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <ul>
+            <li><a [routerLink]="['/register']">Become a member</a></li>
+            <li><a [routerLink]="['/login']">Login</a></li>
+
+          </ul>
+        </li>
+        }
 
         @if(user){
-  
+
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-            <img src="assets/img{{ user.user.avatar }}" alt="Profile" class="profile-img rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.user.fname +' '+ user.user.lname}}</span>
+            <img src="assets/img{{ user.avatar }}" alt="Profile" class="profile-img rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.fname +' '+ user.lname}}</span>
           </a>
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -76,33 +83,16 @@
 
           </ul>
         </li>
-      }
+        }
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      
+
     </nav>
-    
-    @if(!user){
-      <a class="btn-getstarted" [routerLink]="['/login']">Get Started</a>
-    }    
+
+    <!-- @if(!user){
+    <a class="btn-getstarted" [routerLink]="['/login']">Get Started</a>
+    } -->
   </div>
 </header>
 
-<!-- <li class="dropdown"><a href="#"><span>Membership</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-  <ul>
-    <li><a href="#">Dropdown 1</a></li>
-    <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-      <ul>
-        <li><a href="#">Deep Dropdown 1</a></li>
-        <li><a href="#">Deep Dropdown 2</a></li>
-        <li><a href="#">Deep Dropdown 3</a></li>
-        <li><a href="#">Deep Dropdown 4</a></li>
-        <li><a href="#">Deep Dropdown 5</a></li>
-      </ul>
-    </li>
-    <li><a href="#">Dropdown 2</a></li>
-    <li><a href="#">Dropdown 3</a></li>
-    <li><a href="#">Dropdown 4</a></li>
-  </ul>
-</li> -->
 }

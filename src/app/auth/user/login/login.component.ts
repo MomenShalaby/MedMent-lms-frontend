@@ -12,12 +12,12 @@ import { UsersService } from '../../../services/users/users.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  loggedUserData: any;
   errorMessage?: string;
-  updated: string = this.activatedRoute.snapshot.queryParams['updated'];
 
+  updated: string = this.activatedRoute.snapshot.queryParams['updated'];
   constructor(private activatedRoute: ActivatedRoute, private userService: UsersService, private router: Router) {
 
-    console.log(this.activatedRoute.snapshot.queryParams['success']);
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
@@ -30,19 +30,20 @@ export class LoginComponent {
     } else {
       this.userService.login(this.loginForm.value).subscribe(
         response => {
-          localStorage.setItem('userData', JSON.stringify((response as any).data))
-          this.userService.setLoggedUser((response as any).data)
-
+          // localStorage.setItem('userData', JSON.stringify((response as any).data.user));
+          // localStorage.setItem('token', JSON.stringify((response as any).data.token));
+          this.userService.setIsAuthenticated(true)
+          this.userService.setLoggedUser((response as any).data.user)
+          
           this.router.navigate(['/']);
         },
         error => {
-          // const values = Object.values(error.error.errors) as string[];
           this.errorMessage = error.error.message;
           console.error('Error Logging in post:', error);
         }
       );
+
     }
-    console.log(this.loginForm.value);
 
   }
 }

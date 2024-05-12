@@ -8,64 +8,68 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
   isAdmin: boolean = false;
   user: any;
-  private userSubscription?: Subscription;
+  isAuthinticated?: boolean;
 
-
-
-  constructor(private router: Router, private userService: UsersService) {
-    this.router.events.subscribe(event => {
+  constructor(
+    private router: Router, private userService: UsersService) {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Check if the current route starts with '/admin'
         this.isAdmin = event.url.startsWith('/admin');
       }
     });
-    this.userSubscription = new Subscription();
-
   }
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.getLoggedUser().subscribe(
-      user => {
-        if (user && Object.keys(user).length !== 0) {
-          this.user = user;
-          console.log(user);
-        }
+    // check for user data in service
+    this.userService.getIsAuthenticated().subscribe(
+      (isAuthinticated) => this.isAuthinticated = isAuthinticated
+    )
+
+    // // get user data from service
+    this.userService.getLoggedUser().subscribe(
+      (user) => {
+        console.log(user);
+        this.user = user;
+        // console.log(this.user);
       },
-      error => {
-        console.error('Error fetching user:', error);
-      }
-    );
-    const userDataString = localStorage.getItem('userData');
-    if (userDataString) {
-      this.user = JSON.parse(userDataString);
-    }
+      (error) => { console.error('Error egtting user data from service:', error) }
+    )
+
+
+
+    // if (!this.isAuthinticated){
+    //   this.userService.getLoggedUser().subscribe(
+    //     (user) => { this.user = user },
+    //     (error)=>{ console.error('Error fetching user from api:', error) }
+    //   )
+    // }
   }
 
-
   ngOnDestroy(): void {
-    this.userService.reset()
-    this.user = {}
-    this.subscribeToUser()
+    this.userService.reset();
+    this.user = {};
+    this.subscribeToUser();
 
     localStorage.removeItem('userData');
     window.location.href = '/';
-
   }
 
   subscribeToUser() {
-    this.userSubscription = this.userService.getLoggedUser().subscribe(
-      user => {
+    this.userService.getLoggedUser().subscribe(
+      (user) => {
         if (user && Object.keys(user).length !== 0) {
-          this.user = user;
-          console.log(user);
+          this.user = (user as any).data;
+          localStorage.setItem('token', JSON.stringify((user as any).data.token));
+          console.log(this.user);
         }
       },
-      error => {
+      (error) => {
         console.error('Error fetching user:', error);
       }
     );

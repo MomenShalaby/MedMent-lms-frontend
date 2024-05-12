@@ -19,10 +19,19 @@ export class TagService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.baseUrl}/tags`, {headers});
   }
+  getAllTags(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.baseUrl}/tags/all`, {headers});
+  }
 
   addUserTags(tags: number[]): Observable<any> {
-    const token = localStorage.getItem("token");
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>(`${this.baseUrl}/usertags`, tags, {headers});
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.put<any>(`${this.baseUrl}/tags/me`, tags, {headers});
   }
 }
