@@ -72,3 +72,12 @@ button:hover {
 .events .card:hover .card-body .card-title a {
   color: var(--accent-color);
 }
+
+
+.section-heading{
+  padding: 5px 15px 40px 15px;
+  margin-inline: auto;
+  width: fit-content;
+  font-size: 2rem;
+  font-weight: 700;
+}

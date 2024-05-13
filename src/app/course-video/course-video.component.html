@@ -112,52 +112,32 @@
                 </ul>
     
               </div><!-- Recent post end -->
-
-          <div class="widget recent-posts">
-            <h3 class="widget-title">Related Courses</h3>
-            <ul class="list-unstyled">
-              <li class="d-flex align-items-center">
-                <div class="posts-thumb">
-                  <a href="#"><img loading="lazy" alt="img" src="images/news/news1.jpg"></a>
-                </div>
-                <div class="post-info">
-                  <h4 class="entry-title">
-                    <a href="#">We Just Completes Medical Clinic In Mid-missouri</a>
-                  </h4>
-                </div>
-              </li><!-- 1st post end-->
-
-              <li class="d-flex align-items-center">
-                <div class="posts-thumb">
-                  <a href="#"><img loading="lazy" alt="img" src="images/news/news2.jpg"></a>
-                </div>
-                <div class="post-info">
-                  <h4 class="entry-title">
-                    <a href="#">Thandler Airport Water Reclamation Facility Expansion Project Named</a>
-                  </h4>
-                </div>
-              </li><!-- 2nd post end-->
-
-              <li class="d-flex align-items-center">
-                <div class="posts-thumb">
-                  <a href="#"><img loading="lazy" alt="img" src="images/news/news3.jpg"></a>
-                </div>
-                <div class="post-info">
-                  <h4 class="entry-title">
-                    <a href="#">Silicon Bench And Cornike Begin Construction Solar Facilities</a>
-                  </h4>
-                </div>
-              </li><!-- 3rd post end-->
-
-            </ul>
-
-          </div><!-- Recent post end -->
+          @if(relatedCourses.length > 0){
+            <div class="widget recent-posts">
+              <h3 class="widget-title">Related Courses</h3>
+              <ul class="list-unstyled">
+                @for(course of relatedCourses; track $index){
+                  <li class="d-flex align-items-center">
+                    <div class="posts-thumb">
+                      <a [href]="'/course/' + course.id"><img loading="lazy" alt="img" [src]="'http://localhost:8000/' + course.image"></a>
+                    </div>
+                    <div class="post-info">
+                      <h4 class="entry-title">
+                        <a [href]="'/course/' + course.id">{{course.title}}</a>
+                      </h4>
+                    </div>
+                  </li><!-- 1st post end-->
+                }
+              </ul>
+  
+            </div><!-- Recent post end -->
+          }
 
           <div class="widget">
             <h3 class="widget-title">Categories</h3>
             <ul class="arrow nav nav-tabs">
               @for(category of categories; track $index){
-                <li><a href="#">{{category.name}}</a></li>
+                <li><a [href]="'/course?category=' + category.id">{{category.name}}</a></li>
               }
             </ul>
           </div><!-- Categories end -->
