@@ -99,10 +99,10 @@ export class AddEventComponent {
 
       // Check if the value is an array
       if (Array.isArray(value)) {
-        // If it's an array, convert it to a string representation of the array
-        // For example, [1, 2, 3] will be converted to "[1,2,3]"
-        formData.append(key, JSON.stringify(value));
-      } else {
+
+        value.forEach((item: any) => {
+            formData.append(key + '[]', item);
+        });      } else {
         // If it's not an array, append it directly
         formData.append(key, value);
       }

@@ -5,7 +5,7 @@
 
             <div class="row">
                 @for(event of events; track $index){
-                <div class=" eventCard col-10 col-md-6 col-lg-4 d-flex flex-column align-items-stretch">
+                <!-- <div class=" eventCard col-10 col-md-6 col-lg-4 d-flex flex-column align-items-stretch">
                     <a class="card" [routerLink]="'event/' + event.id">
                         <div class="card-img">
                             <img [src]="'http://localhost:8000' + event.image" alt="...">
@@ -17,7 +17,7 @@
                         </div>
                     </a>
                     <button class="btn btn-danger" (click)="deleteEvent(event.id, event.name)">Delete</button>
-                </div>
+                </div> -->
                 }
             </div>
 
