@@ -1,7 +1,8 @@
-const baseUrl20 = 'http://localhost:8000/api';
-const token20 = JSON.parse(localStorage.getItem('token'));
+const baseUrl20 = "http://localhost:8000/api";
+// const token20 = ;
 // Render the PayPal button into #paypal-button-container
-paypal.Buttons({
+paypal
+  .Buttons({
     style: {
       layout: "horizontal",
       color: "silver",
@@ -17,8 +18,7 @@ paypal.Buttons({
           "content-type": "application/json",
           Accept: "application/json",
           //   user token زودي كمان
-          'Authorization': `Bearer ${token20}`,
-
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
         body: JSON.stringify({
           value: 20,
@@ -39,8 +39,7 @@ paypal.Buttons({
         headers: {
           "content-type": "application/json",
           Accept: "application/json",
-          'Authorization': `Bearer ${token20}`,
-
+          Authorization: `Bearer ${token20}`,
         },
         body: JSON.stringify({
           orderId: data.orderID,
@@ -66,7 +65,8 @@ paypal.Buttons({
           }
 
           if (errorDetail) {
-            let errorMessage = "Sorry, your transaction could not be processed.";
+            let errorMessage =
+              "Sorry, your transaction could not be processed.";
             if (errorDetail.description)
               msg += "\n\n" + errorDetail.description;
             if (orderData.debug_id) msg += " (" + orderData.debug_id + ")";
@@ -88,8 +88,7 @@ paypal.Buttons({
           //   var transaction = orderData.purchase_units[0].payments.captures[0];
 
           //   e3mly hna saf7a aw msg ll success payment bdl el alert
-          const successMessage = 'Payment transaction performed successfully';
-
+          const successMessage = "Payment transaction performed successfully";
 
           // Replace the above to show a success message within this page, e.g.
           // const element = document.getElementById('paypal-button-container');
@@ -100,7 +99,7 @@ paypal.Buttons({
     },
 
     onCancel: function (data) {
-      const cancelMessage = 'Payment transaction cancelled';
+      const cancelMessage = "Payment transaction cancelled";
     },
   })
   .render("#paypal-button-container-20");

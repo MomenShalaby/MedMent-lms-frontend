@@ -226,4 +226,10 @@ section{
     }
   }
 
-  
+  .section-heading{
+    padding: 0px 15px 40px 15px;
+    margin-inline: auto;
+    width: fit-content;
+    font-size: 2rem;
+    font-weight: 700;
+  }

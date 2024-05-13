@@ -38,3 +38,21 @@ export interface Section {
     created_at: string
     updated_at: string
   }
+
+  export interface CreateCourse {
+    course_name: string,
+    description: string,
+    image: File,
+    category_id: number,
+    instructor: string,
+    course_title: string,
+    video: string,
+    label: string,
+    duration: string,
+    resources: string,
+    certificate: string,
+    prerequisites: string,
+    featured: string,
+    status: string, //active || inactive: default
+    price: number
+  }

@@ -20,8 +20,9 @@ export class CourseVideoComponent implements OnInit{
   course: Course = {} as Course;
   categories: Category[] = [];
   courseId: number = 0;
-  lectures: Lecture[] = [];
+  lectures: Lecture[] = [{} as Lecture];
   currentLecture: number = 0;
+  relatedCourses: Course[] = [{} as Course];
 
   constructor(private courseService: CourseService,
     private categoryService: CategoryService,
@@ -41,6 +42,7 @@ export class CourseVideoComponent implements OnInit{
         next: (res) => {
           this.course = res.data;
           this.lectures = this.course.sections.flatMap(x => x.lectures);
+          this.getRelatedCourses(this.course.prerequisites);
         },
         error: (err) => {
           console.log(err);
@@ -56,6 +58,26 @@ export class CourseVideoComponent implements OnInit{
       },
       error: (err) => {
         console.log(err);
+      }
+    });
+  }
+
+  getRelatedCourses(prerequisites: string){
+    // this.courseService.getRelatedCourse(prerequisites).subscribe({
+    //     next: (res) => {
+    //     this.relatedCourses = res.data;
+    //   },
+    //   error: (err) => {
+    //     console.log(err); 
+    //   }
+    // });
+    var prerequisitesList = prerequisites.split(',');
+    this.courseService.getAllCourses().subscribe({
+      next: (res) => {
+        this.relatedCourses = (res.data as Course[]).filter(x => prerequisitesList.includes(x.name));
+      },
+      error: (err) => {
+        console.log(err); 
       }
     });
   }

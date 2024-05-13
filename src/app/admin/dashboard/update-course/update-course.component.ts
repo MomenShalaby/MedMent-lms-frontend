@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { CourseService } from '../../../core/services/course/course-service.service';
 import { CategoryService } from '../../../core/services/categories/category.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../../core/models/category.model';
 
 @Component({
-  selector: 'app-add-course',
+  selector: 'app-update-course',
   standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './add-course.component.html',
-  styleUrl: './add-course.component.css'
+  imports: [],
+  templateUrl: './update-course.component.html',
+  styleUrl: './update-course.component.css'
 })
-export class AddCourseComponent implements OnInit{
-
+export class UpdateCourseComponent {
   categories: Category[] = [];
   courseImage: any = null;
   form = new FormGroup({
@@ -55,7 +54,7 @@ export class AddCourseComponent implements OnInit{
     this.courseImage = event.target.files[0]; 
   }
 
-  addCourse(){
+  updateCourse(){
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return
@@ -85,6 +84,4 @@ export class AddCourseComponent implements OnInit{
       }
     });
   }
-
-  
 }
