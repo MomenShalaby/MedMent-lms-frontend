@@ -24,6 +24,7 @@ import { CourseVideoComponent } from './course-video/course-video.component';
 import { InterestsComponent } from './interests/interests.component';
 import { UpdateCourseComponent } from './admin/dashboard/update-course/update-course.component';
 import { CourseSectionComponent } from './admin/dashboard/course-section/course-section.component';
+import { DisplayCourseComponent } from './admin/dashboard/display-course/display-course.component';
 
 export const routes: Routes = [
     {
@@ -79,9 +80,13 @@ export const routes: Routes = [
                         component: ViewCoursesComponent,
                         title: 'Courses',
                     },{
-                        path: 'courses/:id/sections',
+                        path: 'view-courses/:id',
+                        component: DisplayCourseComponent,
+                        title: 'Display Course',
+                    },{
+                        path: 'courses/:id/sections/:sectionId',
                         component: CourseSectionComponent,
-                        title: 'Courses',
+                        title: 'Sections',
                     },
                     {
                         path: 'view-events',
