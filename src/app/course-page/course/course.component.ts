@@ -5,6 +5,7 @@ import { SearchComponent } from '../search/search.component';
 import { CourseService } from '../../core/services/course/course-service.service';
 import { Course } from '../../core/models/course.model';
 import { PageTitleComponent } from '../../partials/page-title/page-title.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -16,14 +17,36 @@ import { PageTitleComponent } from '../../partials/page-title/page-title.compone
 export class CourseComponent implements OnInit{
   courses: Course[] = [];
 
-  constructor(private courseService: CourseService){}
+  constructor(private courseService: CourseService,
+    private activatedRoute: ActivatedRoute
+  ){}
 
   ngOnInit(): void {
-    this.getCourses();
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      const categoryId = Number(params.get("category"));
+      if(categoryId){
+        this.getCourses();
+        // this.getCategoryCourses(categoryId);
+      }
+      else{
+        this.getCourses();
+      }
+    });
   }
 
   getCourses(){
     this.courseService.getAllCourses().subscribe({
+      next: (res) => {
+        this.courses = res.data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  getCategoryCourses(categoryId: number){
+    this.courseService.getCategoryCourses(categoryId).subscribe({
       next: (res) => {
         this.courses = res.data;
       },

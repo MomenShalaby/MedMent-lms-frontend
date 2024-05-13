@@ -159,4 +159,10 @@ export const routes: Routes = [
         component: InterestsComponent,
         title: 'Interests'
     },
+
+    {
+        path: 'add',
+        component: AddCourseComponent,
+        title: 'Add Course'
+    }
 ];
