@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UpdateCourse } from '../../models/course.model';
 
 const token = localStorage.getItem("token");
 
@@ -51,9 +52,14 @@ export class CourseService {
     return this.http.post<any>(`${this.baseUrl}/courses`, course, {headers});
   }
   
-  updateCourse(id: number | undefined, course: FormData) : Observable<any> {
+  updateCourse(id: number | undefined, course: UpdateCourse) : Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.put<any>(`${this.baseUrl}/courses/${id}`, course, {headers});
+  }
+
+  updateCourseImage(id: number | undefined, image: FormData) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.baseUrl}/courses/${id}/image?_method=PUT`, image, {headers});
   }
 
   deleteCourse(id: number | undefined) : Observable<any> {

@@ -39,11 +39,10 @@ export interface Section {
     updated_at: string
   }
 
-  export interface CreateCourse {
+  export interface UpdateCourse {
     course_name: string,
     description: string,
     image: File,
-    category_id: number,
     instructor: string,
     course_title: string,
     video: string,
