@@ -5,6 +5,9 @@
 button[type="submit"], input[type="file"]{
     background-color: var(--primary-color);
 }
+button[type="submit"]:focus{
+    background-color: var(--primary-color);
+}
 
 /* drop down tags */
 .chips{

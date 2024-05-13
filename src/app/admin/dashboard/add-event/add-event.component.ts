@@ -74,26 +74,29 @@ export class AddEventComponent {
   }
 
   addRemoveTag(e: Event, tagId: number, i: number) {
-    var index = this.eventTags.indexOf(tagId);
-    if (index == -1) {
-      this.eventTags.push(tagId);      
+    const index = this.eventTags.indexOf(tagId);
+
+    if (index === -1) {
+      this.eventTags.push(tagId);
+      console.log(this.eventTags);
+
       (e.target as HTMLElement).style.borderColor = this.borderColor[i % 10];
-    }
-    else {
+    } else {
       this.eventTags.splice(index, 1);
       (e.target as HTMLElement).style.borderColor = "#dadada";
     }
-
   }
 
+
   addEvent() {
+
     const formData = new FormData();
     console.log(this.addEventForm.value);
-  
+
     // Append form field values to the FormData object
     Object.keys(this.addEventForm.value).forEach(key => {
       const value = this.addEventForm.value[key];
-  
+
       // Check if the value is an array
       if (Array.isArray(value)) {
         // If it's an array, convert it to a string representation of the array
@@ -104,7 +107,7 @@ export class AddEventComponent {
         formData.append(key, value);
       }
     });
-    
+
     this.eventService.addEvent(formData).subscribe(
       response => {
         console.log(response);
@@ -115,7 +118,7 @@ export class AddEventComponent {
       }
     );
   }
-  
-  
+
+
 
 }

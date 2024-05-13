@@ -25,35 +25,38 @@
         <div class="col-md-8 col-lg-9">
           <input name="short_description" type="text" class="form-control" id="short_description"
             formControlName="short_description" />
-            @if(errorMessage && errorMessage['short_description']){
-              <p class="text-danger">* {{ errorMessage['short_description'][0] }}</p>
-              }        </div>
+          @if(errorMessage && errorMessage['short_description']){
+          <p class="text-danger">* {{ errorMessage['short_description'][0] }}</p>
+          }
+        </div>
       </div>
       <div class="row mb-3">
         <label for="description" class="col-md-4 col-lg-3 col-form-label">Description</label>
         <div class="col-md-8 col-lg-9">
           <textarea name="description" type="text" class="form-control" id="description"
             formControlName="description"></textarea>
-            @if(errorMessage && errorMessage['description']){
-              <p class="text-danger">* {{ errorMessage['description'][0] }}</p>
-              }
+          @if(errorMessage && errorMessage['description']){
+          <p class="text-danger">* {{ errorMessage['description'][0] }}</p>
+          }
         </div>
       </div>
       <div class="row mb-3">
         <label for="start_date" class="col-md-4 col-lg-3 col-form-label">Start date</label>
         <div class="col-md-8 col-lg-9">
-          <input type="datetime-local" name="start_date" class="form-control" id="start_date" formControlName="start_date" />
+          <input type="datetime-local" name="start_date" class="form-control" id="start_date"
+            formControlName="start_date" />
           @if(errorMessage && errorMessage['start_date']){
-            <p class="text-danger">* {{ errorMessage['start_date'][0] }}</p>
-            }        </div>
+          <p class="text-danger">* {{ errorMessage['start_date'][0] }}</p>
+          }
+        </div>
       </div>
       <div class="row mb-3">
         <label for="end_date" class="col-md-4 col-lg-3 col-form-label">End date</label>
         <div class="col-md-8 col-lg-9">
           <input type="datetime-local" name="end_date" class="form-control" id="end_date" formControlName="end_date" />
           @if(errorMessage && errorMessage['end_date']){
-            <p class="text-danger">* {{ errorMessage['end_date'][0] }}</p>
-            }
+          <p class="text-danger">* {{ errorMessage['end_date'][0] }}</p>
+          }
         </div>
       </div>
 
@@ -70,8 +73,8 @@
         </ul>
         <input type="hidden" [value]="eventTags" formControlName="tag">
         @if(errorMessage && errorMessage['tag']){
-          <p class="text-danger">* {{ errorMessage['tag'][0] }}</p>
-          }
+        <p class="text-danger">* {{ errorMessage['tag'][0] }}</p>
+        }
       </div>
 
       <div class="row mb-3">
@@ -85,7 +88,7 @@
           <div class="pt-2">
             <label for="uploadImage" class="btn btn-secondary btn-sm" title="Upload new event image">
               <i class="bi bi-upload"></i> Upload
-              <input type="file" id="uploadImage" style="display: none" (change)="onFileSelected($event)"
+              <input type="file" id="uploadImage" accept="image/*" style="display: none" (change)="onFileSelected($event)"
                 formControlName="avatar" />
             </label>
             @if(imageSrc){
@@ -95,8 +98,8 @@
             }
           </div>
           @if(errorMessage && errorMessage['image']){
-            <p class="text-danger">* {{ errorMessage['image'][0] }}</p>
-            }
+          <p class="text-danger">* {{ errorMessage['image'][0] }}</p>
+          }
         </div>
       </div>
       <div class="text-center">

@@ -34,7 +34,7 @@ export class EditProfileService {
 
 
   // general info routes
-  changeGeneralInfo(token: string, info: object) {   
+  changeGeneralInfo(token: string, info: object) {
     const headers = this.getTokenHeaders(token);
     return this.http.patch(`${this.baseUrl}/info`, info, { headers })
   }
