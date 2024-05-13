@@ -1,5 +1,5 @@
-const baseUrl70 = 'http://localhost:8000/api';
-const token70 = localStorage.getItem('token');
+// const baseUrl70 = "http://localhost:8000/api";
+// const token20 = ;
 // Render the PayPal button into #paypal-button-container
 paypal
   .Buttons({
@@ -12,14 +12,13 @@ paypal
 
     // Call your server to set up the transaction
     createOrder: function (data, actions) {
-      return fetch(`${baseUrl70}/payment/paypal/create-order`, {
+      return fetch(`${baseUrl20}/payment/paypal/create-order`, {
         method: "post",
         headers: {
           "content-type": "application/json",
           Accept: "application/json",
           //   user token زودي كمان
-          'Authorization': `Bearer ${token70}`,
-
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
         body: JSON.stringify({
           value: 70,
@@ -35,13 +34,12 @@ paypal
 
     // Call your server to finalize the transaction
     onApprove: function (data, actions) {
-      return fetch(`${baseUrl70}/payment/paypal/capture-order`, {
+      return fetch(`${baseUrl20}/payment/paypal/capture-order`, {
         method: "post",
         headers: {
           "content-type": "application/json",
           Accept: "application/json",
-          'Authorization': `Bearer ${token70}`,
-
+          Authorization: `Bearer ${token20}`,
         },
         body: JSON.stringify({
           orderId: data.orderID,
@@ -67,7 +65,8 @@ paypal
           }
 
           if (errorDetail) {
-            let errorMessage = "Sorry, your transaction could not be processed.";
+            let errorMessage =
+              "Sorry, your transaction could not be processed.";
             if (errorDetail.description)
               msg += "\n\n" + errorDetail.description;
             if (orderData.debug_id) msg += " (" + orderData.debug_id + ")";
@@ -89,8 +88,7 @@ paypal
           //   var transaction = orderData.purchase_units[0].payments.captures[0];
 
           //   e3mly hna saf7a aw msg ll success payment bdl el alert
-          const successMessage = 'Payment transaction performed successfully';
-
+          const successMessage = "Payment transaction performed successfully";
 
           // Replace the above to show a success message within this page, e.g.
           // const element = document.getElementById('paypal-button-container');
@@ -101,7 +99,7 @@ paypal
     },
 
     onCancel: function (data) {
-      const cancelMessage = 'Payment transaction cancelled';
+      const cancelMessage = "Payment transaction cancelled";
     },
   })
   .render("#paypal-button-container-70");
