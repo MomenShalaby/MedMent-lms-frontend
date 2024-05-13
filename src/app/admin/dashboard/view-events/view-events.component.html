@@ -1,1 +1,27 @@
-<p>view-events works!</p>
+<div class="container">
+    <section id="events" class="events section">
+
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+                @for(event of events; track $index){
+                <div class=" eventCard col-10 col-md-4 col-lg-4 d-flex flex-column align-items-stretch">
+                    <a class="card" [routerLink]="'event/' + event.id">
+                        <div class="card-img">
+                            <img [src]="'http://localhost:8000' + event.image" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="">{{event.name}}</a></h5>
+                            <p class="fst-italic text-center">{{event.start_date | date: 'MMM d, y, h:mm a'}}</p>
+                            <p class="card-text">{{event["short description"]}}</p>
+                        </div>
+                    </a>
+                    <button class="btn btn-danger" (click)="deleteEvent(event.id, event.name)">Delete</button>
+                </div>
+                }
+            </div>
+
+        </div>
+
+    </section>
+</div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationStart, Router, RouterLink } from '@angular/router';
 import { UsersService } from '../../services/users/users.service';
 import { Subscription } from 'rxjs';
 
@@ -14,18 +14,24 @@ export class NavbarComponent {
   isAdmin: boolean = false;
   user: any;
   isAuthinticated?: boolean;
+  isAdminRole? : boolean;
 
   constructor(
-    private router: Router, private userService: UsersService) {
+    private router: Router, private route: ActivatedRoute, private userService: UsersService) { }
+  ngOnInit(): void {
+    if (localStorage.getItem('role')){
+      this.isAdminRole = true;
+    }
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Check if the current route starts with '/admin'
         this.isAdmin = event.url.startsWith('/admin');
       }
     });
-  }
 
-  ngOnInit(): void {
+
+
     // check for user data in service
     this.userService.getIsAuthenticated().subscribe(
       (isAuthinticated) => {
@@ -41,9 +47,10 @@ export class NavbarComponent {
               console.error('Error egtting user data from service:', error)
             }
           )
-        } else if(localStorage.getItem('userData')) {
-          this.user = JSON.parse(localStorage.getItem('userData')as string)
-        }}
+        } else if (localStorage.getItem('userData')) {
+          this.user = JSON.parse(localStorage.getItem('userData') as string)
+        }
+      }
     )
 
 

@@ -1,4 +1,3 @@
-
 @if(user){
 <div class="container mt-5">
 
@@ -32,7 +31,8 @@
                         </label>
                         @if(imageSrc){
 
-                        <button class="btn btn-danger btn-sm" title="Remove my event image" (click)="removeAvatar()">
+                        <button class="btn btn-danger btn-sm mx-2" title="Remove my event image"
+                            (click)="removeAvatar()">
                             <i class="bi bi-trash"></i> Remove
                         </button>
                         }
@@ -147,9 +147,10 @@
 
 
     <form>
-        <div class="container mt-5">
+        <div id="educationDiv" class="container mt-5" #educationDiv>
             <p class="card-title">Education section</p>
             <hr />
+            @if(user.education[0]){
             @for(education of user.education; track $index){
             <div class="card p-3 my-3">
                 <div class="row mb-3">
@@ -174,6 +175,9 @@
                     </div>
                 </div>
             </div>
+            }
+            } @else {
+            <button class="btn btn-secondary" (click)="addEducation()">Add education</button>
             }
         </div>
     </form>

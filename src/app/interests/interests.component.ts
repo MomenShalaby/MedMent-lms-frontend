@@ -11,27 +11,27 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './interests.component.html',
   styleUrls: ['./interests.component.css', '../../assets/css/style.css']
 })
-export class InterestsComponent implements OnInit{
-  interestsForm : FormGroup = new FormGroup([])
+export class InterestsComponent implements OnInit {
+  interestsForm: FormGroup = new FormGroup([])
   tags: Tag[] = [];
   userTags: number[] = [];
-  borderColor: string[] = ["#3182c8", "#8b1079", "#faa030", 
-  "#64d4d2", "#733ca6", "#c164bd", "#4eb7f5", "#65c888", "#f37e63", "#32babc"];
+  borderColor: string[] = ["#3182c8", "#8b1079", "#faa030",
+    "#64d4d2", "#733ca6", "#c164bd", "#4eb7f5", "#65c888", "#f37e63", "#32babc"];
 
-  constructor(private tagService: TagService, private  router : Router) {}
+  constructor(private tagService: TagService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTags();
     this.interestsForm = new FormGroup({
-      tag : new FormControl(this.userTags)
+      tag: new FormControl(this.userTags)
     })
 
   }
 
-  getTags(){
+  getTags() {
     this.tagService.getAllTags().subscribe({
       next: (res) => {
-        this.tags = res.data;        
+        this.tags = res.data;
       },
       error: (err) => {
         console.log(err);
@@ -40,27 +40,27 @@ export class InterestsComponent implements OnInit{
     // this.tags = [{id:1, name: "Dynamic"}, {id:2, name: "Fun"}, {id:3, name: "Playful"}];
   }
 
-  addRemoveTag(e: Event, tagId: number, i: number){
+  addRemoveTag(e: Event, tagId: number, i: number) {
     var index = this.userTags.indexOf(tagId);
-    if(index == -1){
+    if (index == -1) {
       this.userTags.push(tagId);
       (e.target as HTMLElement).style.borderColor = this.borderColor[i % 10];
     }
-    else{
+    else {
       this.userTags.splice(index, 1);
       (e.target as HTMLElement).style.borderColor = "#dadada";
     }
-    
+
   }
 
-  addUserTags(){    
+  addUserTags() {
     this.tagService.addUserTags(this.interestsForm.value).subscribe({
       next: (res) => {
         console.log(res);
         // this.router.navigate(['/membership'])
         window.location.href = "/membership";
 
-        
+
       },
       error: (err) => {
         console.log(err);

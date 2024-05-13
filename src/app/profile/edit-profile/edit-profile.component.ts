@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { CountryService } from '../../services/locations/country.service';
 import { StateService } from '../../services/locations/state.service';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -19,9 +19,9 @@ export class EditProfileComponent {
   editAvatarForm: FormGroup = new FormGroup({});
   editGeneralForm: FormGroup = new FormGroup({});
   editEducationForm: FormGroup = new FormGroup({});
+  @ViewChild('block') block?: ElementRef;
 
-
-  token: string = JSON.parse(localStorage.getItem('token')as string)
+  token: string = JSON.parse(localStorage.getItem('token') as string)
   countries: any;
   states: any;
   errorMessage?: string;
@@ -36,7 +36,7 @@ export class EditProfileComponent {
     console.log(this.user);
     this.avatar = this.user.avatar;
     console.log(this.avatar);
-    
+
 
     //avatar form 
     this.editAvatarForm = new FormGroup({
@@ -46,13 +46,13 @@ export class EditProfileComponent {
 
     //general info form 
     this.editGeneralForm = new FormGroup({
-      fname: new FormControl(JSON.parse(this.userData).user.fname, [Validators.required]),
-      lname: new FormControl(JSON.parse(this.userData).user.lname, Validators.required),
-      bio: new FormControl(JSON.parse(this.userData).user.bio, Validators.required),
-      email: new FormControl(JSON.parse(this.userData).user.email, [Validators.required, Validators.email]),
-      gender: new FormControl(JSON.parse(this.userData).user.gender, Validators.required),
-      country_id: new FormControl(JSON.parse(this.userData).user.country.id),
-      state_id: new FormControl(JSON.parse(this.userData).user.state.id)
+      fname: new FormControl(this.user.fname, [Validators.required]),
+      lname: new FormControl(this.user.lname, Validators.required),
+      bio: new FormControl(this.user.bio, Validators.required),
+      email: new FormControl(this.user.email, [Validators.required, Validators.email]),
+      gender: new FormControl(this.user.gender, Validators.required),
+      country_id: new FormControl(this.user.country.id),
+      state_id: new FormControl(this.user.state.id)
       // password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       // password_confirmation: new FormControl('', Validators.required),
     });
@@ -60,7 +60,6 @@ export class EditProfileComponent {
 
     this.editEducationForm = new FormGroup({
       education: new FormArray([
-
       ])
     })
 
@@ -151,6 +150,35 @@ export class EditProfileComponent {
   }
 
 
+  addEducation() {
+    this.block?.nativeElement.insertAdjacentHTML('beforeend', `
+    <div class="card p-3 my-3">
+    <div class="row mb-3">
+        <label for="degree" class="col-md-4 col-lg-3 col-form-label">Degree Name</label>
+        <div class="col-md-8 col-lg-9">
+            <input name="degree" type="text" class="form-control" id="degree"
+                 />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="start_date" class="col-md-4 col-lg-3 col-form-label">Start date</label>
+        <div class="col-md-8 col-lg-9">
+            <input type="date" name="start_date" class="form-control" id="start_date"
+                />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="end_date" class="col-md-4 col-lg-3 col-form-label">End date</label>
+        <div class="col-md-8 col-lg-9">
+            <input type="date" name="end_date" class="form-control" id="end_date"
+                />
+        </div>
+    </div>
+</div>
+    `);
+
+  }
+
   get imageSrc(): any {
     return this.avatar
   }
@@ -178,6 +206,5 @@ export class EditProfileComponent {
     if (inputElement) {
       inputElement.value = '';
     }
-    // this.removeAvatar()
   }
 }

@@ -22,28 +22,32 @@
         <li><a [routerLink]="['/contact-us']">Contact</a></li>
         @if(!user){
         <li class="btn-getstarted dropdown">
-          <a class="p-0 text-white" href="#"><span>Membership</span> <i
-              class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <a class="p-0 text-white" href="#"><span>Membership</span>
+            <i class="bi bi-chevron-down toggle-dropdown"></i></a>
           <ul>
             <li><a [routerLink]="['/register']">Become a member</a></li>
             <li><a [routerLink]="['/login']">Login</a></li>
-
           </ul>
         </li>
-        }
-
-        @if(user){
+        } @if(user){
 
         <li class="nav-item dropdown pe-3">
-
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-
-            <img src="assets/img{{ user.avatar }}" alt="Profile" class="profile-img rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.fname +' '+ user.lname}}</span>
+            <img src="assets/img{{ user.avatar }}" alt="Profile" class="profile-img rounded-circle" />
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{
+              user.fname + " " + user.lname
+              }}</span>
           </a>
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-
+            @if(isAdminRole){
+            <li>
+              <a class="dropdown-item d-flex align-items-center" [routerLink]="['/admin/dashboard/view-events']">
+                <i class="bi bi-person"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            }@else{
 
             <li>
               <a class="dropdown-item d-flex align-items-center" [routerLink]="['/profile']">
@@ -51,8 +55,9 @@
                 <span>My Profile</span>
               </a>
             </li>
+            }
             <li>
-              <hr class="dropdown-divider">
+              <hr class="dropdown-divider" />
             </li>
             <li>
               <a class="dropdown-item d-flex align-items-center" (click)="ngOnDestroy()">
@@ -60,13 +65,11 @@
                 <span>Sign Out</span>
               </a>
             </li>
-
           </ul>
         </li>
         }
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-
     </nav>
 
     <!-- @if(!user){

@@ -1,107 +1,107 @@
 <div class="container">
-  <form [formGroup]="addEventForm">
+  <form [formGroup]="addEventForm" (ngSubmit)="addEvent()" enctype="multipart/form-data">
     <p class="card-title">Create new event</p>
     <hr />
+    @if(successMessage){
+    <div class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    }
+
     <div class="card p-3 my-3">
-    <div class="row mb-3">
-      <label for="name" class="col-md-4 col-lg-3 col-form-label"
-        >Event title</label
-      >
-      <div class="col-md-8 col-lg-9">
-        <input name="name" type="text" class="form-control" id="name" />
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="short_description" class="col-md-4 col-lg-3 col-form-label"
-        >Short description</label
-      >
-      <div class="col-md-8 col-lg-9">
-        <input
-          name="short_description"
-          type="text"
-          class="form-control"
-          id="short_description"
-        />
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="description" class="col-md-4 col-lg-3 col-form-label"
-        >Description</label
-      >
-      <div class="col-md-8 col-lg-9">
-        <textarea
-          name="description"
-          type="text"
-          class="form-control"
-          id="description"
-        ></textarea>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="start_date" class="col-md-4 col-lg-3 col-form-label"
-        >Start date</label
-      >
-      <div class="col-md-8 col-lg-9">
-        <input
-          type="date"
-          name="start_date"
-          class="form-control"
-          id="start_date"
-        />
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="end_date" class="col-md-4 col-lg-3 col-form-label"
-        >End date</label
-      >
-      <div class="col-md-8 col-lg-9">
-        <input type="date" name="end_date" class="form-control" id="end_date" />
-      </div>
-    </div>
-
-    <div class="row mb-3">
-      <label for="eventImage" class="col-md-4 col-lg-3 col-form-label"
-        >Event Image</label
-      >
-      <div class="col-md-8 col-lg-9">
-        @if(imageSrc){
-        <div class="mb-2">
-          <img [src]="imageSrc" alt="Event" width="100px" />
-        </div>
-        }
-        <div class="pt-2">
-          <label
-            for="uploadImage"
-            class="btn btn-success btn-sm"
-            title="Upload new event image"
-          >
-            <i class="bi bi-upload"></i> Upload
-            <input
-              type="file"
-              id="uploadImage"
-              style="display: none"
-              (change)="onFileSelected($event)"
-            />
-          </label>
-          @if(imageSrc){
-
-          <button
-            class="btn btn-danger btn-sm"
-            title="Remove my event image"
-            (click)="cancelImage()"
-          >
-            <i class="bi bi-trash"></i> Remove
-          </button>
+      <div class="row mb-3">
+        <label for="name" class="col-md-4 col-lg-3 col-form-label">Event title</label>
+        <div class="col-md-8 col-lg-9">
+          <input name="name" type="text" class="form-control" id="name" formControlName="name" />
+          @if(errorMessage && errorMessage['name']){
+          <p class="text-danger">* {{ errorMessage['name'][0] }}</p>
           }
         </div>
+
       </div>
-    </div>
-    <div class="row mb-3">
-      <!-- <app-tag-selection [tags]="tags"></app-tag-selection> -->
-    </div>
-    <div class="text-center">
-      <button type="submit" class="btn btn-primary">Add event</button>
-    </div>
+
+      <div class="row mb-3">
+        <label for="short_description" class="col-md-4 col-lg-3 col-form-label">Short description</label>
+        <div class="col-md-8 col-lg-9">
+          <input name="short_description" type="text" class="form-control" id="short_description"
+            formControlName="short_description" />
+            @if(errorMessage && errorMessage['short_description']){
+              <p class="text-danger">* {{ errorMessage['short_description'][0] }}</p>
+              }        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="description" class="col-md-4 col-lg-3 col-form-label">Description</label>
+        <div class="col-md-8 col-lg-9">
+          <textarea name="description" type="text" class="form-control" id="description"
+            formControlName="description"></textarea>
+            @if(errorMessage && errorMessage['description']){
+              <p class="text-danger">* {{ errorMessage['description'][0] }}</p>
+              }
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="start_date" class="col-md-4 col-lg-3 col-form-label">Start date</label>
+        <div class="col-md-8 col-lg-9">
+          <input type="datetime" name="start_date" class="form-control" id="start_date" formControlName="start_date" />
+          @if(errorMessage && errorMessage['start_date']){
+            <p class="text-danger">* {{ errorMessage['start_date'][0] }}</p>
+            }        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="end_date" class="col-md-4 col-lg-3 col-form-label">End date</label>
+        <div class="col-md-8 col-lg-9">
+          <input type="datetime-local" name="end_date" class="form-control" id="end_date" formControlName="end_date" />
+          @if(errorMessage && errorMessage['end_date']){
+            <p class="text-danger">* {{ errorMessage['end_date'][0] }}</p>
+            }
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="col-md-4 col-lg-3 col-form-label">Event Tags</label>
+
+        <ul
+          class="row col-md-8 col-lg-9 ms-2 py-3 px-1 tagContainer border border-rounded d-flex justify-content-center align-items-center list-unstyled gap-2 my-4">
+          @for(tag of tags; track $index){
+          <li class="chips" (click)="addRemoveTag($event, tag.id, $index)">
+            {{ tag.name }}
+          </li>
+          }
+        </ul>
+        <input type="hidden" [value]="eventTags" formControlName="tag">
+        @if(errorMessage && errorMessage['tag']){
+          <p class="text-danger">* {{ errorMessage['tag'][0] }}</p>
+          }
+      </div>
+
+      <div class="row mb-3">
+        <label for="eventImage" class="col-md-4 col-lg-3 col-form-label">Event Image</label>
+        <div class="col-md-8 col-lg-9">
+          @if(imageSrc){
+          <div>
+            <img [src]="imageSrc" alt="Event" width="100px" />
+          </div>
+          }
+          <div class="pt-2">
+            <label for="uploadImage" class="btn btn-secondary btn-sm" title="Upload new event image">
+              <i class="bi bi-upload"></i> Upload
+              <input type="file" id="uploadImage" style="display: none" (change)="onFileSelected($event)"
+                formControlName="avatar" />
+            </label>
+            @if(imageSrc){
+            <button class="btn btn-danger btn-sm mx-2" title="Remove my event image" (click)="cancelImage()">
+              <i class="bi bi-trash"></i> Remove
+            </button>
+            }
+          </div>
+          @if(errorMessage && errorMessage['image']){
+            <p class="text-danger">* {{ errorMessage['image'][0] }}</p>
+            }
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Add event</button>
+      </div>
     </div>
   </form>
 </div>

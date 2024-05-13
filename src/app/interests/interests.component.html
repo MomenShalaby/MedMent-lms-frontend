@@ -4,7 +4,8 @@
         <!-- <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, commodi aliquid pariatur
             voluptatem fugiat non blanditiis tempore facilis iusto libero corporis inventore in accusantium architecto
             rem, eum laudantium molestias sit.</p> -->
-        <ul class="row col-11 col-lg-8  d-flex justify-content-center align-items-center list-unstyled gap-2 my-4">
+        <ul
+            class="row col-11 col-lg-8 tagContainer d-flex justify-content-center align-items-center list-unstyled gap-2 my-4">
             @for(tag of tags; track $index){
             <li class="chips" (click)="addRemoveTag($event, tag.id, $index)">{{tag.name}}</li>
             }

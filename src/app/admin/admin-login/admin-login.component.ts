@@ -16,7 +16,7 @@ export class AdminLoginComponent {
   errorMessage?: string;
   // updated: string = this.activatedRoute.snapshot.queryParams['updated'];
 
-  constructor(private activatedRoute: ActivatedRoute, private adminService: AdminService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private adminService: AdminService, private router: Router, private userService: UsersService) {
 
     console.log(this.activatedRoute.snapshot.queryParams['success']);
     this.adminLoginForm = new FormGroup({
@@ -36,9 +36,11 @@ export class AdminLoginComponent {
           console.log('Logged in successfully:', response);
           // console.log(response.);
 
-          localStorage.setItem('token', (response as any).data.token)
-          localStorage.setItem('role', (response as any).data.user.roles[0].name)
-          // console.log((response as any).data.user.roles[0].name);
+          localStorage.setItem('userData', JSON.stringify((response as any).data.user));
+          localStorage.setItem('token', JSON.stringify((response as any).data.token));
+          localStorage.setItem('role', JSON.stringify((response as any).data.user.roles[0].name));
+          this.userService.setIsAuthenticated(true)
+          this.userService.setLoggedUser((response as any).data.user)
           console.log(localStorage.getItem('role'));
           this.router.navigate(['/admin/dashboard'])
 
