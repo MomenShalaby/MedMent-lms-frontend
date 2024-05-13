@@ -1,23 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../../core/services/course/course-service.service';
 import { CategoryService } from '../../../core/services/categories/category.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category } from '../../../core/models/category.model';
+import { ActivatedRoute } from '@angular/router';
+import { Course, UpdateCourse } from '../../../core/models/course.model';
 
 @Component({
   selector: 'app-update-course',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './update-course.component.html',
   styleUrl: './update-course.component.css'
 })
-export class UpdateCourseComponent {
+export class UpdateCourseComponent implements OnInit{
+  courseId: number = 0;
+  selectedCourse: Course = {} as Course;
   categories: Category[] = [];
-  courseImage: any = null;
   form = new FormGroup({
     course_name: new FormControl<string>("", [Validators.required]),
     description: new FormControl<string>("", [Validators.required]),
-    category_id: new FormControl<number>(0, [Validators.required]),
     instructor: new FormControl<string>("", []),
     course_title: new FormControl<string>("", [Validators.required]),
     video: new FormControl<string>("", [Validators.required]),
@@ -33,10 +35,42 @@ export class UpdateCourseComponent {
 
   constructor(private courseService: CourseService,
     private categoryService: CategoryService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.getCourseById();
     this.getCategories();
+  }
+
+  getCourseById(){
+    this.activatedRoute.paramMap.subscribe( params => {
+      this.courseId = Number(params.get("id"));
+      if(!this.courseId) return;
+      this.courseService.getCourseById(this.courseId).subscribe({
+        next: (res) => {
+          this.selectedCourse = res.data;
+          this.form = new FormGroup({
+            course_name: new FormControl<string>(this.selectedCourse.name, [Validators.required]),
+            description: new FormControl<string>(this.selectedCourse.description, [Validators.required]),
+            instructor: new FormControl<string>(this.selectedCourse.instructor, []),
+            course_title: new FormControl<string>(this.selectedCourse.title, [Validators.required]),
+            video: new FormControl<string>(this.selectedCourse.video, [Validators.required]),
+            label: new FormControl<string>(this.selectedCourse.label, []),
+            duration: new FormControl<string>(this.selectedCourse.duration, [Validators.required]),
+            resources: new FormControl<string>(this.selectedCourse.resources, []),
+            certificate: new FormControl<string>(this.selectedCourse.certificate, []),
+            prerequisites: new FormControl<string>(this.selectedCourse.prerequisites, []),
+            featured: new FormControl<string>(this.selectedCourse.featured, []),
+            status: new FormControl<string>(this.selectedCourse.status, []), //active || inactive: default
+            price: new FormControl<number>(this.selectedCourse.price, [Validators.required])
+          });
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    });
   }
 
   getCategories(){
@@ -50,32 +84,13 @@ export class UpdateCourseComponent {
     });
   }
 
-  imageChange(event: any){
-    this.courseImage = event.target.files[0]; 
-  }
-
   updateCourse(){
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return
     }
-    const formData = new FormData();
-    formData.append('course_name', this.form.controls.course_name.value!);
-    formData.append('description', this.form.controls.description.value!);
-    formData.append('image', this.courseImage, this.courseImage.name);
-    formData.append('category_id', this.form.controls.category_id.value!.toString());
-    formData.append('instructor', this.form.controls.instructor.value!);
-    formData.append('course_title', this.form.controls.course_title.value!);
-    formData.append('video', this.form.controls.video.value!);
-    formData.append('label', this.form.controls.label.value!);
-    formData.append('duration', this.form.controls.duration.value!);
-    formData.append('resources', this.form.controls.resources.value!);
-    formData.append('certificate', this.form.controls.certificate.value!);
-    formData.append('prerequisites', this.form.controls.prerequisites.value!);
-    formData.append('featured', this.form.controls.featured.value!);
-    formData.append('status', this.form.controls.status.value!);
-    formData.append('price', this.form.controls.price.value!.toString());
-    this.courseService.addCourse(formData).subscribe({
+    var course = this.form.value as UpdateCourse;
+    this.courseService.updateCourse(this.courseId, course).subscribe({
       next: (res) => {
         console.log(res);
       },
@@ -83,5 +98,21 @@ export class UpdateCourseComponent {
         console.log(err);
       }
     });
+  }
+
+  updateCourseImage(event: any){
+    var image = event.target.files?.[0];
+    if(image){
+      const formData = new FormData();
+      formData.append('image', image, image.name);
+      this.courseService.updateCourseImage(this.courseId, formData).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
   }
 }

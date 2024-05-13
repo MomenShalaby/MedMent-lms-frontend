@@ -1,11 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateCourse } from '../../models/course.model';
+import { UpdateCourse } from '../../models/course.model';
+
+const token = localStorage.getItem("token");
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CourseService {
 
   constructor(private http: HttpClient) { }
@@ -29,16 +32,71 @@ export class CourseService {
   }
 
   getCourseSections(id: number | undefined) : Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/courses/${id}?include=category`);
+    return this.http.get<any>(`${this.baseUrl}/courses/${id}/sections?include=lectures`);
   }
 
-  getCourseLectures(id: number | undefined) : Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/courses/${id}?include=category`);
+  getCourseSection(id: number | undefined,  sectionId: number | undefined) : Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}?include=lectures`);
+  }
+
+  getCourseLectures(id: number | undefined, sectionId: number | undefined) : Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures`);
+  }
+
+  getCourseLecture(id: number | undefined, sectionId: number | undefined, lectureId: number | undefined) : Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures/${lectureId}`);
   }
 
   addCourse(course: FormData) : Observable<any> {
-    const token = localStorage.getItem("token");
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<any>(`${this.baseUrl}/courses`, course, {headers});
+  }
+  
+  updateCourse(id: number | undefined, course: UpdateCourse) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.baseUrl}/courses/${id}`, course, {headers});
+  }
+
+  updateCourseImage(id: number | undefined, image: FormData) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.baseUrl}/courses/${id}/image?_method=PUT`, image, {headers});
+  }
+
+  deleteCourse(id: number | undefined) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(`${this.baseUrl}/courses/${id}`, {headers});
+  }
+
+  addCourseSection(id: number | undefined, course: FormData) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.baseUrl}/courses/${id}/sections`, course, {headers});
+  }
+  
+  updateCourseSection(id: number | undefined, sectionId: number | undefined, course: FormData) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}`, course, {headers});
+  }
+
+  deleteCourseSection(id: number | undefined, sectionId: number | undefined) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}`, {headers});
+  }
+
+  addCourseLecture(id: number | undefined, sectionId: number | undefined, course: FormData) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures`,
+      course, {headers});
+  }
+  
+  updateCourseLecture(id: number | undefined, sectionId: number | undefined,
+    lectureId: number | undefined, course: FormData) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures/${lectureId}`,
+      course, {headers});
+  }
+
+  deleteCourseLecture(id: number | undefined, sectionId: number | undefined) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}`, {headers});
   }
 }

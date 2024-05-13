@@ -1,1 +1,72 @@
-<p>update-course works!</p>
+
+<form [formGroup]="form" (ngSubmit)="updateCourse()">
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">Course Name</label>
+        <input type="text" formControlName="course_name">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">description</label>
+        <input type="text" formControlName="description">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">Image</label>
+        <input type="file" accept="image/*" (change)="updateCourseImage($event)">
+        <img [src]="'http://localhost:8000' + selectedCourse.image" style="width: 100px;">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">category</label>
+        <select>
+            @for(category of categories; track $index){
+                <option [value]="category.id">{{category.name}}</option>
+            }
+        </select>
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">instructor</label>
+        <input type="text" formControlName="instructor">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">course_title</label>
+        <input type="text" formControlName="course_title">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">Course video</label>
+        <input type="text" formControlName="video">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">label</label>
+        <input type="text" formControlName="label">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">duration</label>
+        <input type="text" formControlName="duration">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">resources</label>
+        <input type="text" formControlName="resources">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">certificate</label>
+        <input type="text" formControlName="certificate">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">prerequisites</label>
+        <input type="text" formControlName="prerequisites">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">featured</label>
+        <input type="text" formControlName="featured">
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">status</label>
+        <select formControlName="status">
+            <option value="inactive">inactive</option>
+            <option value="active">active</option>
+        </select>
+    </div>
+    <div class="d-flex gab-3 mb-2">
+        <label class="form-label">price</label>
+        <input type="number" formControlName="price">
+    </div>
+    <button type="submit">Add</button>
+</form>
