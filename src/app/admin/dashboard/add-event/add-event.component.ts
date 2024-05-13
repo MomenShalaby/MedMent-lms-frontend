@@ -76,9 +76,7 @@ export class AddEventComponent {
   addRemoveTag(e: Event, tagId: number, i: number) {
     var index = this.eventTags.indexOf(tagId);
     if (index == -1) {
-      this.eventTags.push(tagId);
-      console.log(this.eventTags);
-      
+      this.eventTags.push(tagId);      
       (e.target as HTMLElement).style.borderColor = this.borderColor[i % 10];
     }
     else {

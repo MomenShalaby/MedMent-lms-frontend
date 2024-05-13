@@ -42,7 +42,7 @@
       <div class="row mb-3">
         <label for="start_date" class="col-md-4 col-lg-3 col-form-label">Start date</label>
         <div class="col-md-8 col-lg-9">
-          <input type="datetime" name="start_date" class="form-control" id="start_date" formControlName="start_date" />
+          <input type="datetime-local" name="start_date" class="form-control" id="start_date" formControlName="start_date" />
           @if(errorMessage && errorMessage['start_date']){
             <p class="text-danger">* {{ errorMessage['start_date'][0] }}</p>
             }        </div>
@@ -63,7 +63,7 @@
         <ul
           class="row col-md-8 col-lg-9 ms-2 py-3 px-1 tagContainer border border-rounded d-flex justify-content-center align-items-center list-unstyled gap-2 my-4">
           @for(tag of tags; track $index){
-          <li class="chips" (click)="addRemoveTag($event, tag.id, $index)">
+          <li class="chips" (click)="addRemoveTag($event, tag.id , $index)">
             {{ tag.name }}
           </li>
           }
