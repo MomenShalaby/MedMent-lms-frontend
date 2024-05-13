@@ -22,6 +22,7 @@ import { MembershipComponent } from './membership/membership.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { CourseVideoComponent } from './course-video/course-video.component';
 import { InterestsComponent } from './interests/interests.component';
+import { UpdateCourseComponent } from './admin/dashboard/update-course/update-course.component';
 
 export const routes: Routes = [
     {
@@ -68,6 +69,10 @@ export const routes: Routes = [
                         path: 'add-course',
                         component: AddCourseComponent,
                         title: 'Add Course',
+                    },{
+                        path: 'update-course',
+                        component: UpdateCourseComponent,
+                        title: 'Update Course',
                     },{
                         path: 'view-courses',
                         component: ViewCoursesComponent,

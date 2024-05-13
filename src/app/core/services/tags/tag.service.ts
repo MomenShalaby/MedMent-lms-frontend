@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-const token = JSON.parse(localStorage.getItem('token') as string);
+const token = localStorage.getItem('token') as string;
 @Injectable({
   providedIn: 'root'
 })
@@ -24,12 +24,10 @@ export class TagService {
   }
 
   addUserTags(tags: number[]): Observable<any> {
-    const token = JSON.parse(localStorage.getItem('token')as string);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-
     return this.http.put<any>(`${this.baseUrl}/tags/me`, tags, { headers });
   }
 }
