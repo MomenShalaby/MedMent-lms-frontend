@@ -13,7 +13,7 @@ export class CourseService {
   constructor(private http: HttpClient) { }
   
   baseUrl: string = "http://localhost:8000/api";
-  token = localStorage.getItem("token");
+  token: string = JSON.parse(localStorage.getItem("token") as string);
 
   getAllCourses(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/courses?include=category,sections,sections.lectures`);

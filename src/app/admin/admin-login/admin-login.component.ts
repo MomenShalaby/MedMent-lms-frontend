@@ -37,7 +37,7 @@ export class AdminLoginComponent {
           // console.log(response.);
 
           localStorage.setItem('userData', JSON.stringify((response as any).data.user));
-          localStorage.setItem('token', (response as any).data.token);
+          localStorage.setItem('token', JSON.stringify((response as any).data.token));
           localStorage.setItem('role', JSON.stringify((response as any).data.user.roles[0].name));
           this.userService.setIsAuthenticated(true)
           this.userService.setLoggedUser((response as any).data.user)
