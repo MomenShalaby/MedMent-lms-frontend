@@ -15,15 +15,15 @@ export class EditProfileComponent {
   @Input() user: any;
   userData: any = localStorage.getItem('userData');
 
+  avatar?: string;
   editAvatarForm: FormGroup = new FormGroup({});
   editGeneralForm: FormGroup = new FormGroup({});
   editEducationForm: FormGroup = new FormGroup({});
 
 
-  token: string = JSON.parse(this.userData).token
+  token: string = JSON.parse(localStorage.getItem('token')as string)
   countries: any;
   states: any;
-  avatar: string = `http://localhost:8000${JSON.parse(this.userData).user.avatar}`;
   errorMessage?: string;
   avatarError?: string;
   avatarSuccess?: string;
@@ -33,6 +33,10 @@ export class EditProfileComponent {
   constructor(private countryService: CountryService, private stateService: StateService, private editProfileService: EditProfileService) { }
 
   ngOnInit(): void {
+    console.log(this.user);
+    this.avatar = this.user.avatar;
+    console.log(this.avatar);
+    
 
     //avatar form 
     this.editAvatarForm = new FormGroup({
@@ -147,7 +151,7 @@ export class EditProfileComponent {
   }
 
 
-  get imageSrc(): string | ArrayBuffer | null {
+  get imageSrc(): any {
     return this.avatar
   }
 

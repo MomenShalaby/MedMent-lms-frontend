@@ -23,16 +23,13 @@ export class ProfileComponent {
   }
 
   ngOnInit(): void {
-    // const userData = localStorage.getItem('userData');
-    // if (userData) {
-    //   this.user = JSON.parse(userData);
-    // } else {
-    //   this.router.navigate(['/login'])
-    // }
-    // this.userSubscription = this.userService.fetchLoggedUser().subscribe(
+
     this.userService.fetchLoggedUser().subscribe(
       (response) => {
         this.user = (response as any).data.user;
+        this.user.avatar = `http://localhost:8000${this.user.avatar}`;
+        console.log(this.user);
+        
       },
       (error) => {
         this.router.navigate(['/login'])
