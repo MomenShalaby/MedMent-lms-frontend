@@ -58,7 +58,7 @@
 
                         <ul class="list-unstyled">
                             @for(tag of tags; track $index){
-                                <li><a [routerLink]="'/events?tag=' + tag.name">{{tag.name}}</a></li>
+                                <li><a [routerLink]="'/events'" [queryParams]="{tag: tag.id}">{{tag.name}}</a></li>
                             }
                         </ul>
                     </div><!-- Tags end -->

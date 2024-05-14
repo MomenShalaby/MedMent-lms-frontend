@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Tag } from '../core/models/tag.model';
 import { TagService } from '../core/services/tags/tag.service';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-interests',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [RouterModule, ReactiveFormsModule, RouterLink],
   templateUrl: './interests.component.html',
   styleUrls: ['./interests.component.css', '../../assets/css/style.css']
 })

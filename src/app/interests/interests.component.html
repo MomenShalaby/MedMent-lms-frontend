@@ -9,7 +9,9 @@
         </ul>
         <form [formGroup]="interestsForm" (ngSubmit)="addUserTags()">
             <input type="hidden" [value]="userTags" formControlName="tag">
-            <button class="read-more"><span>Continue</span><i class="bi bi-arrow-right"></i></button>
+            <a routerLink="/">
+                <button class="read-more"><span>Continue</span><i class="bi bi-arrow-right"></i></button>
+            </a>
         </form>
     </div>
 </section>

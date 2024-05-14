@@ -1,18 +1,24 @@
 <app-page-title title="Events"
-  description="Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem."
+  description="Stay updated with our upcoming events, including conferences, workshops, and networking opportunities for Egyptian doctors. Engage with industry leaders, exchange knowledge, and foster collaborations to shape the future of healthcare in Egypt."
   path="Events">
 </app-page-title>
 
 <section id="main-container" class="main-container">
   <div class="container">
     <div class="row">
-      <div class="col-12">
-        <div class="shuffle-btn-group">
-          <span class="active" (click)="getEvents()">Show All</span>
-          @for(tag of tags; track $index){
-            <span (click)="filterByTag(tag.name)">{{tag.name}}</span>
-          }
-        </div>
+        <div class="mx-auto" ngbDropdown container="body">
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+              aria-haspopup="true" ngbDropdownToggle>
+              {{tagName}}
+          </button>
+          <div ngbDropdownMenu>
+              <button ngbDropdownItem><a [routerLink]="'./'">Show All</a></button>
+              @for(tag of tags; track $index){
+                <button ngbDropdownItem>
+                  <a [routerLink]="'./'" [queryParams]="{tag: tag.id}">{{tag.name}}</a>  
+                </button>
+              }
+          </div>
       </div>
     </div>
   </div>

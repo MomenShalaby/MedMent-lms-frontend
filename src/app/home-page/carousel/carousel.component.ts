@@ -1,45 +1,40 @@
-import { Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgbCarousel, NgbCarouselModule, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import keenSlider, { KeenSliderInstance } from 'keen-slider';
+
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [NgbCarouselModule, FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.css'
 })
-export class CarouselComponent {
-//   images = ['carousel1.jpg', 'carousel2.png', 'carousel4.jpg', 'carousel3.jpeg'].map((n) => `../assets/img/${n}`);
+export class CarouselComponent implements AfterViewInit{
   images = ['menna1', 'menna2', 'menna3', 'menna5'].map((n) => `../assets/img/${n}.jpg`);
 
-	paused = false;
-	unpauseOnArrow = false;
-	pauseOnIndicator = false;
-	pauseOnHover = false;
-	pauseOnFocus = false;
+  @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement> | undefined
+  opacities: number[] = []
+  slider: KeenSliderInstance | null = null
+  interval: any = null
 
-	@ViewChild('carousel', { static: true })
-  carousel: NgbCarousel = new NgbCarousel;
-
-	togglePaused() {
-		if (this.paused) {
-			this.carousel.cycle();
-		} else {
-			this.carousel.pause();
-		}
-		this.paused = !this.paused;
+  ngAfterViewInit() {
+	if(this.sliderRef){
+		this.slider = new keenSlider(this.sliderRef.nativeElement, {
+		  slides: this.images.length,
+		  loop: true,
+		  defaultAnimation: {
+			duration: 3000,
+		  },
+		  detailsChanged: (s) => {
+			this.opacities = s.track.details.slides.map((slide) => slide.portion)
+		  },
+		});
+		this.interval = setInterval(this.slider.next, 3000)
 	}
+  }
 
-	onSlide(slideEvent: NgbSlideEvent) {
-		if (
-			this.unpauseOnArrow &&
-			slideEvent.paused &&
-			(slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)
-		) {
-			this.togglePaused();
-		}
-		if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
-			this.togglePaused();
-		}
-	}
+  ngOnDestroy() {
+    if (this.slider) this.slider.destroy()
+  }
 }

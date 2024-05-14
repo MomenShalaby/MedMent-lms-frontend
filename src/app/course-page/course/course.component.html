@@ -1,8 +1,8 @@
 <app-page-title title="Course"
-  description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae culpa dignissimos, voluptatem alias ullam fuga iusto totam iste nisi optio neque qui architecto cum impedit dicta eligendi nam nemo. Aut."
+  description="Explore our extensive range of specialized training courses designed to equip Egyptian doctors with the latest medical knowledge and skills. Enhance your expertise and advance your career through our comprehensive curriculum delivered by renowned experts in the field."
   path="Course">
 </app-page-title>
 
-<app-search></app-search>
+<app-search (searchCourseName)="searchCourse($event)"></app-search>
 <app-category></app-category>
-<app-card [courses]="courses"></app-card>
+<app-card [courses]="courses" [category]="category"></app-card>

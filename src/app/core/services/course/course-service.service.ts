@@ -25,7 +25,7 @@ export class CourseService {
   }
 
   getCategoryCourses(id: number | undefined) : Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/courses?categoryId=${id}`);
+    return this.http.get<any>(`${this.baseUrl}/category/${id}?include=courses`);
   }
 
   getRelatedCourse(prerequisites: string | undefined) : Observable<any> {
@@ -99,5 +99,9 @@ export class CourseService {
   deleteCourseLecture(id: number | undefined, sectionId: number | undefined) : Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.delete<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}`, {headers});
+  }
+
+  searchCourse(courseName: string | undefined) : Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/search/${courseName}`);
   }
 }

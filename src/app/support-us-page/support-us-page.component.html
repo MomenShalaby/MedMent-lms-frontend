@@ -1,4 +1,90 @@
 <app-page-title title="Support Us"
-  description="Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem."
+  description="Join hands with us in making a difference in the lives of Egyptian doctors. Your support enables us to provide educational resources, facilitate international opportunities, and empower healthcare professionals to excel in their careers and positively impact their communities."
   path="Support Us">
 </app-page-title>
+
+<section class="section bg-light">
+  <div class="container">
+    <div class="row gy-4">
+      <h3 class="section-heading text-center">Join an ABCDE Medical Mission</h3>
+      <p>
+        Organized and facilitated by ABCDE, doctors, members, students and volunteers participate in medical and surgical missions to the region to support ongoing medical relief programs and provide healthcare to Egyptions inside Egypt as well as in neighboring countries and beyond, including Libya, Sudan, Jordan, Lebanon, and Syria. In 2024, ABCDE’s medical missions provided nearly 330,000 medical services to Egyptions refugees and underserved local communities. In 2018,  led more than 22 medical missions, bringing together over 520 volunteers from around the world. 
+      </p>
+      <img src="../../assets/img/surgery-1807541.jpg" alt="">
+      <p>
+        Each year, ABCDE works with local NGOs and medical  facilities to fill gaps in healthcare for Egyption refugess and other vulnerable communities through medical missions to Jordan, Lebanon, and Syria. We are accepting applications from licensed physicians, surgeons, medical specialists, nurses, EMTs, Arabic speaking 5th year/senior medical students, and professional Arabic translators. 
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section contact">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <h3 class="section-heading text-center pb-2">Volunteer With ABCDE</h3>
+    <p class="text-center pb-4">
+      To ensure the best fit within our work team, kindly provide us with details about your profession and the role you aspire to fulfill at the ABCDE Foundation by completing the form below.
+    </p>
+    <div class="row gy-4">
+
+      <div class="col-lg-4">
+        <img src="../../assets/img/events/2090ce9a9913bb808e7f05145675b24d.jpg" alt="" class="support-img">
+      </div>
+
+      <div class="col-lg-8">
+        <form [formGroup]="form" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+          <div class="row gy-4">
+
+            <div class="col-md-6">
+              <input type="text" formControlName="name" class="form-control" placeholder="Your Name">
+              @if(form.controls.name.touched && form.controls.name.errors){
+                <span class="text-danger">This field is required *</span>
+              }
+            </div>
+
+            <div class="col-md-6 ">
+              <input type="email" class="form-control" formControlName="email" placeholder="Your Email">
+              @if(form.controls.email.touched && form.controls.email.invalid){
+                @if (form.controls.email.errors?.['required']){
+                  <span class="text-danger">This field is required *</span>
+                }
+              }
+              @if(form.controls.email.touched && form.controls.email.invalid){
+                @if (form.controls.email.errors?.['email']){
+                  <span class="text-danger">Please enter valid email</span>
+                }
+              }
+            </div>
+
+            <div class="col-md-12">
+              <input type="text" class="form-control" formControlName="subject" placeholder="Subject">
+              @if(form.controls.subject.touched && form.controls.subject.errors){
+                <span class="text-danger">This field is required *</span>
+              }
+            </div>
+
+            <div class="col-md-12">
+              <textarea class="form-control" formControlName="message" rows="6" placeholder="Message"></textarea>
+              @if(form.controls.message.touched && form.controls.message.errors){
+                <span class="text-danger">This field is required *</span>
+              }
+            </div>
+
+            <div class="col-md-12 text-center">
+              <div class="loading">Loading</div>
+              <div class="error-message">{{errorMessage}}</div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+
+              <button type="submit" (click)="send($event)">Send Message</button>
+            </div>
+
+          </div>
+        </form>
+      </div><!-- End Contact Form -->
+
+    </div>
+
+  </div>
+  
+  
+</section>
