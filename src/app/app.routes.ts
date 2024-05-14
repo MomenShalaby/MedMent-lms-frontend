@@ -25,6 +25,7 @@ import { InterestsComponent } from './interests/interests.component';
 import { UpdateCourseComponent } from './admin/dashboard/update-course/update-course.component';
 import { CourseSectionComponent } from './admin/dashboard/course-section/course-section.component';
 import { UpdateEventComponent } from './admin/dashboard/update-event/update-event.component';
+import { DisplayCourseComponent } from './admin/dashboard/display-course/display-course.component';
 
 export const routes: Routes = [
     {
@@ -84,6 +85,16 @@ export const routes: Routes = [
                         component: CourseSectionComponent,
                         title: 'Courses',
                     }, {
+                    },{
+                        path: 'view-courses/:id',
+                        component: DisplayCourseComponent,
+                        title: 'Display Course',
+                    },{
+                        path: 'courses/:id/sections/:sectionId',
+                        component: CourseSectionComponent,
+                        title: 'Sections',
+                    },
+                    {
                         path: 'view-events',
                         component: ViewEventsComponent,
                         title: 'Events',

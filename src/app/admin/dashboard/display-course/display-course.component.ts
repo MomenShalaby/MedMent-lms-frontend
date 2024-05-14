@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../../../core/services/course/course-service.service';
 import { Course } from '../../../core/models/course.model';
-import { ActivatedRoute } from '@angular/router';
+import { CourseService } from '../../../core/services/course/course-service.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-course-section',
+  selector: 'app-display-course',
   standalone: true,
-  imports: [],
-  templateUrl: './course-section.component.html',
-  styleUrl: './course-section.component.css'
+  imports: [RouterLink],
+  templateUrl: './display-course.component.html',
+  styleUrl: './display-course.component.css'
 })
-export class CourseSectionComponent implements OnInit{
+export class DisplayCourseComponent implements OnInit{
 
   course: Course = {} as Course;
   courseId: number = 0;
@@ -38,7 +38,8 @@ export class CourseSectionComponent implements OnInit{
     });
   }
 
-  updateSection(){
+  addSection(){
     
   }
+
 }

@@ -1,0 +1,35 @@
+<p>You can bind our <code>NgbPagination</code> component with slicing the data list</p>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>image</th>
+            <th colspan="3">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (course of courses; track $index) {
+			<tr>
+				<th>{{ course.id }}</th>
+				<td>
+					{{ course.name }}
+				</td>
+				<td>{{ course.description}}</td>
+                <td>
+					<img
+						[src]="'http://localhost:8000' + course.image"
+						[alt]="course.name"
+						class="me-2"
+						style="width: 100px"
+					/>
+				</td>
+				<td><a [routerLink]="'./' + course.id" class="btn btn-primary">View</a></td>
+				<td><a [routerLink]="'../update-course/' + course.id" class="btn btn-secondary">Edit</a></td>
+				<td><button class="btn btn-danger" (click)="deleteCourse(course.id)">Delete</button></td>
+            </tr>
+		}
+	</tbody>
+</table>

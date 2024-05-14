@@ -10,10 +10,11 @@ const token = JSON.parse(localStorage.getItem("token")as string);
 })
 
 export class CourseService {
-
+  
   constructor(private http: HttpClient) { }
-
+  
   baseUrl: string = "http://localhost:8000/api";
+  token: string = JSON.parse(localStorage.getItem("token") as string);
 
   getAllCourses(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/courses?include=category,sections,sections.lectures`);
@@ -48,55 +49,55 @@ export class CourseService {
   }
 
   addCourse(course: FormData) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.post<any>(`${this.baseUrl}/courses`, course, {headers});
   }
   
   updateCourse(id: number | undefined, course: UpdateCourse) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.put<any>(`${this.baseUrl}/courses/${id}`, course, {headers});
   }
 
   updateCourseImage(id: number | undefined, image: FormData) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.post<any>(`${this.baseUrl}/courses/${id}/image?_method=PUT`, image, {headers});
   }
-
+  
   deleteCourse(id: number | undefined) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.delete<any>(`${this.baseUrl}/courses/${id}`, {headers});
   }
 
   addCourseSection(id: number | undefined, course: FormData) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.post<any>(`${this.baseUrl}/courses/${id}/sections`, course, {headers});
   }
   
   updateCourseSection(id: number | undefined, sectionId: number | undefined, course: FormData) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.put<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}`, course, {headers});
   }
 
   deleteCourseSection(id: number | undefined, sectionId: number | undefined) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.delete<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}`, {headers});
   }
 
   addCourseLecture(id: number | undefined, sectionId: number | undefined, course: FormData) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.post<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures`,
       course, {headers});
   }
   
   updateCourseLecture(id: number | undefined, sectionId: number | undefined,
     lectureId: number | undefined, course: FormData) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.put<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures/${lectureId}`,
       course, {headers});
   }
 
   deleteCourseLecture(id: number | undefined, sectionId: number | undefined) : Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.http.delete<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}`, {headers});
   }
 }
