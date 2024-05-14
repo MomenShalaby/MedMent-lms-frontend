@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event, EventWithAttendees } from '../core/models/event.model';
 import { EventService } from '../core/services/events/event-service.service';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { UsersService } from '../services/users/users.service';
 import { Tag } from '../core/models/tag.model';
 import { TagService } from '../core/services/tags/tag.service';
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-event-details',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, RouterLink],
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.css', '../../assets/css/style.css']
 })
@@ -78,7 +78,7 @@ export class EventDetailsComponent implements OnInit{
   getTags(){
     this.tagService.getTags().subscribe({
       next: (res) => {
-        this.tags = res.data;
+        this.tags = res.data;       
       },
       error: (err) => {
         console.log(err);

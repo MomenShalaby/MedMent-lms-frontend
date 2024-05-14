@@ -5,13 +5,15 @@ section{
 
 button {
   border: none;
-  background-color: var(--accent-color);
   font-weight: 500;
-  /* font-size: 15px; */
 }
 
-button:hover {
-  background: rgba(var(--accent-color-rgb), 0.8);
+button:hover, button:focus {
+  background: rgba(var(--accent-color-rgb), 0.8) !important;
+}
+
+button:hover a{
+  color: #fff;
 }
 
 /* ======================================== */

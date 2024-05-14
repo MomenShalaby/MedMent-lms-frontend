@@ -37,4 +37,8 @@ export class EventService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<any>(`${this.baseUrl}/events/${id}/attendees`, null, { headers });
   }
+
+  getTagEvents(id: number | undefined): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/events/${id}?include=events`);
+  }
 }

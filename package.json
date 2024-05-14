@@ -24,6 +24,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "jquery": "^3.7.1",
+    "keen-slider": "^6.8.6",
     "primeng": "^17.15.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

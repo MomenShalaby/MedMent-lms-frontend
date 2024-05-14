@@ -4,11 +4,10 @@
       <div class="row gy-4">
         @for(category of categories; track $index){
           <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="features-item">
-              <!-- <img [src]="'http://localhost:8000' + category.logo" [alt]="category.name"> -->
-              <img src="../../../assets/img/categories/anantomy.png" alt="">
+            <a [routerLink]="'./'" [queryParams]="{category: category.id}" class="features-item">
+              <img [src]="'http://localhost:8000' + category.image" [alt]="category.name">
               <h3><a href="" class="stretched-link">{{category.name}}</a></h3>
-            </div>
+            </a>
           </div>
         }
       </div>
