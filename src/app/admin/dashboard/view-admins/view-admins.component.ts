@@ -9,8 +9,12 @@ import { AdminService } from '../../../services/admin/admin.service';
   styleUrl: './view-admins.component.css'
 })
 export class ViewAdminsComponent {
-constructor(private adminService : AdminService){}
-ngOnInit(){
-  
-}
+  constructor(private adminService: AdminService) { }
+
+  ngOnInit() {
+    this.adminService.getAdmins().subscribe(
+      response => console.log(response)
+
+    )
+  }
 }

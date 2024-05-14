@@ -28,7 +28,7 @@ export class AdminService {
   }
 
   login(admin: object) : Observable<any>{
-    return this.http.post(`${this.handleError}/admin/login`, admin, httpOptions)
+    return this.http.post(`${this.baseUrl}/admin/login`, admin, httpOptions)
   }
 
   getAdmins() : Observable<any> {
