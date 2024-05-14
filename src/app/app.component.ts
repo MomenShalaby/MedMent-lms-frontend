@@ -13,7 +13,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet , NavbarComponent , FooterComponent,StayUpdatedComponent ,HttpClientModule ],
+  imports: [RouterOutlet , NavbarComponent , FooterComponent,StayUpdatedComponent ,HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -42,5 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy{
   ngAfterViewInit(): void {
     Aos.init();
   }
+
+  
 }
 

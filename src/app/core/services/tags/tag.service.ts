@@ -15,8 +15,7 @@ export class TagService {
   baseUrl: string = "http://localhost:8000/api";
 
   getTags(): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<any>(`${this.baseUrl}/tags`, { headers });
+    return this.http.get<any>(`${this.baseUrl}/tags`);
   }
   getAllTags(): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
-import { CourseService } from '../../core/services/course/course-service.service';
 import { Course } from '../../core/models/course.model';
 
 @Component({
@@ -14,6 +13,7 @@ import { Course } from '../../core/models/course.model';
 })
 export class CardComponent {
   @Input() courses : Course[] = [];
+  @Input() category: string = "";
   
   ariaValueText(current: number, max: number) {
     return `${current} out of ${max} hearts`;

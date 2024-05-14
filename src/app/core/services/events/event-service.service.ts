@@ -49,6 +49,10 @@ export class EventService {
     return this.http.post<any>(`${this.baseUrl}/events/${id}/attendees`, null, { headers });
   }
 
+  getTagEvents(id: number | undefined): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/events/${id}?include=events`);
+  }
+
   getTokenHeaders(token: string): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
