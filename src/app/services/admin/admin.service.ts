@@ -16,6 +16,8 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
   // private user = new BehaviorSubject<object>({})
+  baseUrl: string = "http://localhost:8000/api";
+  token : string = JSON.parse(localStorage.getItem('token') as string)
 
   private handleError(operation = 'operation', user: object) {
     return (error: any): Observable<object> => {
@@ -25,10 +27,21 @@ export class AdminService {
     };
   }
 
-  login(admin: object) {
-    return this.http.post('http://127.0.0.1:8000/api/admin/login', admin, httpOptions)
-      .pipe(
-        catchError(this.handleError('Admin login', admin))
-      );
+  login(admin: object) : Observable<any>{
+    return this.http.post(`${this.handleError}/admin/login`, admin, httpOptions)
+  }
+
+  getAdmins() : Observable<any> {
+    const headers = this.getTokenHeaders(this.token)
+    return this.http.post(`${this.baseUrl}/admins?include=permissions`, { headers})
+
+  }
+  getTokenHeaders(token: string): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  
   }
 }
+

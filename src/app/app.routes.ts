@@ -26,31 +26,33 @@ import { UpdateCourseComponent } from './admin/dashboard/update-course/update-co
 import { CourseSectionComponent } from './admin/dashboard/course-section/course-section.component';
 import { UpdateEventComponent } from './admin/dashboard/update-event/update-event.component';
 import { DisplayCourseComponent } from './admin/dashboard/display-course/display-course.component';
+import { ViewAdminsComponent } from './admin/dashboard/view-admins/view-admins.component';
 
 export const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
-        title: 'Home'
+        title: 'Home',
     },
 
     {
         path: 'login',
         component: LoginComponent,
-        title: 'Login'
+        title: 'Login',
     },
 
     {
         path: 'register',
         component: RegisterComponent,
-        title: 'Register'
+        title: 'Register',
     },
 
     {
         path: 'course',
         component: CourseComponent,
-        title: 'Course'
-    }, {
+        title: 'Course',
+    },
+    {
         path: 'admin',
         component: AdminComponent,
         title: 'Admin',
@@ -58,8 +60,9 @@ export const routes: Routes = [
             {
                 path: 'login',
                 component: AdminLoginComponent,
-                title: 'Admin login'
-            }, {
+                title: 'Admin login',
+            },
+            {
                 path: 'dashboard',
                 component: DashboardComponent,
                 title: 'Dashboard',
@@ -68,28 +71,34 @@ export const routes: Routes = [
                         path: 'add-event',
                         component: AddEventComponent,
                         title: 'Add event',
-                    }, {
+                    },
+                    {
                         path: 'add-course',
                         component: AddCourseComponent,
                         title: 'Add Course',
-                    }, {
+                    },
+                    {
                         path: 'update-course/:id',
                         component: UpdateCourseComponent,
                         title: 'Update Course',
-                    }, {
+                    },
+                    {
                         path: 'view-courses',
                         component: ViewCoursesComponent,
                         title: 'Courses',
-                    }, {
+                    },
+                    {
                         path: 'courses/:id/sections',
                         component: CourseSectionComponent,
                         title: 'Courses',
-                    }, {
-                    },{
+                    },
+
+                    {
                         path: 'view-courses/:id',
                         component: DisplayCourseComponent,
                         title: 'Display Course',
-                    },{
+                    },
+                    {
                         path: 'courses/:id/sections/:sectionId',
                         component: CourseSectionComponent,
                         title: 'Sections',
@@ -98,91 +107,99 @@ export const routes: Routes = [
                         path: 'view-events',
                         component: ViewEventsComponent,
                         title: 'Events',
-                    }, {
+                    },
+                    {
                         path: 'update-event/:id',
                         component: UpdateEventComponent,
                         title: 'Update Event',
+                    },
+                    {
+                        path: 'view-admins',
+                        component: ViewAdminsComponent,
+                        title: 'View Admins',
                     }
-                ]
-            }]
-
-
-    }, {
+                ],
+            },
+        ],
+    },
+    {
         path: 'forgot-password',
         component: ForgotPasswordComponent,
-        title: 'Forgot password'
-    }, {
+        title: 'Forgot password',
+    },
+    {
         path: 'reset-password',
         component: ResetPasswordComponent,
-        title: 'Reset password'
-    }, {
+        title: 'Reset password',
+    },
+    {
         path: 'reset-password',
         component: ResetPasswordComponent,
-        title: 'Reset password'
-    }
+        title: 'Reset password',
+    },
     //dashboard
-    , {
+    {
         path: 'admin-profile',
         component: ProfileComponent,
-        title: 'Admin profile'
+        title: 'Admin profile',
     },
 
     {
         path: 'about',
         component: AboutComponent,
-        title: 'About'
+        title: 'About',
     },
 
     {
         path: 'contact-us',
         component: ContactUsComponent,
-        title: 'Contact Us'
+        title: 'Contact Us',
     },
     {
         path: 'profile',
         component: ProfileComponent,
-        title: 'profile'
+        title: 'profile',
     },
 
     {
         path: 'support-us',
         component: SupportUsPageComponent,
-        title: 'Support Us'
+        title: 'Support Us',
     },
 
     {
         path: 'events',
         component: SocialActivitiesPageComponent,
-        title: 'Events'
+        title: 'Events',
     },
 
     {
         path: 'event/:id',
         component: EventDetailsComponent,
-        title: 'Event Details'
+        title: 'Event Details',
     },
 
     {
         path: 'course/:id',
         component: CourseDetailsComponent,
-        title: 'Course Details'
+        title: 'Course Details',
     },
 
     {
         path: 'course/:id/vedio',
         component: CourseVideoComponent,
-        title: 'Course Vedio'
+        title: 'Course Vedio',
     },
 
     {
         path: 'membership',
         component: MembershipComponent,
-        title: 'Membership'
+        title: 'Membership',
     },
 
     {
         path: 'interests',
         component: InterestsComponent,
-        title: 'Interests'
+        title: 'Interests',
     },
 ];
