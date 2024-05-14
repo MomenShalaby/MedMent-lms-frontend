@@ -1,0 +1,31 @@
+.container{
+    height: 100vh;
+    padding-top: 80px;
+}
+button[type="submit"], input[type="file"]{
+    background-color: var(--primary-color);
+}
+button[type="submit"]:focus{
+    background-color: var(--primary-color);
+}
+
+/* drop down tags */
+.chips{
+    border: 2px solid #dadada;
+    color: #303030;
+    font-size: 15px;
+    padding: 5px 5px;
+    width: 100px;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.chips:hover{
+    cursor: pointer;
+}
+
+.tagContainer{
+    border-radius: 7px;
+}

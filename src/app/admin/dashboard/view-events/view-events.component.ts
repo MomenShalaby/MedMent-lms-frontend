@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EventService } from '../../../core/services/events/event-service.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Event } from '../../../core/models/event.model';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +15,7 @@ export class ViewEventsComponent {
   events: Event[] = [];
   searchTerm: string = '';
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private router : Router) { }
 
   ngOnInit(): void {
     this.getNewestEvents();
@@ -37,12 +37,14 @@ export class ViewEventsComponent {
       this.eventService.deleteEvent(id).subscribe(
         (response) => {
           console.log(response);
-          // this.
         },
         (error) => {
           console.log(error);
 
         })
     }
+  }
+  editEvent(id: number) {
+    this.router.navigate([`/admin/dashboard/update-event/${id}`])
   }
 }

@@ -13,7 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddCourseComponent } from './admin/dashboard/add-course/add-course.component';
 import { ViewCoursesComponent } from './admin/dashboard/view-courses/view-courses.component';
 import { ViewEventsComponent } from './admin/dashboard/view-events/view-events.component';
-import { ContactUsComponent } from './contact-us-page/contact-us/contact-us.component'; 
+import { ContactUsComponent } from './contact-us-page/contact-us/contact-us.component';
 import { AboutComponent } from './about-page/about/about.component';
 import { SupportUsPageComponent } from './support-us-page/support-us-page.component';
 import { SocialActivitiesPageComponent } from './social-activities-page/social-activities-page.component';
@@ -24,6 +24,7 @@ import { CourseVideoComponent } from './course-video/course-video.component';
 import { InterestsComponent } from './interests/interests.component';
 import { UpdateCourseComponent } from './admin/dashboard/update-course/update-course.component';
 import { CourseSectionComponent } from './admin/dashboard/course-section/course-section.component';
+import { UpdateEventComponent } from './admin/dashboard/update-event/update-event.component';
 
 export const routes: Routes = [
     {
@@ -66,27 +67,30 @@ export const routes: Routes = [
                         path: 'add-event',
                         component: AddEventComponent,
                         title: 'Add event',
-                    },{
+                    }, {
                         path: 'add-course',
                         component: AddCourseComponent,
                         title: 'Add Course',
-                    },{
+                    }, {
                         path: 'update-course/:id',
                         component: UpdateCourseComponent,
                         title: 'Update Course',
-                    },{
+                    }, {
                         path: 'view-courses',
                         component: ViewCoursesComponent,
                         title: 'Courses',
-                    },{
+                    }, {
                         path: 'courses/:id/sections',
                         component: CourseSectionComponent,
                         title: 'Courses',
-                    },
-                    {
+                    }, {
                         path: 'view-events',
                         component: ViewEventsComponent,
                         title: 'Events',
+                    }, {
+                        path: 'update-event/:id',
+                        component: UpdateEventComponent,
+                        title: 'Update Event',
                     }
                 ]
             }]
@@ -129,7 +133,7 @@ export const routes: Routes = [
         title: 'profile'
     },
 
-    {   
+    {
         path: 'support-us',
         component: SupportUsPageComponent,
         title: 'Support Us'

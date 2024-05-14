@@ -17,13 +17,24 @@ export class EventService {
   }
 
   getEventById(id: number | undefined): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/events/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/events/${id}?include=tags`);
   }
 
   addEvent(eventData: object): Observable<any> {
     const token = JSON.parse(localStorage.getItem("token") as string);
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<any>(`${this.baseUrl}/events`, eventData, { headers });
+  }
+  updateEvent(eventData: object, id: number): Observable<any> {
+    const token = JSON.parse(localStorage.getItem("token") as string);
+    const headers = this.getTokenHeaders(token)
+    return this.http.put<any>(`${this.baseUrl}/events/${id}`, eventData, { headers });
+  }
+
+  updateEventImage(eventData: object, id :number): Observable<any> {
+    const token = JSON.parse(localStorage.getItem("token") as string);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.baseUrl}/events/${id}`, eventData, { headers });
   }
 
   deleteEvent(id: number): Observable<any> {
@@ -37,4 +48,13 @@ export class EventService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<any>(`${this.baseUrl}/events/${id}/attendees`, null, { headers });
   }
+
+  getTokenHeaders(token: string): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  
+  }
 }
+

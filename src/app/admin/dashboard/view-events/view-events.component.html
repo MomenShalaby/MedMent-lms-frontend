@@ -1,27 +1,41 @@
-<div class="container">
-    <section id="events" class="events section">
-
-        <div class="container" data-aos="fade-up">
-
-            <div class="row">
-                @for(event of events; track $index){
-                <!-- <div class=" eventCard col-10 col-md-6 col-lg-4 d-flex flex-column align-items-stretch">
-                    <a class="card" [routerLink]="'event/' + event.id">
-                        <div class="card-img">
-                            <img [src]="'http://localhost:8000' + event.image" alt="...">
+<div class="container-fluid">
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>Event name</th>
+                <th>Event time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(event of events; track $index){
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="http://localhost:8000{{ event.image }}" alt="Event image"
+                            style="width: 45px; height: 45px" class="rounded-circle" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1">{{ event.name }}</p>
+                            <p class="text-muted mb-0">{{ event["short description"] }}</p>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><a href="">{{event.name}}</a></h5>
-                            <p class="fst-italic text-center">{{event.start_date | date: 'MMM d, y, h:mm a'}}</p>
-                            <p class="card-text">{{event["short description"]}}</p>
-                        </div>
-                    </a>
-                    <button class="btn btn-danger" (click)="deleteEvent(event.id, event.name)">Delete</button>
-                </div> -->
-                }
-            </div>
-
-        </div>
-
-    </section>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">{{event.start_date | date: 'MMM d, y, h:mm a'}}</p>
+                    <p class="text-muted mb-0">{{event.end_date | date: 'MMM d, y, h:mm a'}}</p>
+                </td>
+                <td>
+                    <button type="button" (click)="editEvent(event.id)"
+                        class="btn btn-link btn-sm btn-rounded">
+                        Edit
+                    </button>
+                    <button type="button" (click)="deleteEvent(event.id,event.name)"
+                        class="btn btn-link text-danger btn-sm btn-rounded">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>

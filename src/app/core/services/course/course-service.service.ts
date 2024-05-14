@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UpdateCourse } from '../../models/course.model';
 
-const token = localStorage.getItem("token");
+const token = JSON.parse(localStorage.getItem("token")as string);
 
 @Injectable({
   providedIn: 'root'
