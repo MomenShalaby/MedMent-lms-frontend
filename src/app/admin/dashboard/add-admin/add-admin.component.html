@@ -1,0 +1,103 @@
+<div class="container">
+  <form [formGroup]="addAdminForm" (ngSubmit)="addAdmin()" novalidate>
+    <p class="card-title">Add New Admin</p>
+    <hr />
+    <div class="card p-3 my-3">
+      <div class="row mb-3">
+        <label for="fname" class="col-md-4 col-lg-3 col-form-label"
+          >First name</label
+        >
+        <div class="col-md-8 col-lg-9">
+          <input
+            name="fname"
+            type="text"
+            class="form-control"
+            id="fname"
+            formControlName="fname"
+          />
+          @if(addAdminForm.controls['fname'].touched && addAdminForm.controls['fname'].invalid){
+            @if (addAdminForm.controls['fname'].errors?.['required']){
+            <p class="text-danger">* First name is required</p>
+            }
+            }
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="lname" class="col-md-4 col-lg-3 col-form-label"
+          >Last name</label
+        >
+        <div class="col-md-8 col-lg-9">
+          <input
+            name="lname"
+            type="text"
+            class="form-control"
+            id="lname"
+            formControlName="lname"
+          />
+          @if(addAdminForm.controls['lname'].touched && addAdminForm.controls['lname'].invalid){
+            @if (addAdminForm.controls['lname'].errors?.['required']){
+            <p class="text-danger">* Last name is required</p>
+            }
+            }
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="email" class="col-md-4 col-lg-3 col-form-label"
+          >Email</label
+        >
+        <div class="col-md-8 col-lg-9">
+          <input
+            name="email"
+            type="text"
+            class="form-control"
+            id="email"
+            formControlName="email"
+          />
+          @if(addAdminForm.controls['email'].touched && addAdminForm.controls['email'].invalid){
+            @if (addAdminForm.controls['email'].errors?.['email']){
+            <p class="text-danger">* Enter a valid email</p>
+            } @else if (addAdminForm.controls['email'].errors?.['required']){
+            <p class="text-danger">* Email is required</p>
+            }
+            }
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="password" class="col-md-4 col-lg-3 col-form-label"
+          >Password</label
+        >
+        <div class="col-md-8 col-lg-9">
+          <input
+            name="password"
+            type="password"
+            class="form-control"
+            id="password"
+            formControlName="password"
+          />
+          @if(addAdminForm.controls['password'].touched && addAdminForm.controls['password'].invalid){
+            @if (addAdminForm.controls['password'].errors?.['minlength']){
+            <p class="text-danger">* Password must be at least 8 characters</p>
+            } @else if (addAdminForm.controls['password'].errors?.['required']){
+            <p class="text-danger">* Password is required</p>
+            }
+            }
+        </div>
+      </div>
+
+      <input type="hidden" formControlName="permissions" [value]="permissionsArr"/>
+      <!-- <div class="row mb-3">
+            <label class="col-md-4 col-lg-3 col-form-label">Permission</label>
+            <div class="col-md-8 col-lg-9">
+                <select class="form-select py-2" multiple formControlName="permission">
+                    @for(permession of permission; track $index){
+                    <option [value]="permession.id">{{ permession.name }}</option>
+                    }
+                </select>
+            </div>
+        </div> -->
+      <div class="row mb-3">
+        <button type="submit" class="mt-5 col-11 btn btn-primary m-auto">Add</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -3,13 +3,13 @@
         <div>
             <app-admin-navbar></app-admin-navbar>
         </div>
-            <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
             <!-- Sidebar -->
-            <div class="col-2">
+            <div class="d-none d-md-flex col-2 col-md-2">
                 <app-sidebar></app-sidebar>
             </div>
             <!-- Main Content ""-->
-            <div class="col-10 ">
+            <div class="col-10  d-md-12">
                 <router-outlet></router-outlet>
             </div>
         </div>

@@ -68,7 +68,6 @@ export class UpdateEventComponent {
           description: new FormControl(this.eventData.description),
           start_date: new FormControl(this.eventData.start_date),
           end_date: new FormControl(this.eventData.end_date),
-          image: new FormControl(this.image),
           tag: new FormControl(this.eventTags),
         });
         this.updateEventImageForm = new FormGroup({
@@ -138,6 +137,8 @@ export class UpdateEventComponent {
       if (Array.isArray(value)) {
         value.forEach((item: any) => {
           formData.append(key + '[]', item);
+          console.log(key+'[]',item);
+          
         });
       } else {
         // If it's not an array, append it directly

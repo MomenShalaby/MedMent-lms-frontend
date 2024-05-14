@@ -37,6 +37,7 @@ export class ViewEventsComponent {
       this.eventService.deleteEvent(id).subscribe(
         (response) => {
           console.log(response);
+          window.location.href ='admin/dashboard/view-events';
         },
         (error) => {
           console.log(error);
@@ -46,5 +47,9 @@ export class ViewEventsComponent {
   }
   editEvent(id: number) {
     this.router.navigate([`/admin/dashboard/update-event/${id}`])
+  }
+
+  viewEvent(id: number) {
+    this.router.navigate([`/admin/dashboard/view-event/${id}`])
   }
 }

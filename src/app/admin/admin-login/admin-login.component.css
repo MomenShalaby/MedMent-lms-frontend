@@ -1,7 +1,9 @@
-button {
+
+button[type="submit"]{
   background-color: var(--primary-color);
+
 }
-button:hover {
+button[type="submit"]:focus{
   background-color: var(--primary-color);
 }
 a {

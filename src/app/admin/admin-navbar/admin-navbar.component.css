@@ -30,7 +30,8 @@
     height: 60px;
     box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
     background-color: #fff;
-    padding-left: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
     /* Toggle Sidebar Button */
     /* Search Bar */
   }
@@ -123,6 +124,7 @@
   
   .header-nav .nav-profile {
     color: #012970;
+    cursor : pointer
   }
   
   .header-nav .nav-profile img {

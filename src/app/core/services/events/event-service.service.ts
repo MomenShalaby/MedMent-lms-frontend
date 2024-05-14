@@ -17,7 +17,7 @@ export class EventService {
   }
 
   getEventById(id: number | undefined): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/events/${id}?include=tags`);
+    return this.http.get<any>(`${this.baseUrl}/events/${id}?include=attendees,attendees.user,tags`);
   }
 
   addEvent(eventData: object): Observable<any> {
@@ -28,7 +28,7 @@ export class EventService {
   updateEvent(eventData: object, id: number): Observable<any> {
     const token = JSON.parse(localStorage.getItem("token") as string);
     const headers = this.getTokenHeaders(token)
-    return this.http.put<any>(`${this.baseUrl}/events/${id}`, eventData, { headers });
+    return this.http.post<any>(`${this.baseUrl}/events/${id}?_method=PUT`, eventData, { headers });
   }
 
   updateEventImage(eventData: object, id :number): Observable<any> {

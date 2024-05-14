@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersService } from '../../services/users/users.service';
 
 @Component({
   selector: 'app-admin-navbar',
@@ -11,7 +12,15 @@ export class AdminNavbarComponent {
 
 
 
-  constructor() { }
+  constructor(private userService : UsersService) { }
 
-
+logout(){
+  this.userService.reset();
+  localStorage.removeItem('userData');
+  localStorage.removeItem('token');
+  if(localStorage.getItem('role')){
+    localStorage.removeItem('role')
+  }
+  window.location.href = '/';
+}
 }

@@ -1,8 +1,6 @@
-<aside id="sidebar" 
-class="sidebar navbar-collapse"
-[ngClass]="{'sidebar-collapse': isSidebarCollapsed}">
-<!-- <aside id="sidebar" class="sidebar " id="sidebarCollapse"> -->
-    <!-- <div class="sidebar-toggler" (click)="toggleSidebar()">
+<aside id="sidebar" class="sidebar navbar-collapse" [ngClass]="{'sidebar-collapse': isSidebarCollapsed}">
+  <!-- <aside id="sidebar" class="sidebar " id="sidebarCollapse"> -->
+  <!-- <div class="sidebar-toggler" (click)="toggleSidebar()">
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div> -->
 
@@ -54,22 +52,12 @@ class="sidebar navbar-collapse"
       </a>
       <ul id="permissions-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="components-alerts.html">
-            <i class="bi bi-circle"></i><span>View all permissions</span>
-          </a>
-        </li>
-        <li>
-          <a href="components-accordion.html">
-            <i class="bi bi-circle"></i><span>Add a permission</span>
-          </a>
-        </li>
-        <li>
           <a [routerLink]="['view-admins']">
             <i class="bi bi-circle"></i><span>View all admins</span>
           </a>
         </li>
         <li>
-          <a href="components-accordion.html">
+          <a [routerLink]="['add-admin']">
             <i class="bi bi-circle"></i><span>Add an admin</span>
           </a>
         </li>

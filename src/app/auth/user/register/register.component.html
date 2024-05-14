@@ -73,11 +73,11 @@
             <option [value]="country.id ">{{ country.name }}</option>
             }
           </select>
-          <!-- @if(registerForm.controls['country_id'].touched && registerForm.controls['country_id'].invalid){
+          @if(registerForm.controls['country_id'].touched && registerForm.controls['country_id'].invalid){
           @if (registerForm.controls['country_id'].errors?.['required']){
           <p class="text-danger mt-0">* Country is required</p>
           }
-          } -->
+          }
           <select class=" form-select my-2 py-3 mx-2 border-0 border-bottom" name="state_id" id="state"
             formControlName="state_id">
             <option value="" disabled selected>Choose your state</option>
@@ -85,11 +85,11 @@
             <option [value]="state.id ">{{ state.name }}</option>
             }
           </select>
-          <!-- @if(registerForm.controls['state_id'].touched && registerForm.controls['state_id'].invalid){
+          @if(registerForm.controls['state_id'].touched && registerForm.controls['state_id'].invalid){
           @if (registerForm.controls['state_id'].errors?.['required']){
           <p class="text-danger mt-0">* State is required</p>
           }
-          } -->
+          }
         </div>
         <div class="form-floating mb-3">
           <input type="password" class="form-control border-0 border-bottom" id="floatingPassword"

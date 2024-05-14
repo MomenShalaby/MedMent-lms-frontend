@@ -27,6 +27,12 @@ import { CourseSectionComponent } from './admin/dashboard/course-section/course-
 import { UpdateEventComponent } from './admin/dashboard/update-event/update-event.component';
 import { DisplayCourseComponent } from './admin/dashboard/display-course/display-course.component';
 import { ViewAdminsComponent } from './admin/dashboard/view-admins/view-admins.component';
+import { AddAdminComponent } from './admin/dashboard/add-admin/add-admin.component';
+import { ViewEventComponent } from './admin/dashboard/view-event/view-event.component';
+import { AdminGuard } from './core/gaurds/admin.guard';
+import { UnauthorisedComponent } from './unauthorised/unauthorised.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { EditAdminComponent } from './admin/dashboard/edit-admin/edit-admin.component';
 
 export const routes: Routes = [
     {
@@ -66,6 +72,7 @@ export const routes: Routes = [
                 path: 'dashboard',
                 component: DashboardComponent,
                 title: 'Dashboard',
+                canActivate : [AdminGuard],
                 children: [
                     {
                         path: 'add-event',
@@ -117,6 +124,18 @@ export const routes: Routes = [
                         path: 'view-admins',
                         component: ViewAdminsComponent,
                         title: 'View Admins',
+                    },{
+                        path: 'add-admin',
+                        component: AddAdminComponent,
+                        title: 'Add Admin',
+                    },{
+                        path: 'view-event/:id',
+                        component: ViewEventComponent,
+                        title: 'Event',
+                    },{
+                        path: 'edit-admin/:id',
+                        component: EditAdminComponent,
+                        title: 'Edit Admin',
                     }
                 ],
             },
@@ -201,5 +220,13 @@ export const routes: Routes = [
         path: 'interests',
         component: InterestsComponent,
         title: 'Interests',
-    },
+    },{
+        path: 'unauthorized',
+        component: UnauthorisedComponent,
+        title: 'Unauthorized',
+    },{
+        path: '**',
+        component: NotFoundComponent,
+        title: 'Page Not Found',
+    }
 ];

@@ -24,18 +24,28 @@ export class ProfileComponent {
 
   ngOnInit(): void {
 
-    this.userService.fetchLoggedUser().subscribe(
-      (response) => {
-        this.user = (response as any).data.user;
-        this.user.avatar = `http://localhost:8000${this.user.avatar}`;
-        console.log(this.user);
-        
-      },
-      (error) => {
-        this.router.navigate(['/login'])
-        console.error('Error fetching user:', error);
-      }
-    );
+    if(localStorage.getItem('token') ){
+      console.log('fff');
+      
+
+      this.userService.fetchLoggedUser().subscribe(
+        (response) => {
+          this.user = (response as any).data.user;
+          this.user.avatar = `http://localhost:8000${this.user.avatar}`;
+          console.log(this.user);
+          
+        },
+        (error) => {
+          this.router.navigate(['/login'])
+          console.error('Error fetching user:', error);
+        }
+      );
+    } else {
+      console.log('eeee');
+      
+      this.router.navigate(['/login'])
+    }
+
   }
 
 

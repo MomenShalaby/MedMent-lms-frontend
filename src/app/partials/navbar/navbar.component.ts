@@ -65,6 +65,9 @@ export class NavbarComponent {
 
     localStorage.removeItem('userData');
     localStorage.removeItem('token');
+    if(localStorage.getItem('role')){
+      localStorage.removeItem('role')
+    }
     window.location.href = '/';
   }
 

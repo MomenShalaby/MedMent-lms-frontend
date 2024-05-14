@@ -1,3 +1,51 @@
 <div class="container">
-<p>view-admins works!</p>
+  @if(!admins || !admins[0]){
+  <p class="text-center fs-4 text-muted mt-5">
+    You are the only admin here,
+    <a [routerLink]="['/admin/dashboard/add-admin']" class="text-decolation-none text-info"
+      >add another admin</a
+    >
+  </p>
+  }@else {
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Admin Name</th>
+        <th>Admin Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (admin of admins; track $index) {
+      <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>
+          {{ admin.fname + " " + admin.lname }}
+        </td>
+        <td>{{ admin.email }}</td>
+
+        <td>
+          <button
+            type="button"
+            (click)="editAdmin(admin.id)"
+            class="btn btn-link btn-sm btn-rounded"
+
+          >
+            Edit
+          </button>
+
+          <button
+            type="button"
+            (click)="deleteAdmin(admin.id, admin.fname)"
+            class="btn btn-link text-danger btn-sm btn-rounded"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
 </div>
