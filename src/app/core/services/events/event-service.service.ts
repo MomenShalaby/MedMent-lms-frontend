@@ -34,7 +34,7 @@ export class EventService {
   updateEventImage(eventData: object, id :number): Observable<any> {
     const token = JSON.parse(localStorage.getItem("token") as string);
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>(`${this.baseUrl}/events/${id}`, eventData, { headers });
+    return this.http.post<any>(`${this.baseUrl}/events/${id}/image?_method=PUT`, eventData, { headers });
   }
 
   deleteEvent(id: number): Observable<any> {
