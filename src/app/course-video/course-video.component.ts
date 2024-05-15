@@ -42,6 +42,8 @@ export class CourseVideoComponent implements OnInit{
         next: (res) => {
           this.course = res.data;
           this.lectures = this.course.sections.flatMap(x => x.lectures);
+          console.log(this.lectures);
+          
           this.getRelatedCourses(this.course.prerequisites);
         },
         error: (err) => {
@@ -95,6 +97,13 @@ export class CourseVideoComponent implements OnInit{
     window.scroll({
       behavior: 'smooth',
       top: 0
-    })
+    });
+  }
+
+  videoLink(videoUrl: string): string{
+    if(videoUrl.startsWith('/')){
+      return "http://localhost:8000" + videoUrl;
+    }
+    return videoUrl;
   }
 }

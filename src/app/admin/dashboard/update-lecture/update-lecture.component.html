@@ -1,0 +1,31 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="editLecture()">
+        <p class="card-title">Edit lecture</p>
+        <hr />
+        <div class="card p-3 my-3">
+            <div class="row mb-3">
+                <label for="title" class="col-md-4 col-lg-3 col-form-label">Lecture Tilte</label>
+                <div class="col-md-8 col-lg-9">
+                    <input type="text" class="form-control" id="title" formControlName="title">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="content" class="col-md-4 col-lg-3 col-form-label">Content</label>
+                <div class="col-md-8 col-lg-9">
+                    <input type="text" class="form-control" id="content" formControlName="content">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-lg-3 col-form-label">Lecture Video</label>
+                <div class="col-md-8 col-lg-9">
+                    <input type="file" class="form-control" accept="video/*" (change)="changeVideo($event)">
+                </div>
+                <iframe class="col-md-4 col-lg-3 mt-3" [src]="videoLink(lecture.video) | safe" do-not-allow="autoplay" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+    </form>
+</div>

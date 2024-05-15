@@ -107,7 +107,7 @@ export class UpdateCourseComponent implements OnInit{
       formData.append('image', image, image.name);
       this.courseService.updateCourseImage(this.courseId, formData).subscribe({
         next: (res) => {
-          console.log(res);
+          this.selectedCourse = res.data
         },
         error: (err) => {
           console.log(err);

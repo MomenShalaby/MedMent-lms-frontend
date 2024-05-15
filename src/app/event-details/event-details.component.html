@@ -24,7 +24,12 @@
                             <p>{{event.description}}</p>
                         </div>
 
-                        <button class="btn btn-primary" (click)="enrollToEvent()">Interested & Going</button>
+                        <button class="btn btn-primary d-flex gap-2 align-items-center" (click)="enrollToEvent()">
+                            @if(isAttend){
+                                <i class="fa-regular fa-calendar-check fs-4"></i>
+                            }
+                            Interested & Going
+                        </button>
 
                     </div><!-- post-body end -->
                 </div><!-- post content end -->

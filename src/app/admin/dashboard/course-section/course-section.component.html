@@ -1,0 +1,47 @@
+<section class="container">
+    <h4 class="card-title fw-bold">{{course.name}}</h4>
+    <div class="d-flex justify-content-between mt-4">
+        <p>
+            <span class="fw-bold">Section</span>
+            {{section.title}}
+        </p>
+        <a class="btn btn-primary" [routerLink]="'add-lecture'">
+            <i class="fa-solid fa-plus"></i>
+            Add Lecture
+        </a>
+    </div>
+    <table class="table align-middle mt-4 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>Lecture</th>
+                <th>Video</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(lecture of section.lectures; track $index){
+            <tr>
+                <td>
+                    <p class="fw-bold mb-1">{{ lecture.title }}</p>
+                    <p class="text-muted mb-0">{{ lecture.content }}</p>
+                </td>
+                <td>
+                    <iframe class="embed-responsive-item" [src]="videoLink(lecture.video) | safe" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" do-not-allow="autoplay" allowfullscreen></iframe>
+                </td>
+                <td>
+                    <button type="button"
+                        class="btn btn-link btn-sm btn-rounded">
+                        <a [routerLink]="'edit-lecture/' + lecture.id">
+                            Edit
+                        </a>
+                    </button>
+                    <button type="button" (click)="deleteLecture(lecture.id)"
+                        class="btn btn-link text-danger btn-sm btn-rounded">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>

@@ -34,7 +34,7 @@ export interface Section {
     course_section_id: number
     title: string
     content: string
-    video_url: string
+    video: string
     created_at: string
     updated_at: string
   }

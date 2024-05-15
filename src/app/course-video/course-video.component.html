@@ -9,7 +9,7 @@
         <div class="post specific-post">
           <div class="post-media post-video">
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" [src]="lectures[currentLecture].video_url | safe" allowfullscreen></iframe>
+              <iframe class="embed-responsive-item" [src]="videoLink(lectures[currentLecture].video) | safe" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
 

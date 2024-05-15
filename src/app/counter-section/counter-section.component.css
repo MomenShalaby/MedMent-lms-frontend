@@ -81,7 +81,7 @@ section{
       --num: 0;
     }
     to {
-      --num: 5000;
+      --num: 200;
     }
   }
   @keyframes counter2 {
@@ -89,7 +89,7 @@ section{
       --num: 0;
     }
     to {
-      --num: 25000;
+      --num: 1000;
     }
   }
   @keyframes counter3 {
