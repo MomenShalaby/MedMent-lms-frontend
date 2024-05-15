@@ -2,12 +2,20 @@
     <form [formGroup]="form" (ngSubmit)="addCourse()">
         <p class="card-title">Add new course</p>
         <hr />
+        @if(errorMessage){
+            <div class="alert alert-danger text-center">{{ errorMessage }}</div>
+        }
+        @if(successMessage){
+            <div class="alert alert-success text-center">{{successMessage}}</div>
+        }
         <div class="card p-3 my-3">
             <div class="row mb-3">
                 <label for="name" class="col-md-4 col-lg-3 col-form-label">Course Name</label>
                 <div class="col-md-8 col-lg-9">
                     <input type="text" class="form-control" id="name" formControlName="course_name">
-
+                    @if(form.controls.course_name.touched && form.controls.course_name.errors){
+                        <span class="text-danger">Course name is required *</span>
+                    }
                 </div>
             </div>
 
@@ -15,6 +23,9 @@
                 <label for="description" class="col-md-4 col-lg-3 col-form-label">Course Description</label>
                 <div class="col-md-8 col-lg-9">
                     <input type="text" class="form-control" id="description" formControlName="description">
+                    @if(form.controls.description.touched && form.controls.description.errors){
+                        <span class="text-danger">Description is required *</span>
+                    }
                 </div>
             </div>
 
@@ -23,18 +34,23 @@
                 <label class="col-md-4 col-lg-3 col-form-label">Course image</label>
                 <div class="col-md-8 col-lg-9">
                     <input type="file" class="form-control" accept="image/*" (change)="imageChange($event)">
+                    @if(!courseImage && isImageTouched){
+                        <span class="text-danger">Course image is required *</span>
+                    }
                 </div>
             </div>
-
 
             <div class="row mb-3">
                 <label class="col-md-4 col-lg-3 col-form-label">category</label>
                 <div class="col-md-8 col-lg-9">
                     <select class="form-select py-2" formControlName="category_id">
                         @for(category of categories; track $index){
-                        <option [value]="category.id">{{category.name}}</option>
+                            <option [value]="category.id">{{category.name}}</option>
                         }
                     </select>
+                    @if(form.controls.category_id.touched && form.controls.category_id.errors){
+                        <span class="text-danger">Category is required *</span>
+                    }
                 </div>
             </div>
 
@@ -51,6 +67,9 @@
                 <label class="col-md-4 col-lg-3 col-form-label">course_title</label>
                 <div class="col-md-8 col-lg-9">
                     <input type="text" class="form-control" formControlName="course_title">
+                    @if(form.controls.course_title.touched && form.controls.course_title.errors){
+                        <span class="text-danger">Course title is required *</span>
+                    }
                 </div>
             </div>
 
@@ -118,8 +137,10 @@
             <div class="row mb-3">
                 <label class="col-md-4 col-lg-3 col-form-label">price</label>
                 <div class="col-md-8 col-lg-9">
-
-                    <input type="number" class="form-control" formControlName="price">
+                    <input type="number" class="form-control" formControlName="price" min="0">
+                    @if(form.controls.price.touched && form.controls.price.errors){
+                        <span class="text-danger">Price can't be - value</span>
+                    }
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Add</button>

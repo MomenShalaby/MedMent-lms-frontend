@@ -15,22 +15,25 @@ export class AddCourseComponent implements OnInit{
 
   categories: Category[] = [];
   courseImage: any = null;
+  isImageTouched: boolean = false;
   form = new FormGroup({
     course_name: new FormControl<string>("", [Validators.required]),
     description: new FormControl<string>("", [Validators.required]),
     category_id: new FormControl<number>(0, [Validators.required]),
     instructor: new FormControl<string>("", []),
     course_title: new FormControl<string>("", [Validators.required]),
-    video: new FormControl<string>("", [Validators.required]),
+    video: new FormControl<string>("", []),
     label: new FormControl<string>("", []),
-    duration: new FormControl<string>("", [Validators.required]),
+    duration: new FormControl<string>("", []),
     resources: new FormControl<string>("", []),
     certificate: new FormControl<string>("", []),
     prerequisites: new FormControl<string>("", []),
     featured: new FormControl<string>("", []),
-    status: new FormControl<string>("", []), //active || inactive: default
-    price: new FormControl<number>(0, [Validators.required])
+    status: new FormControl<string>("inactive", []), //active || inactive: default
+    price: new FormControl<number>(0, [Validators.min(1)])
   });
+  errorMessage: string = "";
+  successMessage: string = "";
 
   constructor(private courseService: CourseService,
     private categoryService: CategoryService,
@@ -53,12 +56,18 @@ export class AddCourseComponent implements OnInit{
 
   imageChange(event: any){
     this.courseImage = event.target.files[0]; 
+    this.isImageTouched = true;
   }
 
   addCourse(){
     if (!this.form.valid) {
       this.form.markAllAsTouched();
+      this.isImageTouched = true;
       return
+    }
+    if(!this.courseImage){
+      this.isImageTouched = true;
+      return;
     }
     const formData = new FormData();
     formData.append('course_name', this.form.controls.course_name.value!);
@@ -78,10 +87,11 @@ export class AddCourseComponent implements OnInit{
     formData.append('price', this.form.controls.price.value!.toString());
     this.courseService.addCourse(formData).subscribe({
       next: (res) => {
-        console.log(res);
+        this.errorMessage = "";
+        this.successMessage = 'Course added successfully';
       },
       error: (err) => {
-        console.log(err);
+        this.errorMessage = err.error.message;
       }
     });
   }
