@@ -37,7 +37,9 @@ export class ProfileComponent {
       );
     } else {
       this.router.navigate(['/login'])
+      return
     }
+
 
   }
 

@@ -25,9 +25,7 @@ export class ViewAdminsComponent {
   }
 
   deleteAdmin(id : number, name : string){
-    console.log(name);
-    console.log(id);
-    
+
     if (confirm(`Are you sure you want to delete "${name}" from admins?`)) {
       this.adminService.deleteAdmin(id).subscribe(
         (response) => {

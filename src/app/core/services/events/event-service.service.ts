@@ -13,7 +13,7 @@ export class EventService {
   token: string = JSON.parse(localStorage.getItem("token") as string);
 
   getEvents(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/events`);
+    return this.http.get<any>(`${this.baseUrl}/events?include=attendees`);
   }
 
   getEventById(id: number | undefined): Observable<any> {
@@ -41,6 +41,12 @@ export class EventService {
     const token = JSON.parse(localStorage.getItem("token") as string);
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete<any>(`${this.baseUrl}/events/${id}`, { headers });
+  }
+
+  deleteAttendee(id : number){
+    const token = JSON.parse(localStorage.getItem("token") as string);   
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(`${this.baseUrl}/events/${id}/attendees`, { headers });
   }
 
   enrollToEvent(id: number | undefined): Observable<any> {

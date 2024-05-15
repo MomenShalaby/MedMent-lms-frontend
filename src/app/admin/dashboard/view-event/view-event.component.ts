@@ -15,6 +15,7 @@ export class ViewEventComponent {
   eventData: any;
   image?: string;
   baseUrl = `http://localhost:8000`;
+  attendees : any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,9 +27,24 @@ export class ViewEventComponent {
   ngOnInit() {
     this.eventService.getEventById(this.eventId).subscribe((response) => {
       this.eventData = response.data;
-      console.log(response.data);
+      this.attendees = response.data.attendees
+      console.log(this.attendees);
       
       this.image = this.baseUrl + response.data.image;
     });
+  }
+
+  deleteAttendee(id : number, name :string){
+    if (confirm(`Are you sure you want to delete "${name}" from attendees?`)) {
+      this.eventService.deleteAttendee(id).subscribe(
+        (response) => {
+          console.log(response);
+          window.location.href =`admin/dashboard/view-event/${this.eventData.id}`;
+        },
+        (error) => {
+          console.log(error);
+
+        })
+  }
   }
 }
