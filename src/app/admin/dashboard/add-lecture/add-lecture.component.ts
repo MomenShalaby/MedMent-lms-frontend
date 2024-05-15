@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CourseService } from '../../../core/services/course/course-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-lecture',
@@ -20,7 +20,8 @@ export class AddLectureComponent implements OnInit{
   });
 
   constructor(private courseService: CourseService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +43,10 @@ export class AddLectureComponent implements OnInit{
     const formData = new FormData();
     formData.append('title', this.form.controls.title.value!);
     formData.append('content', this.form.controls.content.value!);
-    formData.append('image', this.lectureVideo, this.lectureVideo.name);    
+    formData.append('video', this.lectureVideo, this.lectureVideo.name);    
     this.courseService.addCourseLecture(this.courseId, this.sectionId, formData).subscribe({
       next: (res) => {
-        console.log(res);
+        this.router.navigate([`admin/dashboard/courses/${this.courseId}/sections/${this.sectionId}`]);
       },
       error: (err) => {
         console.log(err);

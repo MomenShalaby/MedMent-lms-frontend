@@ -97,6 +97,13 @@ export class CourseVideoComponent implements OnInit{
     window.scroll({
       behavior: 'smooth',
       top: 0
-    })
+    });
+  }
+
+  videoLink(videoUrl: string): string{
+    if(videoUrl.startsWith('/')){
+      return "http://localhost:8000" + videoUrl;
+    }
+    return videoUrl;
   }
 }

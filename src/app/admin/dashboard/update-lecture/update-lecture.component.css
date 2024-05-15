@@ -1,0 +1,10 @@
+.container{
+    padding-top: 80px;
+}
+
+button[type="submit"]{
+    background-color: var(--primary-color);
+}
+button[type="submit"]:focus{
+    background-color: var(--primary-color);
+}

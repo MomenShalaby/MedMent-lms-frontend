@@ -101,6 +101,13 @@ export class CourseService {
     return this.http.delete<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures/${lectureId}`, {headers});
   }
 
+  updateLectureVideo(id: number | undefined, sectionId: number | undefined,
+    lectureId: number | undefined, course: FormData) : Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.http.post<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures/${lectureId}/video?_method=PUT`,
+      course, {headers});
+  }
+
   searchCourse(courseName: string | undefined) : Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/search/${courseName}`);
   }

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../../core/services/course/course-service.service';
 import { Course, Section } from '../../../core/models/course.model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { SafePipe } from '../../../core/pipe/safe.pipe';
 
 @Component({
   selector: 'app-course-section',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, SafePipe],
   templateUrl: './course-section.component.html',
   styleUrl: './course-section.component.css'
 })
@@ -22,7 +23,6 @@ export class CourseSectionComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.getCourseById();
     this.activatedRoute.paramMap.subscribe( params => {
       this.courseId = Number(params.get("id"));
       this.sectionId = Number(params.get("sectionId"));
@@ -63,5 +63,12 @@ export class CourseSectionComponent implements OnInit{
         console.log(err);
       }
     });
+  }
+
+  videoLink(videoUrl: string): string{
+    if(videoUrl.startsWith('/')){
+      return "http://localhost:8000" + videoUrl;
+    }
+    return videoUrl;
   }
 }
