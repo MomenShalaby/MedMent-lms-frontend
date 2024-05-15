@@ -42,6 +42,8 @@ export class CourseVideoComponent implements OnInit{
         next: (res) => {
           this.course = res.data;
           this.lectures = this.course.sections.flatMap(x => x.lectures);
+          console.log(this.lectures);
+          
           this.getRelatedCourses(this.course.prerequisites);
         },
         error: (err) => {

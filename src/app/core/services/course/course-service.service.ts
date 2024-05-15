@@ -96,9 +96,9 @@ export class CourseService {
       course, {headers});
   }
 
-  deleteCourseLecture(id: number | undefined, sectionId: number | undefined) : Observable<any> {
+  deleteCourseLecture(id: number | undefined, sectionId: number | undefined, lectureId: number | undefined) : Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.http.delete<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}`, {headers});
+    return this.http.delete<any>(`${this.baseUrl}/courses/${id}/sections/${sectionId}/lectures/${lectureId}`, {headers});
   }
 
   searchCourse(courseName: string | undefined) : Observable<any> {

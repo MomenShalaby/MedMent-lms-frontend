@@ -3,18 +3,6 @@ section{
 }
 
 
-button {
-  border: none;
-  font-weight: 500;
-}
-
-button:hover, button:focus {
-  background: rgba(var(--accent-color-rgb), 0.8) !important;
-}
-
-button:hover a{
-  color: #fff;
-}
 
 /* ======================================== */
 
