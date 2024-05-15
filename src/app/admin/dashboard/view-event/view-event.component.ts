@@ -27,9 +27,7 @@ export class ViewEventComponent {
   ngOnInit() {
     this.eventService.getEventById(this.eventId).subscribe((response) => {
       this.eventData = response.data;
-      this.attendees = response.data.attendees
-      console.log(this.attendees);
-      
+      this.attendees = response.data.attendees      
       this.image = this.baseUrl + response.data.image;
     });
   }
@@ -38,7 +36,6 @@ export class ViewEventComponent {
     if (confirm(`Are you sure you want to delete "${name}" from attendees?`)) {
       this.eventService.deleteAttendee(id).subscribe(
         (response) => {
-          console.log(response);
           window.location.href =`admin/dashboard/view-event/${this.eventData.id}`;
         },
         (error) => {

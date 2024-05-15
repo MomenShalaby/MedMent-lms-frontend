@@ -57,7 +57,6 @@ export class UpdateEventComponent {
     this.eventService.getEventById(this.eventId).subscribe(
       (response) => {
         this.eventData = response.data;
-        console.log(this.eventData);
         this.image = `http://localhost:8000/${this.eventData.image}`;
         // this.eventTags = this.eventData.tags.map((tag: { id: any; }) => tag.id);
 

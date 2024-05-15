@@ -82,20 +82,17 @@ export class RegisterComponent {
           localStorage.setItem('token', JSON.stringify((response as any).data.token));
           this.userService.setIsAuthenticated(true)
           this.userService.setLoggedUser((response as any).data.user)  
-          console.log('User added successfully:', response);
           this.router.navigate(['/interests']);
         },
         error => {
-          console.error('Error creating post:', error);
+          console.error('Error :', error);
           const values = Object.values(error.error.errors) as string[];
           this.errorMessage = values[0];
-          console.log(this.errorMessage);
 
         }
       );
     }
 
-    console.log("ddddddd", this.registerForm.value);
   }
 }
 // [disabled]="registerForm.invalid"

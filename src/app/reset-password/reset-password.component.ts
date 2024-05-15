@@ -16,9 +16,6 @@ export class ResetPasswordComponent {
   errorMessage?: string;
   resetPassword: FormGroup = new FormGroup({});
   constructor(private activatedRoute: ActivatedRoute, private passwordService: PasswordService, private router: Router) { }
-  // console.log(this.success);
-
-
   ngOnInit(): void {
     this.resetPassword = new FormGroup({
       otp: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
@@ -40,11 +37,8 @@ export class ResetPasswordComponent {
     if (!this.resetPassword.valid) {
       this.resetPassword.markAllAsTouched();
     } else {
-      console.log(this.resetPassword.value);
-
       this.passwordService.resetPassword(this.resetPassword.value).subscribe(
         response => {
-          console.log('email sent successfully:', response);
           this.router.navigate(['/login'], { queryParams: { updated: true } });
         },
         error => {
@@ -52,8 +46,6 @@ export class ResetPasswordComponent {
           console.error('Error sending email:', error);
           const values = error.error.error.message;
           this.errorMessage = values;
-          console.log(this.errorMessage);
-
         }
       );
     }

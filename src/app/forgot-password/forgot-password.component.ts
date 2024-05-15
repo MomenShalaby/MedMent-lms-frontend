@@ -38,25 +38,16 @@ export class ForgotPasswordComponent {
 
   handleForgot() {
     if (!this.forgotPassword.valid) {
-      console.log('not valid');
-
       this.forgotPassword.markAllAsTouched();
     } else {
-      console.log(this.forgotPassword.value);
-
       this.passwordService.forgetPassword(this.forgotPassword.value).subscribe(
         response => {
-          console.log('email sent successfully:', response);
           this.router.navigate(['/reset-password'], { queryParams: { success: true } });
         },
         error => {
           console.error('Error sending email:', error);
           const values = Object.values(error.error.errors) as string[];
           this.errorMessage = values[0];
-
-
-          console.log(this.errorMessage);
-
         }
       );
     }

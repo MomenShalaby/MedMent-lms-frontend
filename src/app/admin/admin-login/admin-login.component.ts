@@ -18,7 +18,6 @@ export class AdminLoginComponent {
 
   constructor(private activatedRoute: ActivatedRoute, private adminService: AdminService, private router: Router, private userService: UsersService) {
 
-    console.log(this.activatedRoute.snapshot.queryParams['success']);
     this.adminLoginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
@@ -33,9 +32,6 @@ export class AdminLoginComponent {
     } else {
       this.adminService.login(this.adminLoginForm.value).subscribe(
         response => {
-          console.log('Logged in successfully:', response);
-          // console.log(response.);
-
           localStorage.setItem('userData', JSON.stringify((response as any).data.user));
           localStorage.setItem('token', JSON.stringify((response as any).data.token));
           localStorage.setItem('role', JSON.stringify((response as any).data.user.roles[0].name));
@@ -52,7 +48,5 @@ export class AdminLoginComponent {
         }
       );
     }
-    console.log(this.adminLoginForm.value);
-
   }
 }

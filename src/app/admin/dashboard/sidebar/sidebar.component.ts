@@ -14,9 +14,7 @@ export class SidebarComponent {
 
   constructor() { }
 
-  toggleSidebar(): void {
-    console.log('gggg');
-    
+  toggleSidebar(): void {    
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 

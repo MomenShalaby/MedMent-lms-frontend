@@ -43,9 +43,7 @@ export class InterestsComponent implements OnInit {
   addRemoveTag(e: Event, tagId: number, i: number) {
     var index = this.userTags.indexOf(tagId);
     if (index == -1) {
-      this.userTags.push(tagId);
-      console.log(this.userTags);
-      
+      this.userTags.push(tagId);     
       (e.target as HTMLElement).style.borderColor = this.borderColor[i % 10];
     }
     else {
@@ -55,9 +53,7 @@ export class InterestsComponent implements OnInit {
 
   }
 
-  addUserTags() {
-    console.log('ll');
-    
+  addUserTags() {   
     this.tagService.addUserTags(this.interestsForm.value).subscribe({
       next: (res) => {
         console.log(res);

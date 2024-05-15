@@ -22,9 +22,7 @@ export class TagService {
     return this.http.get<any>(`${this.baseUrl}/tags/all`, { headers });
   }
 
-  addUserTags(tags: number[]): Observable<any> {
-    console.log(tags);
-    
+  addUserTags(tags: number[]): Observable<any> {   
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`

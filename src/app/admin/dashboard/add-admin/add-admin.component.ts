@@ -33,9 +33,7 @@ export class AddAdminComponent {
   ngOnInit() {
     this.adminService.getPermissions().subscribe(
       (response) => {
-        this.permissionsArr = response.data.map( (item: { name: string }) => item.name);
-        console.log(this.permissionsArr);
-        
+        this.permissionsArr = response.data.map( (item: { name: string }) => item.name);        
         this.addAdminForm.controls['permissions'].setValue(this.permissionsArr)
       },
       (error) => {
@@ -45,9 +43,6 @@ export class AddAdminComponent {
   }
 
   addAdmin() {
-    console.log(this.permissionsArr);
-console.log(this.addAdminForm.value);
-
     if (!this.addAdminForm.valid) {
       this.addAdminForm.markAllAsTouched();
       return
@@ -55,7 +50,6 @@ console.log(this.addAdminForm.value);
      this.adminService.addAdmin(this.addAdminForm.value).subscribe(
       
         (res) => {
-          console.log(res)
           this.router.navigate(['/admin/dashboard/view-admins'])
         } , 
         (error) =>{

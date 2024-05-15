@@ -16,9 +16,7 @@ export class ViewAdminsComponent {
   ngOnInit() {
     this.adminService.getAdmins().subscribe(
       response => {
-        this.admins = response.data;
-        console.log(this.admins);
-        
+        this.admins = response.data;        
       }
 
     )
@@ -29,7 +27,6 @@ export class ViewAdminsComponent {
     if (confirm(`Are you sure you want to delete "${name}" from admins?`)) {
       this.adminService.deleteAdmin(id).subscribe(
         (response) => {
-          console.log(response);
           window.location.href ='admin/dashboard/view-admins';
         },
         (error) => {

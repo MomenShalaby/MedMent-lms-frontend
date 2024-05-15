@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TagsService } from '../../../services/tags.service';
-import { TagSelectionComponent } from '../../../partials/tag-selection/tag-selection.component';
 import { EventService } from '../../../core/services/events/event-service.service';
 // import { FormData } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-event',
   standalone: true,
-  imports: [ReactiveFormsModule, TagSelectionComponent],
+  imports: [ReactiveFormsModule],
   templateUrl: './add-event.component.html',
   styleUrl: './add-event.component.css'
 })
@@ -50,8 +49,6 @@ export class AddEventComponent {
   }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    console.log(file);
-
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -78,8 +75,6 @@ export class AddEventComponent {
 
     if (index === -1) {
       this.eventTags.push(tagId);
-      console.log(this.eventTags);
-
       (e.target as HTMLElement).style.borderColor = this.borderColor[i % 10];
     } else {
       this.eventTags.splice(index, 1);
@@ -91,8 +86,6 @@ export class AddEventComponent {
   addEvent() {
 
     const formData = new FormData();
-    console.log(this.addEventForm.value);
-
     // Append form field values to the FormData object
     Object.keys(this.addEventForm.value).forEach(key => {
       const value = this.addEventForm.value[key];
@@ -110,7 +103,6 @@ export class AddEventComponent {
 
     this.eventService.addEvent(formData).subscribe(
       response => {
-        console.log(response);
         this.successMessage = 'Event added successfully';
       }, error => {
         console.log(error);

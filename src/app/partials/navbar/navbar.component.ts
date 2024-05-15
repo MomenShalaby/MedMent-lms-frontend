@@ -41,7 +41,6 @@ export class NavbarComponent {
           this.userService.getLoggedUser().subscribe(
             (user) => {
               this.user = user;
-              // console.log(this.user);
             },
             (error) => {
               console.error('Error egtting user data from service:', error)

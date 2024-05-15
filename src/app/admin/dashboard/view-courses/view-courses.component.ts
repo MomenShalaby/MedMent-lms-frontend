@@ -33,7 +33,6 @@ export class ViewCoursesComponent implements OnInit{
   deleteCourse(id: number){
     this.courseService.deleteCourse(id).subscribe({
       next: (res) => {
-        console.log(res);
         this.getCourses();
       },
       error: (err) =>{

@@ -45,8 +45,6 @@ export class EditProfileComponent {
 
   ngOnInit(): void {
     this.avatar = this.user.avatar;
-    console.log(this.avatar);
-
     //avatar form
     this.editAvatarForm = new FormGroup({
       avatar: new FormControl(this.avatar),
@@ -86,14 +84,11 @@ export class EditProfileComponent {
     this.editGeneralForm
       .get('country_id')
       ?.valueChanges.subscribe((countryId) => {
-        console.log(countryId);
-
         if (countryId) {
           // Fetch states for the selected country
           this.stateService.getStates(countryId).subscribe(
             (states) => {
               this.states = states.data.country.states;
-              console.log(this.states);
             },
             (error) => {
               console.error('Error fetching states:', error);
@@ -106,24 +101,18 @@ export class EditProfileComponent {
   editAvatar() {
     const formData = new FormData();
     const file = this.editAvatarForm.get('avatar')?.value;
-    console.log(file);
-    console.log(this.editAvatarForm.value);
-
     if (file instanceof File) {
       formData.append('avatar', file);
-      console.log('llll', formData);
     }
 
     // Send the form data to the backend
     this.editProfileService.changeAvatar(this.token, formData).subscribe(
       (response) => {
-        console.log(response);
         this.avatarSuccess = 'Avatar updated successfully';
       },
       (error) => {
         console.log(error);
         // this.avatarError = error.error.errors.avatar[0];
-        console.log(this.avatarError);
       }
     );
   }
@@ -144,13 +133,10 @@ export class EditProfileComponent {
     }
   }
   editGeneral() {
-    console.log(this.editGeneralForm.value);
-
     this.editProfileService
       .changeGeneralInfo(this.token, this.editGeneralForm.value)
       .subscribe(
         (response) => {
-          console.log(response);
           this.generalSuccess = 'Info updated successfully';
         },
         (error) => {
@@ -198,8 +184,6 @@ export class EditProfileComponent {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    console.log(file);
-
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {

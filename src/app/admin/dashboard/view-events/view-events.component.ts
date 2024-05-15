@@ -36,7 +36,6 @@ export class ViewEventsComponent {
     if (confirm(`Are you sure you want to delete "${name}" event?`)) {
       this.eventService.deleteEvent(id).subscribe(
         (response) => {
-          console.log(response);
           window.location.href ='admin/dashboard/view-events';
         },
         (error) => {
