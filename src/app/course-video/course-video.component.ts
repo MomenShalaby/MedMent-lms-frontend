@@ -41,9 +41,7 @@ export class CourseVideoComponent implements OnInit{
       this.courseService.getCourseById(this.courseId).subscribe({
         next: (res) => {
           this.course = res.data;
-          this.lectures = this.course.sections.flatMap(x => x.lectures);
-          console.log(this.lectures);
-          
+          this.lectures = this.course.sections.flatMap(x => x.lectures);          
           this.getRelatedCourses(this.course.prerequisites);
         },
         error: (err) => {
@@ -101,7 +99,7 @@ export class CourseVideoComponent implements OnInit{
   }
 
   videoLink(videoUrl: string): string{
-    if(videoUrl.startsWith('/')){
+    if(videoUrl && videoUrl.startsWith('/')){
       return "http://localhost:8000" + videoUrl;
     }
     return videoUrl;
