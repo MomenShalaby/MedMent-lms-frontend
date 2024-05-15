@@ -88,7 +88,7 @@
           <div class="pt-2">
             <label for="uploadImage" class="btn btn-secondary btn-sm" title="Upload new event image">
               <i class="bi bi-upload"></i> Upload
-              <input type="file" id="uploadImage" ="image/*" style="display: none"
+              <input type="file" id="uploadImage" accept="image/*" style="display: none"
                 (change)="onFileSelected($event)" formControlName="avatar" />
             </label>
             @if(imageSrc){
