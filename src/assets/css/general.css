@@ -17,6 +17,8 @@
     --accent-color-rgb: 37, 150, 190;
     --contrast-color: #ffffff;
     --contrast-color-rgb: 255, 255, 255;
+    --bs-btn-bg: #2ea4c1;
+    --bs-btn-border-color: #2ea4c1;
   }
   
   /* Nav Menu Colors */
@@ -214,4 +216,20 @@ section,
   font-weight: 700;
   font-family: var(--nav-font);
   text-transform: uppercase;
+}
+
+.btn-primary{
+  background-color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important; 
+}
+
+.btn-outline-primary, .btn-outline-primary:hover{
+  border-color: var(--accent-color) !important; 
+  background-color: transparent !important;
+  color: var(--accent-color) !important;
+}
+
+.btn-outline-primary:hover{
+  background-color: var(--accent-color) !important;
+  color: #fff !important;
 }

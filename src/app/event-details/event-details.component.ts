@@ -24,7 +24,6 @@ export class EventDetailsComponent implements OnInit{
   constructor(private eventService: EventService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private userService: UsersService,
     private tagService: TagService
   ) {}
 
@@ -70,7 +69,8 @@ export class EventDetailsComponent implements OnInit{
 
   getUserEvents(){
     let token = JSON.parse(localStorage.getItem('token') as string);
-    if(!token){
+    let role = JSON.parse(localStorage.getItem('role') as string);
+    if(!token || role == "super_admin"){
       this.isAttend = false;
       return
     }

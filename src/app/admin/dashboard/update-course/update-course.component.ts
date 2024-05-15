@@ -22,9 +22,9 @@ export class UpdateCourseComponent implements OnInit{
     description: new FormControl<string>("", [Validators.required]),
     instructor: new FormControl<string>("", []),
     course_title: new FormControl<string>("", [Validators.required]),
-    video: new FormControl<string>("", [Validators.required]),
+    video: new FormControl<string>("", []),
     label: new FormControl<string>("", []),
-    duration: new FormControl<string>("", [Validators.required]),
+    duration: new FormControl<string>("", []),
     resources: new FormControl<string>("", []),
     certificate: new FormControl<string>("", []),
     prerequisites: new FormControl<string>("", []),
@@ -32,6 +32,8 @@ export class UpdateCourseComponent implements OnInit{
     status: new FormControl<string>("", []), //active || inactive: default
     price: new FormControl<number>(0, [Validators.required])
   });
+  errorMessage: string = "";
+  successMessage: string = "";
 
   constructor(private courseService: CourseService,
     private categoryService: CategoryService,
@@ -55,9 +57,9 @@ export class UpdateCourseComponent implements OnInit{
             description: new FormControl<string>(this.selectedCourse.description, [Validators.required]),
             instructor: new FormControl<string>(this.selectedCourse.instructor, []),
             course_title: new FormControl<string>(this.selectedCourse.title, [Validators.required]),
-            video: new FormControl<string>(this.selectedCourse.video, [Validators.required]),
+            video: new FormControl<string>(this.selectedCourse.video, []),
             label: new FormControl<string>(this.selectedCourse.label, []),
-            duration: new FormControl<string>(this.selectedCourse.duration, [Validators.required]),
+            duration: new FormControl<string>(this.selectedCourse.duration, []),
             resources: new FormControl<string>(this.selectedCourse.resources, []),
             certificate: new FormControl<string>(this.selectedCourse.certificate, []),
             prerequisites: new FormControl<string>(this.selectedCourse.prerequisites, []),
@@ -92,10 +94,11 @@ export class UpdateCourseComponent implements OnInit{
     var course = this.form.value as UpdateCourse;
     this.courseService.updateCourse(this.courseId, course).subscribe({
       next: (res) => {
-        console.log(res);
+        this.errorMessage = "";
+        this.successMessage = 'Course updated successfully';
       },
       error: (err) => {
-        console.log(err);
+        this.errorMessage = err.error.message;
       }
     });
   }
@@ -107,10 +110,11 @@ export class UpdateCourseComponent implements OnInit{
       formData.append('image', image, image.name);
       this.courseService.updateCourseImage(this.courseId, formData).subscribe({
         next: (res) => {
+          this.errorMessage = "";
           this.selectedCourse = res.data
         },
         error: (err) => {
-          console.log(err);
+          this.errorMessage = err.error.message;
         }
       });
     }
