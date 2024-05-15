@@ -21,6 +21,7 @@ export class SupportUsPageComponent {
   });
 
   errorMessage: string = "";
+  success: boolean = false;
 
   constructor(private contactUsService: ContactUsService){}
 
@@ -33,10 +34,11 @@ export class SupportUsPageComponent {
     const conactDetails = this.form.value as ContactUs;
     this.contactUsService.sendMessage(conactDetails).subscribe({
       next: (res) => {
-
+        this.errorMessage = "";
+        this.success = true;
+        this.form.reset();
       },
       error: (err) => {
-        console.log(err);
         this.errorMessage = err.error.message;
       }
     });
