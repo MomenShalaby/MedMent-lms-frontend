@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import keenSlider, { KeenSliderInstance } from 'keen-slider';
 
@@ -18,6 +18,8 @@ export class CarouselComponent implements AfterViewInit{
   slider: KeenSliderInstance | null = null
   interval: any = null
 
+  constructor(private cdRef: ChangeDetectorRef) {}
+
   ngAfterViewInit() {
 	if(this.sliderRef){
 		this.slider = new keenSlider(this.sliderRef.nativeElement, {
@@ -27,7 +29,8 @@ export class CarouselComponent implements AfterViewInit{
 			duration: 3000,
 		  },
 		  detailsChanged: (s) => {
-			this.opacities = s.track.details.slides.map((slide) => slide.portion)
+			this.opacities = s.track.details.slides.map((slide) => slide.portion);
+      this.cdRef.detectChanges();
 		  },
 		});
 		this.interval = setInterval(this.slider.next, 3000)

@@ -53,12 +53,17 @@ export class EventService {
     return this.http.get<any>(`${this.baseUrl}/events/${id}?include=events`);
   }
 
+  getUserEvent(): Observable<any> {
+    const token = JSON.parse(localStorage.getItem("token") as string);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.baseUrl}/events/me`, {headers});
+  }
+
   getTokenHeaders(token: string): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-  
   }
 }
 

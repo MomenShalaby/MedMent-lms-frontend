@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { PageTitleComponent } from '../../partials/page-title/page-title.component';
 import keenSlider, { KeenSliderInstance } from 'keen-slider';
 import { CommonModule } from '@angular/common';
@@ -17,6 +17,8 @@ export class AboutComponent implements AfterViewInit{
   slider: KeenSliderInstance | null = null
   interval: any = null
 
+  constructor(private cdRef: ChangeDetectorRef) {}
+
   ngAfterViewInit() {
     setTimeout(() => {
 	});
@@ -28,10 +30,11 @@ export class AboutComponent implements AfterViewInit{
 			duration: 3000,
 		  },
 		  detailsChanged: (s) => {
-			this.opacities = s.track.details.slides.map((slide) => slide.portion)
+        this.opacities = s.track.details.slides.map((slide) => slide.portion);
+        this.cdRef.detectChanges();
 		  },
 		});
-		this.interval = setInterval(this.slider.next, 4000)
+		this.interval = setInterval(this.slider.next, 4000);
 	}
   }
 

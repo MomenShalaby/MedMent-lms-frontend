@@ -19,7 +19,7 @@ export class EventDetailsComponent implements OnInit{
   event: EventWithAttendees = {} as EventWithAttendees;
   eventId: number = 0;
   tags: Tag[] = [];
-  isAuthenticated: boolean = false;
+  isAttend: boolean = false;
 
   constructor(private eventService: EventService,
     private activatedRoute: ActivatedRoute,
@@ -32,6 +32,7 @@ export class EventDetailsComponent implements OnInit{
     this.getEventById();
     this.getEvents();
     this.getTags();
+    this.getUserEvents();
   }
 
   getEventById(){
@@ -55,9 +56,30 @@ export class EventDetailsComponent implements OnInit{
     if(!token){
       this.router.navigate(['/login']);
     }
-    this.eventService.enrollToEvent(this.eventId).subscribe({
+    if(!this.isAttend){
+      this.eventService.enrollToEvent(this.eventId).subscribe({
+        next: (res) => {
+          this.getUserEvents();
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
+  }
+
+  getUserEvents(){
+    let token = JSON.parse(localStorage.getItem('token') as string);
+    if(!token){
+      this.isAttend = false;
+      return
+    }
+    this.eventService.getUserEvent().subscribe({
       next: (res) => {
-        console.log(res);
+        const userEvents = res.data;        
+        if(userEvents.findIndex((x: any) => x.event_id == this.eventId) != -1){
+          this.isAttend = true;
+        }
       },
       error: (err) => {
         console.log(err);
