@@ -21,7 +21,7 @@ export class EditProfileService {
   //avatar routes
   changeAvatar(token: string, avatar: object) {
     const headers = this.getTokenHeaders(token);
-    return this.http.post(`${this.baseUrl}/avatar?_method=PUT`, avatar, { headers })
+    return this.http.post(`${this.baseUrl}/avatar?_method=POST`, avatar, { headers })
   }
 
   removeAvatar(token: string) {
@@ -36,7 +36,7 @@ export class EditProfileService {
   // general info routes
   changeGeneralInfo(token: string, info: object) {
     const headers = this.getTokenHeaders(token);
-    return this.http.post(`${this.baseUrl}/info?_method=PATCH`, info, { headers })
+    return this.http.patch(`${this.baseUrl}/info`, info, { headers })
   }
 
   // end general info routes

@@ -27,14 +27,14 @@ export class EventService {
   }
   updateEvent(eventData: object, id: number): Observable<any> {
     const token = JSON.parse(localStorage.getItem("token") as string);
-    const headers = this.getTokenHeaders(token)
-    return this.http.post<any>(`${this.baseUrl}/events/${id}?_method=PUT`, eventData, { headers });
+    const headers = this.getTokenHeaders(token)   
+    return this.http.put<any>(`${this.baseUrl}/events/${id}?include=tags`, eventData, { headers });
   }
 
-  updateEventImage(eventData: object, id :number): Observable<any> {
+  updateEventImage(eventData: FormData, id :number): Observable<any> {
     const token = JSON.parse(localStorage.getItem("token") as string);
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>(`${this.baseUrl}/events/${id}/image?_method=PUT`, eventData, { headers });
+    return this.http.put<any>(`${this.baseUrl}/events/${id}/image`, eventData, { headers });
   }
 
   deleteEvent(id: number): Observable<any> {

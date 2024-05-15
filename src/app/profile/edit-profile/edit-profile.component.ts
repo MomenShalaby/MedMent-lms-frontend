@@ -122,7 +122,7 @@ export class EditProfileComponent {
       },
       (error) => {
         console.log(error);
-        this.avatarError = error.error.errors.avatar[0];
+        // this.avatarError = error.error.errors.avatar[0];
         console.log(this.avatarError);
       }
     );

@@ -21,6 +21,7 @@ export class UpdateEventComponent {
   successMessage: string = '';
   eventData: any;
   eventId: number;
+  file : any ;
 
   borderColor: string[] = [
     '#3182c8',
@@ -38,7 +39,7 @@ export class UpdateEventComponent {
   constructor(
     private tagService: TagsService,
     private eventService: EventService,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {
     this.eventId = this.activatedRoute.snapshot.params['id'];
   }
@@ -56,7 +57,8 @@ export class UpdateEventComponent {
     this.eventService.getEventById(this.eventId).subscribe(
       (response) => {
         this.eventData = response.data;
-        this.image = `http://localhost:8000${this.eventData.image}`;
+        console.log(this.eventData);
+        this.image = `http://localhost:8000/${this.eventData.image}`;
         // this.eventTags = this.eventData.tags.map((tag: { id: any; }) => tag.id);
 
         this.updateEventForm = new FormGroup({
@@ -85,8 +87,7 @@ export class UpdateEventComponent {
   }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    console.log(file);
-
+this.file = file;
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -114,37 +115,18 @@ export class UpdateEventComponent {
 
     if (index === -1) {
       this.eventTags.push(tagId);
-      console.log(this.eventTags);
       (e.target as HTMLElement).style.borderColor = this.borderColor[i % 10];
     } else {
       this.eventTags.splice(index, 1);
       (e.target as HTMLElement).style.borderColor = '#dadada';
     }
+    console.log(this.eventTags);
   }
 
-
   updateEvent() {
-    const formData = new FormData();
-    console.log(this.updateEventForm.value);
-
-    // Append form field values to the FormData object
-    Object.keys(this.updateEventForm.value).forEach((key) => {
-      const value = this.updateEventForm.value[key];
-
-      // Check if the value is an array
-      if (Array.isArray(value)) {
-        value.forEach((item: any) => {
-          formData.append(key + '[]', item);
-          console.log(key+'[]',item);
-          
-        });
-      } else {
-        // If it's not an array, append it directly
-        formData.append(key, value);
-      }
-    });
-
-    this.eventService.updateEvent(formData, this.eventId).subscribe(
+    const body: any = this.updateEventForm.value;
+    body['tag'] = this.eventTags;
+    this.eventService.updateEvent(body, this.eventId).subscribe(
       (response) => {
         console.log(response);
         this.successMessage = 'Event updated successfully';
@@ -158,10 +140,12 @@ export class UpdateEventComponent {
 
   updateEventImage() {
     const formImage = new FormData();
-    Object.keys(this.updateEventImageForm.value).forEach((key) => {
-      const value = this.updateEventImageForm.value[key];
-      formImage.append(key, value);
-    });
+    // Object.keys(this.updateEventImageForm.value).forEach((key) => {
+    //   const value = this.updateEventImageForm.value[key];
+      formImage.append('image', this.file);
+    // });
+    console.log(this.updateEventImageForm.value);
+
     this.eventService.updateEventImage(formImage, this.eventId).subscribe(
       (response) => {
         console.log(response);
