@@ -36,6 +36,7 @@ export class SupportUsPageComponent {
       next: (res) => {
         this.errorMessage = "";
         this.success = true;
+        this.form.reset();
       },
       error: (err) => {
         this.errorMessage = err.error.message;

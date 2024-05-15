@@ -26,7 +26,6 @@ export class ContactUsComponent {
   constructor(private contactUsService: ContactUsService){}
 
   send(e: Event){
-    debugger
     e.preventDefault();
     this.form.markAllAsTouched();
     if(!this.form.valid) return;
@@ -36,6 +35,7 @@ export class ContactUsComponent {
       next: (res) => {
         this.errorMessage = "";
         this.success = true;
+        this.form.reset();
       },
       error: (err) => {
         this.errorMessage = err.error.message;
