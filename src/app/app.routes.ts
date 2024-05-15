@@ -27,6 +27,8 @@ import { CourseSectionComponent } from './admin/dashboard/course-section/course-
 import { UpdateEventComponent } from './admin/dashboard/update-event/update-event.component';
 import { DisplayCourseComponent } from './admin/dashboard/display-course/display-course.component';
 import { ViewAdminsComponent } from './admin/dashboard/view-admins/view-admins.component';
+import { AddLectureComponent } from './admin/dashboard/add-lecture/add-lecture.component';
+import { UpdateLectureComponent } from './admin/dashboard/update-lecture/update-lecture.component';
 
 export const routes: Routes = [
     {
@@ -102,6 +104,16 @@ export const routes: Routes = [
                         path: 'courses/:id/sections/:sectionId',
                         component: CourseSectionComponent,
                         title: 'Sections',
+                    },
+                    {
+                        path: 'courses/:id/sections/:sectionId/add-lecture',
+                        component: AddLectureComponent,
+                        title: 'Add Lecture',
+                    },
+                    {
+                        path: 'courses/:id/sections/:sectionId/edit-lecture/:lectureId',
+                        component: UpdateLectureComponent,
+                        title: 'Edit Lecture',
                     },
                     {
                         path: 'view-events',

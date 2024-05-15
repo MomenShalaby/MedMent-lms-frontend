@@ -99,3 +99,15 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 1200px) {
+  .support-img{
+    width: 300px;
+  }
+}
+
+@media (max-width: 990px) {
+  .support-img{
+    display: none;
+  }
+}

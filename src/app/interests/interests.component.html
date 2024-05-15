@@ -1,7 +1,7 @@
 <section class="row justify-content-center align-items-center">
     <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center flex-column gap-2">
         <h1 class="text-center">What are you interested in?</h1>
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, commodi aliquid pariatur voluptatem fugiat non blanditiis tempore facilis iusto libero corporis inventore in accusantium architecto rem, eum laudantium molestias sit.</p>
+        <p class="text-center">Don't miss out on valuable opportunities! Customize your event notifications by choosing your preferred event tags below. We'll keep you informed about the latest events in the medical field that match your interests and professional goals.</p>
         <ul class="d-flex justify-content-center align-items-center list-unstyled gap-3 my-4">
             @for(tag of tags; track $index){
             <li class="chips" (click)="addRemoveTag($event, tag.id, $index)">{{tag.name}}</li>

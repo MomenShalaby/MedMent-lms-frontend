@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../../core/services/course/course-service.service';
-import { Course } from '../../../core/models/course.model';
-import { ActivatedRoute } from '@angular/router';
+import { Course, Section } from '../../../core/models/course.model';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-course-section',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './course-section.component.html',
   styleUrl: './course-section.component.css'
 })
 export class CourseSectionComponent implements OnInit{
 
   course: Course = {} as Course;
+  section: Section = {} as Section;
   courseId: number = 0;
+  sectionId: number = 0;
 
   constructor(private courseService: CourseService,
     private activatedRoute: ActivatedRoute
@@ -21,24 +23,45 @@ export class CourseSectionComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCourseById();
-  }
-
-  getCourseById(){
     this.activatedRoute.paramMap.subscribe( params => {
       this.courseId = Number(params.get("id"));
-      if(!this.courseId) return;
-      this.courseService.getCourseById(this.courseId).subscribe({
-        next: (res) => {
-          this.course = res.data;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
+      this.sectionId = Number(params.get("sectionId"));
+      if(!this.courseId || !this.sectionId) return;
+      this.getCourseById();
+      this.getSectionById();
     });
   }
 
-  updateSection(){
-    
+  getCourseById(){
+    this.courseService.getCourseById(this.courseId).subscribe({
+      next: (res) => {
+        this.course = res.data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  getSectionById(){
+    this.courseService.getCourseSection(this.courseId, this.sectionId).subscribe({
+      next: (res) => {
+        this.section = res.data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  deleteLecture(lectureId: number){
+    this.courseService.deleteCourseLecture(this.courseId, this.sectionId, lectureId).subscribe({
+      next: (res) => {
+        this.getSectionById();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
 }

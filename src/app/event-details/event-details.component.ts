@@ -51,7 +51,8 @@ export class EventDetailsComponent implements OnInit{
 
   enrollToEvent(){
     debugger
-    if(!this.userService.isAuthenticated.value){
+    let token = JSON.parse(localStorage.getItem('token') as string);
+    if(!token){
       this.router.navigate(['/login']);
     }
     this.eventService.enrollToEvent(this.eventId).subscribe({
