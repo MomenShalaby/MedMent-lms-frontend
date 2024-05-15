@@ -1,5 +1,5 @@
 <div class="container">
-  @if(!admins || !admins[0]){
+  @if(!admins[0] && admins){
   <p class="text-center fs-4 text-muted mt-5">
     You are the only admin here,
     <a [routerLink]="['/admin/dashboard/add-admin']" class="text-decolation-none text-info"

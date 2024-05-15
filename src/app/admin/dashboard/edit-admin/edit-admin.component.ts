@@ -31,19 +31,15 @@ export class EditAdminComponent {
   ngOnInit() {
     this.adminService.getPermissions().subscribe(
       (response) => {
-        this.permissionsArr = response.data.map( (item: { name: string }) => item.name);
-        console.log(this.permissionsArr);
-        
+        this.permissionsArr = response.data.map( (item: { name: string }) => item.name);        
         this.editAdminForm.controls['permissions'].setValue(this.permissionsArr)
       },
       (error) => {
-        console.log(error);
       }
     );    
     this.adminService.getAdminById(this.adminId).subscribe(
       response =>{
         this.adminData = response.data.admin
-        console.log(this.adminData);
         this.editAdminForm.controls['fname'].setValue(this.adminData.fname)
         this.editAdminForm.controls['lname'].setValue(this.adminData.lname)
         this.editAdminForm.controls['email'].setValue(this.adminData.email)
@@ -52,9 +48,6 @@ export class EditAdminComponent {
   }
 
   editAdmin() {
-    console.log(this.permissionsArr);
-console.log(this.editAdminForm.value);
-
     if (!this.editAdminForm.valid) {
       this.editAdminForm.markAllAsTouched();
       return
@@ -62,11 +55,9 @@ console.log(this.editAdminForm.value);
      this.adminService.editAdmin(this.adminId,this.editAdminForm.value).subscribe(
       
         (res) => {
-          console.log(res)
           this.router.navigate(['/admin/dashboard/view-admins'])
         } , 
         (error) =>{
-        console.log(error);
         }
       );
   }
