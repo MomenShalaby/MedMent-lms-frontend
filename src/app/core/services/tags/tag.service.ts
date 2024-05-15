@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-const token = localStorage.getItem('token') as string;
+const token = JSON.parse(localStorage.getItem('token') as string)
 @Injectable({
   providedIn: 'root'
 })

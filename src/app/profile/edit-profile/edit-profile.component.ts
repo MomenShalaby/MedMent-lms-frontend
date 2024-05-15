@@ -19,6 +19,7 @@ export class EditProfileComponent {
   editAvatarForm: FormGroup = new FormGroup({});
   editGeneralForm: FormGroup = new FormGroup({});
   editEducationForm: FormGroup = new FormGroup({});
+  editExperienceForm: FormGroup = new FormGroup({});
   @ViewChild('block') block?: ElementRef;
 
   token: string = JSON.parse(localStorage.getItem('token') as string)
@@ -33,10 +34,8 @@ export class EditProfileComponent {
   constructor(private countryService: CountryService, private stateService: StateService, private editProfileService: EditProfileService) { }
 
   ngOnInit(): void {
-    console.log(this.user);
     this.avatar = this.user.avatar;
     console.log(this.avatar);
-
 
     //avatar form 
     this.editAvatarForm = new FormGroup({
@@ -149,33 +148,40 @@ export class EditProfileComponent {
       })
   }
 
+  editEducation(){
+
+  }
+
+  editExperience(){
+
+  }
 
   addEducation() {
-    this.block?.nativeElement.insertAdjacentHTML('beforeend', `
-    <div class="card p-3 my-3">
-    <div class="row mb-3">
-        <label for="degree" class="col-md-4 col-lg-3 col-form-label">Degree Name</label>
-        <div class="col-md-8 col-lg-9">
-            <input name="degree" type="text" class="form-control" id="degree"
-                 />
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="start_date" class="col-md-4 col-lg-3 col-form-label">Start date</label>
-        <div class="col-md-8 col-lg-9">
-            <input type="date" name="start_date" class="form-control" id="start_date"
-                />
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="end_date" class="col-md-4 col-lg-3 col-form-label">End date</label>
-        <div class="col-md-8 col-lg-9">
-            <input type="date" name="end_date" class="form-control" id="end_date"
-                />
-        </div>
-    </div>
-</div>
-    `);
+//     this.block?.nativeElement.insertAdjacentHTML('beforeend', `
+//     <div class="card p-3 my-3">
+//     <div class="row mb-3">
+//         <label for="degree" class="col-md-4 col-lg-3 col-form-label">Degree Name</label>
+//         <div class="col-md-8 col-lg-9">
+//             <input name="degree" type="text" class="form-control" id="degree"
+//                  />
+//         </div>
+//     </div>
+//     <div class="row mb-3">
+//         <label for="start_date" class="col-md-4 col-lg-3 col-form-label">Start date</label>
+//         <div class="col-md-8 col-lg-9">
+//             <input type="date" name="start_date" class="form-control" id="start_date"
+//                 />
+//         </div>
+//     </div>
+//     <div class="row mb-3">
+//         <label for="end_date" class="col-md-4 col-lg-3 col-form-label">End date</label>
+//         <div class="col-md-8 col-lg-9">
+//             <input type="date" name="end_date" class="form-control" id="end_date"
+//                 />
+//         </div>
+//     </div>
+// </div>
+//     `);
 
   }
 
@@ -196,7 +202,6 @@ export class EditProfileComponent {
       };
       reader.readAsDataURL(file);
     }
-
   }
 
   cancelImage() {

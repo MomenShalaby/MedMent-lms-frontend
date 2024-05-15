@@ -27,26 +27,18 @@ export class ChangePasswordComponent {
 
   changePassword() {
     if (!this.changePasswordForm.valid) {
-      console.log('not valid');
-      console.log(this.changePasswordForm.value);
       this.changePasswordForm.markAllAsTouched();
     } else {
-      console.log(this.changePasswordForm.value);
-      console.log(this.token);
-      
+     
       this.passwordService.changePassword(this.changePasswordForm.value, this.token).subscribe(
         response => {
-          console.log('changed password successfull:', response);
           this.successMessage =(response as any).message ;
           this.errorMessage = '';
-          console.log(this.successMessage);
         },
         error => {
-          console.error('Error changing password:', error);
           const values = Object.values(error.error.errors) as string[];
           this.errorMessage = values[0];
           this.successMessage = '';
-          console.log(this.errorMessage);
         })
     }
   }

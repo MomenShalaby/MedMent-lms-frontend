@@ -71,7 +71,7 @@ export class UpdateEventComponent {
           tag: new FormControl(this.eventTags),
         });
         this.updateEventImageForm = new FormGroup({
-          image: new FormControl(this.eventData.image),
+          image: new FormControl(''),
         });
       },
       (error) => {
@@ -116,7 +116,6 @@ export class UpdateEventComponent {
     if (index === -1) {
       this.eventTags.push(tagId);
       console.log(this.eventTags);
-
       (e.target as HTMLElement).style.borderColor = this.borderColor[i % 10];
     } else {
       this.eventTags.splice(index, 1);
@@ -159,12 +158,12 @@ export class UpdateEventComponent {
   }
 
   updateEventImage() {
-    const formData = new FormData();
-    Object.keys(this.updateEventForm.value).forEach((key) => {
-      const value = this.updateEventForm.value[key];
-      formData.append(key, value);
+    const formImage = new FormData();
+    Object.keys(this.updateEventImageForm.value).forEach((key) => {
+      const value = this.updateEventImageForm.value[key];
+      formImage.append(key, value);
     });
-    this.eventService.updateEventImage(formData, this.eventId).subscribe(
+    this.eventService.updateEventImage(formImage, this.eventId).subscribe(
       (response) => {
         console.log(response);
         this.successMessage = 'Event image updated successfully';

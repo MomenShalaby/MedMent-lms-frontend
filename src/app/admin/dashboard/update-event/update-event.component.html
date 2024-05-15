@@ -98,7 +98,7 @@
             <label for="uploadImage" class="btn btn-secondary btn-sm" title="Upload new event image">
               <i class="bi bi-upload"></i> Upload
               <input type="file" id="uploadImage" accept="image/*" style="display: none"
-                (change)="onFileSelected($event)" formControlName="avatar" />
+                (change)="onFileSelected($event)" formControlName="image" />
             </label>
             @if(imageSrc){
             <button class="btn btn-danger btn-sm mx-2" title="Remove my event image" (click)="cancelImage()">

@@ -1,17 +1,32 @@
-<section class="row justify-content-center align-items-center">
-    <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center flex-column gap-2">
+
+    <section class="row justify-content-center align-items-center">
+        <div class="col-lg-8 col-11 d-flex justify-content-center align-items-center flex-column gap-2">
         <h1 class="text-center">What are you interested in?</h1>
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, commodi aliquid pariatur voluptatem fugiat non blanditiis tempore facilis iusto libero corporis inventore in accusantium architecto rem, eum laudantium molestias sit.</p>
-        <ul class="d-flex justify-content-center align-items-center list-unstyled gap-3 my-4">
+        <p class="text-center">
+            Welcome to our personalized experience section! Take control of your journey through our platform by selecting your interests. By customizing your preferences, you unlock a wealth of tailored content specifically curated to match your tastes and needs
+        </p>
+        <ul class="row d-flex justify-content-center align-items-center list-unstyled gap-3 my-4">
+            @if(tags[0]){ 
             @for(tag of tags; track $index){
-            <li class="chips" (click)="addRemoveTag($event, tag.id, $index)">{{tag.name}}</li>
+            <li class="chips col-6 col-sm-4 col-md-3" (click)="addRemoveTag($event, tag.id, $index)">
+                {{ tag.name }}
+            </li>
             }
+        }@else {
+            <div class="container d-flex justify-content-center align-items-center">
+                <img src="assets/img/ZKZg.gif" alt="" width="50px" />
+              </div>
+        }
+
+
         </ul>
         <form [formGroup]="interestsForm" (ngSubmit)="addUserTags()">
-            <input type="hidden" [value]="userTags" formControlName="tag">
-            <a routerLink="/">
-                <button class="read-more"><span>Continue</span><i class="bi bi-arrow-right"></i></button>
-            </a>
+            <input type="hidden" [value]="userTags" formControlName="tag" />
+            <!-- <a routerLink="/"> -->
+                <button class="read-more">
+                    <span>Continue</span><i class="bi bi-arrow-right"></i>
+                </button>
+            <!-- </a> -->
         </form>
     </div>
 </section>
