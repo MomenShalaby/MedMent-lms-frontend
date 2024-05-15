@@ -50,7 +50,9 @@
     order: 3;
   }
 }
-
+.dropdown-item:focus {
+  background-color: white ;
+}
 .scrolled .header {
   box-shadow: 0px 0 18px rgba(var(--default-color-rgb), 0.15);
 }

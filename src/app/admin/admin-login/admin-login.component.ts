@@ -41,7 +41,7 @@ export class AdminLoginComponent {
           localStorage.setItem('role', JSON.stringify((response as any).data.user.roles[0].name));
           this.userService.setIsAuthenticated(true)
           this.userService.setLoggedUser((response as any).data.user)
-          this.router.navigate(['/admin/dashboard'])
+          this.router.navigate(['/admin/dashboard/view-events'])
 
           // this.router.navigate(['/']);
         },

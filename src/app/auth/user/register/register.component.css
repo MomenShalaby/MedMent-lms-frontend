@@ -1,6 +1,8 @@
-button {
-    background-color:var(--accent-color);
-    border-color: var(--accent-color);
+button[type="submit"] {
+    background-color:var(--primary-color);
+}
+button[type="submit"]:focus {
+    background-color:var(--primary-color);
 }
 button:hover {
     background-color:rgba(var(--accent-color-rgb), 0.85);

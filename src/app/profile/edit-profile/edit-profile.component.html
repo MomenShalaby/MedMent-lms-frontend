@@ -3,7 +3,7 @@
 
 
     <!-- Avatar Edit Section -->
-    <div class="my-5">
+    <div class="my-3">
         <p class="card-title">Udate Avatar Section</p>
         <hr />
         <form [formGroup]="editAvatarForm" (ngSubmit)="editAvatar()" enctype="multipart/form-data">
@@ -181,7 +181,7 @@
             }
         </div>
     </form>
-    <form [formGroup]="editExperienceForm" (ngSubmit)="editExperience">
+    <form [formGroup]="editExperienceForm" (ngSubmit)="editExperience()">
         <div id="experienceDiv" class="container mt-5">
             <p class="card-title">Experience section</p>
             <hr />
@@ -280,6 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const addExperienceBtn = document.getElementById('addExperienceBtn');
   
   addExperienceBtn.addEventListener('click', function() {
+    console.log('llll');
     // Create a new experience section
     const newExperienceSection = createExperienceSection();
     

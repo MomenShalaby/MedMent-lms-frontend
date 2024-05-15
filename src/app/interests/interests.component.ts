@@ -63,8 +63,6 @@ export class InterestsComponent implements OnInit {
         console.log(res);
         // this.router.navigate(['/membership'])
         window.location.href = "/membership";
-
-
       },
       error: (err) => {
         console.log(err);

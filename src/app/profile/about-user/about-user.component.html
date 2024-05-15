@@ -20,7 +20,7 @@
     @for(education of user.education; track $index){
     <div class="mb-3">
       <span>{{ education.degree.name }} </span><br>
-      <span class="text-end">[{{ education.start_date }} - {{ education.end_date }}] </span>
+      <span class="text-muted fst-italic">[{{ education.start_date }} - {{ education.end_date }}] </span>
     </div>
     }
   </div>
@@ -36,7 +36,7 @@
     <div class="mb-3">
       <span>{{ experience.title }} {{ '( '+experience.description+' )' }} </span><br>
       <span>{{ experience.hospital.name }}, {{ experience.country.name }} </span><br>
-      <span>[{{ experience.start_date }} - {{ experience.end_date }}] </span>
+      <p class="text-muted fst-italic">[{{ experience.start_date }} - {{ experience.end_date }}] </p>
     </div>
     }
   </div>
