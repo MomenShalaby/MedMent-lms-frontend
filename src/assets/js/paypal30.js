@@ -39,7 +39,7 @@ paypal
         headers: {
           "content-type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${token20}`,
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
         body: JSON.stringify({
           orderId: data.orderID,
@@ -89,6 +89,7 @@ paypal
 
           //   e3mly hna saf7a aw msg ll success payment bdl el alert
           const successMessage = "Payment transaction performed successfully";
+          actions.redirect('http://localhost:4200/');
 
           // Replace the above to show a success message within this page, e.g.
           // const element = document.getElementById('paypal-button-container');

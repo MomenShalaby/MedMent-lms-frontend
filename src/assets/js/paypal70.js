@@ -39,7 +39,7 @@ paypal
         headers: {
           "content-type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${token20}`,
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
         body: JSON.stringify({
           orderId: data.orderID,
@@ -89,7 +89,9 @@ paypal
 
           //   e3mly hna saf7a aw msg ll success payment bdl el alert
           const successMessage = "Payment transaction performed successfully";
-
+          // window.location.href= "localhost:4200/"
+          // www.google.com/search?q=redirect+to+another+page+in+angular+17&sca_esv=697ef796fdf142b1&sca_upv=1&sxsrf=ADLYWIJ2bgFrnxcW8LY07GyXw6Qrjdr2zg%3A1715812098005&ei=ATdFZpf9PJ2Oxc8PhoqMgAI&udm=&ved=0ahUKEwjXgemU2pCGAxUdR_EDHQYFAyAQ4dUDCBA&uact=5&oq=redirect+to+another+page+in+angular+17&gs_lp=Egxnd3Mtd2l6LXNlcnAiJnJlZGlyZWN0IHRvIGFub3RoZXIgcGFnZSBpbiBhbmd1bGFyIDE3MgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IjAZQswFYoQRwAXgBkAEAmAHYAaAB4AKqAQUwLjEuMbgBA8gBAPgBAZgCA6AC6gLCAgoQABiwAxjWBBhHwgIIEAAYgAQYywGYAwCIBgGQBgiSBwUxLjEuMaAH_Ak&sclient=gws-wiz-serp
+          actions.redirect('http://localhost:4200/');
           // Replace the above to show a success message within this page, e.g.
           // const element = document.getElementById('paypal-button-container');
           // element.innerHTML = '';

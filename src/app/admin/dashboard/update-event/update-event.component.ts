@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TagsService } from '../../../services/tags.service';
 import { EventService } from '../../../core/services/events/event-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-event',
@@ -39,7 +39,8 @@ export class UpdateEventComponent {
   constructor(
     private tagService: TagsService,
     private eventService: EventService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router : Router
   ) {
     this.eventId = this.activatedRoute.snapshot.params['id'];
   }
@@ -57,7 +58,7 @@ export class UpdateEventComponent {
     this.eventService.getEventById(this.eventId).subscribe(
       (response) => {
         this.eventData = response.data;
-        this.image = `http://localhost:8000/${this.eventData.image}`;
+        this.image = `http://localhost:8000${this.eventData.image}`;
         // this.eventTags = this.eventData.tags.map((tag: { id: any; }) => tag.id);
 
         this.updateEventForm = new FormGroup({
@@ -129,6 +130,8 @@ this.file = file;
       (response) => {
         console.log(response);
         this.successMessage = 'Event updated successfully';
+        this.router.navigate(['/admin/dashboard/view-events']);
+
       },
       (error) => {
         console.log(error);
@@ -149,6 +152,7 @@ this.file = file;
       (response) => {
         console.log(response);
         this.successMessage = 'Event image updated successfully';
+        this.router.navigate(['/admin/dashboard/view-events']);
       },
       (error) => {
         console.log(error);
