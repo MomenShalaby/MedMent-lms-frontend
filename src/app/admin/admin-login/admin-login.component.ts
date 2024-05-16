@@ -25,9 +25,7 @@ export class AdminLoginComponent {
   }
 
   handleLogin() {
-
     if (!this.adminLoginForm.valid) {
-
       this.adminLoginForm.markAllAsTouched();
     } else {
       this.adminService.login(this.adminLoginForm.value).subscribe(
@@ -38,9 +36,7 @@ export class AdminLoginComponent {
           this.userService.setIsAuthenticated(true)
           this.userService.setLoggedUser((response as any).data.user)
           this.router.navigate(['/admin/dashboard/view-events'])
-
-          // this.router.navigate(['/']);
-        },
+       },
         error => {
           // const values = Object.values(error.error.errors) as string[];
           this.errorMessage = error.error.message;
