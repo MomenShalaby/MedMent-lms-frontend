@@ -146,11 +146,11 @@
     <!-- End General Info Edit Section -->
 
 
+    @if(user.education[0]){
     <form [formGroup]="editEducationForm" (ngSubmit)="editEducation()">
         <div id="educationDiv" class="container mt-5" #educationDiv>
             <p class="card-title">Education section</p>
             <hr />
-            @if(user.education[0]){
             @for(education of user.education; track $index){
             <div class="card p-3 my-3">
                 <div class="row mb-3">
@@ -176,16 +176,14 @@
                 </div>
             </div>
             }
-            } @else {
-            <button class="btn btn-secondary" (click)="addEducation()">Add education</button>
-            }
         </div>
     </form>
+    }
+    @if(user.experiences[0]){
     <form [formGroup]="editExperienceForm" (ngSubmit)="editExperience()">
         <div id="experienceDiv" class="container mt-5">
             <p class="card-title">Experience section</p>
             <hr />
-            @if(user.experiences[0]){
             @for(experience of user.experiences; track $index){
             <div class="card p-3 my-3">
                 <div class="row mb-3">
@@ -264,11 +262,9 @@
             </div>
 
             }
-            }@else {
-            <button id="addExperienceBtn" class="btn btn-secondary" (click)="addEducation()">Add experience</button>
-            }
         </div>
     </form>
+    }
     <!-- <div class="text-center">
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </div> -->

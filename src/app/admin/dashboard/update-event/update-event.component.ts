@@ -146,7 +146,6 @@ this.file = file;
     //   const value = this.updateEventImageForm.value[key];
       formImage.append('image', this.file);
     // });
-    console.log(this.updateEventImageForm.value);
 
     this.eventService.updateEventImage(formImage, this.eventId).subscribe(
       (response) => {

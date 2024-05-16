@@ -7,6 +7,10 @@ section{
     border: 1px solid rgba(var(--default-color-rgb), 0.1);
   }
   
+  .courses .course-item img{
+    height: 250px;
+  }
+  
   .courses .course-content {
     padding: 15px;
   }
