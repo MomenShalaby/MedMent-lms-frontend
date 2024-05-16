@@ -23,7 +23,7 @@
                   </button>
                 }
                 @if(currentLecture != lectures.length-1){
-                  <button class="ms-auto" (click)="nextLecture()">
+                  <button class="btn ms-auto" (click)="nextLecture()" [disabled]="currentLecture > 0">
                     <span class="me-2">Next</span>
                     <i class="fa-solid fa-angle-right"></i>
                   </button>
@@ -55,15 +55,27 @@
                   </h2>
                   <div ngbAccordionCollapse>
                     @for(lecture of section.lectures; track $index){
+                      @if(lecture != lectures[0] && lecture != lectures[1]){
                     <div ngbAccordionBody class="border-bottom">
-                      <button class="d-flex justify-content-between align-items-center lecture-section" (click)="changeLecture($index)">
+                      <button class="d-flex justify-content-between align-items-center lecture-section" (click)="changeLecture($index)" disabled>
                         <div>
                           <i class="fa-solid fa-video"></i>
                           <span class="ms-2">{{lecture.title}}</span>
                         </div>
-                        <i class="fa-solid fa-lock"></i>
-                      </button>
-                    </div>
+                          <i class="fa-solid fa-lock"></i>
+                        </button>
+                      </div>
+                    }
+                    @else{
+                      <div ngbAccordionBody class="border-bottom">
+                        <button class="d-flex justify-content-between align-items-center lecture-section" (click)="changeLecture($index)">
+                          <div>
+                            <i class="fa-solid fa-video"></i>
+                            <span class="ms-2">{{lecture.title}}</span>
+                          </div>
+                          </button>
+                        </div>
+                    }
                   }
                   </div>
                 </div>
